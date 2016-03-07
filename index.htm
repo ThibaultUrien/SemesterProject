@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+ 
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+    <style>
+      /* tell the SVG path to be a thin blue line without any area fill */
+      path {
+        stroke: steelblue;
+        stroke-width: 1;
+        fill: none;
+      }
+      
+      .axis {
+        shape-rendering: crispEdges;
+      }
+      .x.axis line {
+        stroke: lightgrey;
+      }
+      .x.axis .minor {
+        stroke-opacity: .5;
+      }
+      .x.axis path {
+        display: none;
+      }
+      .y.axis line, .y.axis path {
+        fill: none;
+        stroke: #000;
+      }
+    </style>
+ 
+</head>
+ 
+<body>
+ 
+    <svg id="visualisation" width="1000" height="500"></svg>
+    <!-- Include JavaScript dependencies -->
+    <script type="text/javascript" src="./target/scala-2.11/project-jsdeps.js"></script>
+    <!-- Include Scala.js compiled code -->
+    <script type="text/javascript" src="./target/scala-2.11/project-fastopt.js"></script>
+    <!-- Run JSApp -->
+    <script type="text/javascript" src="./target/scala-2.11/project-launcher.js"></script>
+    <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
+    <div class="container">
+ 
+        <div class="jumbotron">
+ 
+        </div>
+ 
+    </div>
+ 
+</body>
+
+</html>

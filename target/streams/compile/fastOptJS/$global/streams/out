@@ -1,0 +1,17 @@
+[0m[[0minfo[0m] [0mFast optimizing C:\Users\Moi\EPFL\projet_semestre\project\target\scala-2.11\project-fastopt.js[0m
+[0m[[0mdebug[0m] [0mLinker: Read info: 8187 us[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 64277 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 21461 us[0m
+[0m[[0mdebug[0m] [0mLinker: cache stats: reused: 4082 -- invalidated: 1 -- trees read: 4[0m
+[0m[[0mdebug[0m] [0mLinker: 98424 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: false[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 93200 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 18 methods.[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 8374 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 105209 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 46178 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 2732 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 49106 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 58 -- invalidated: 1[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 130 -- invalidated: 8[0m
+[0m[[0mdebug[0m] [0mEmitter (write output): 56432 us[0m
