@@ -22,7 +22,7 @@ object TutorialApp extends JSApp {
   def drawBarChart
   {
    
-    val data = Array[(Double,Double)]((202,2000),(215,2001),(179,2002),(199,2003),(134,2004),(176,2010))
+    val data = Array[(Int,Int)]((202,2000),(215,2001),(179,2002),(199,2003),(134,2004),(176,2010))
     
     val width = 1000
     val height = 500
@@ -47,13 +47,13 @@ object TutorialApp extends JSApp {
     
    
     
-    val lineGen = d3.svg.line[(Double,Double)]().x
+    val lineGen = d3.svg.line[(Int,Int)]().x
     {
-      (s:(Double,Double),i:Int) => s._2
+      (s:(Int,Int),i:Int) => xScale(s._2)
     }
     .y
     {
-      (s:(Double,Double),i:Int) => s._1
+      (s:(Int,Int),i:Int) => yScale(s._1)
     }
     .interpolate("linear")
      

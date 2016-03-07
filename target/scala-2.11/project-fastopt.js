@@ -1922,22 +1922,26 @@ $c_Ltutorial_webapp_TutorialApp$.prototype.$$js$exported$meth$main__O = (functio
   this.main__V()
 });
 $c_Ltutorial_webapp_TutorialApp$.prototype.drawBarChart__V = (function() {
-  var data = [new $c_s_Tuple2$mcDD$sp().init___D__D(202.0, 2000.0), new $c_s_Tuple2$mcDD$sp().init___D__D(215.0, 2001.0), new $c_s_Tuple2$mcDD$sp().init___D__D(179.0, 2002.0), new $c_s_Tuple2$mcDD$sp().init___D__D(199.0, 2003.0), new $c_s_Tuple2$mcDD$sp().init___D__D(134.0, 2004.0), new $c_s_Tuple2$mcDD$sp().init___D__D(176.0, 2010.0)];
+  var data = [new $c_s_Tuple2$mcII$sp().init___I__I(202, 2000), new $c_s_Tuple2$mcII$sp().init___I__I(215, 2001), new $c_s_Tuple2$mcII$sp().init___I__I(179, 2002), new $c_s_Tuple2$mcII$sp().init___I__I(199, 2003), new $c_s_Tuple2$mcII$sp().init___I__I(134, 2004), new $c_s_Tuple2$mcII$sp().init___I__I(176, 2010)];
   var vis = $g["d3"]["select"]("#graph")["append"]("svg:svg")["attr"]("width", 1000)["attr"]("height", 500)["append"]("svg:g");
   vis["append"]("svg:path");
   var xScale = $g["d3"]["scale"]["linear"]()["range"]([50, 980])["domain"]([2000.0, 2010.0]);
   var yScale = $g["d3"]["scale"]["linear"]()["range"]([480, 20])["domain"]([134.0, 215.0]);
   var xAxis = $g["d3"]["svg"]["axis"]()["scale"](xScale);
   var yAxis = $g["d3"]["svg"]["axis"]()["scale"](yScale)["orient"]("left");
-  var lineGen = $g["d3"]["svg"]["line"]()["x"]((function(s$2, i$2) {
-    var s = $as_T2(s$2);
-    $uI(i$2);
-    return s.$$und2$mcD$sp__D()
-  }))["y"]((function(s$2$1, i$2$1) {
-    var s$1 = $as_T2(s$2$1);
-    $uI(i$2$1);
-    return s$1.$$und1$mcD$sp__D()
-  }))["interpolate"]("linear");
+  var lineGen = $g["d3"]["svg"]["line"]()["x"]((function(xScale$1) {
+    return (function(s$2, i$2) {
+      var s = $as_T2(s$2);
+      $uI(i$2);
+      return $uD(xScale$1(s.$$und2$mcI$sp__I()))
+    })
+  })(xScale))["y"]((function(yScale$1) {
+    return (function(s$2$1, i$2$1) {
+      var s$1 = $as_T2(s$2$1);
+      $uI(i$2$1);
+      return $uD(yScale$1(s$1.$$und1$mcI$sp__I()))
+    })
+  })(yScale))["interpolate"]("linear");
   var jsx$2 = vis["append"]("svg:g");
   var a = (("translate(0," + 480) + ")");
   var jsx$1 = jsx$2["attr"]("transform", a);
@@ -3177,40 +3181,40 @@ var $d_jl_JSConsoleBasedPrintStream = new $TypeData().initClass({
 });
 $c_jl_JSConsoleBasedPrintStream.prototype.$classData = $d_jl_JSConsoleBasedPrintStream;
 /** @constructor */
-function $c_s_Tuple2$mcDD$sp() {
+function $c_s_Tuple2$mcII$sp() {
   $c_T2.call(this);
-  this.$$und1$mcD$sp$f = 0.0;
-  this.$$und2$mcD$sp$f = 0.0
+  this.$$und1$mcI$sp$f = 0;
+  this.$$und2$mcI$sp$f = 0
 }
-$c_s_Tuple2$mcDD$sp.prototype = new $h_T2();
-$c_s_Tuple2$mcDD$sp.prototype.constructor = $c_s_Tuple2$mcDD$sp;
+$c_s_Tuple2$mcII$sp.prototype = new $h_T2();
+$c_s_Tuple2$mcII$sp.prototype.constructor = $c_s_Tuple2$mcII$sp;
 /** @constructor */
-function $h_s_Tuple2$mcDD$sp() {
+function $h_s_Tuple2$mcII$sp() {
   /*<skip>*/
 }
-$h_s_Tuple2$mcDD$sp.prototype = $c_s_Tuple2$mcDD$sp.prototype;
-$c_s_Tuple2$mcDD$sp.prototype.$$und1$mcD$sp__D = (function() {
-  return this.$$und1$mcD$sp$f
+$h_s_Tuple2$mcII$sp.prototype = $c_s_Tuple2$mcII$sp.prototype;
+$c_s_Tuple2$mcII$sp.prototype.$$und1$mcI$sp__I = (function() {
+  return this.$$und1$mcI$sp$f
 });
-$c_s_Tuple2$mcDD$sp.prototype.$$und2__O = (function() {
-  return this.$$und2$mcD$sp$f
-});
-$c_s_Tuple2$mcDD$sp.prototype.$$und2$mcD$sp__D = (function() {
-  return this.$$und2$mcD$sp$f
-});
-$c_s_Tuple2$mcDD$sp.prototype.init___D__D = (function(_1$mcD$sp, _2$mcD$sp) {
-  this.$$und1$mcD$sp$f = _1$mcD$sp;
-  this.$$und2$mcD$sp$f = _2$mcD$sp;
+$c_s_Tuple2$mcII$sp.prototype.init___I__I = (function(_1$mcI$sp, _2$mcI$sp) {
+  this.$$und1$mcI$sp$f = _1$mcI$sp;
+  this.$$und2$mcI$sp$f = _2$mcI$sp;
   $c_T2.prototype.init___O__O.call(this, null, null);
   return this
 });
-$c_s_Tuple2$mcDD$sp.prototype.$$und1__O = (function() {
-  return this.$$und1$mcD$sp$f
+$c_s_Tuple2$mcII$sp.prototype.$$und2__O = (function() {
+  return this.$$und2$mcI$sp$f
 });
-var $d_s_Tuple2$mcDD$sp = new $TypeData().initClass({
-  s_Tuple2$mcDD$sp: 0
-}, false, "scala.Tuple2$mcDD$sp", {
-  s_Tuple2$mcDD$sp: 1,
+$c_s_Tuple2$mcII$sp.prototype.$$und2$mcI$sp__I = (function() {
+  return this.$$und2$mcI$sp$f
+});
+$c_s_Tuple2$mcII$sp.prototype.$$und1__O = (function() {
+  return this.$$und1$mcI$sp$f
+});
+var $d_s_Tuple2$mcII$sp = new $TypeData().initClass({
+  s_Tuple2$mcII$sp: 0
+}, false, "scala.Tuple2$mcII$sp", {
+  s_Tuple2$mcII$sp: 1,
   T2: 1,
   O: 1,
   s_Product2: 1,
@@ -3218,9 +3222,9 @@ var $d_s_Tuple2$mcDD$sp = new $TypeData().initClass({
   s_Equals: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1,
-  s_Product2$mcDD$sp: 1
+  s_Product2$mcII$sp: 1
 });
-$c_s_Tuple2$mcDD$sp.prototype.$classData = $d_s_Tuple2$mcDD$sp;
+$c_s_Tuple2$mcII$sp.prototype.$classData = $d_s_Tuple2$mcII$sp;
 /** @constructor */
 function $c_sjs_js_JavaScriptException() {
   $c_jl_RuntimeException.call(this);
