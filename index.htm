@@ -8,51 +8,34 @@
     <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
  
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
-    <style>
-      /* tell the SVG path to be a thin blue line without any area fill */
-      path {
-        stroke: steelblue;
-        stroke-width: 1;
-        fill: none;
-      }
-      
-      .axis {
-        shape-rendering: crispEdges;
-      }
-      .x.axis line {
-        stroke: lightgrey;
-      }
-      .x.axis .minor {
-        stroke-opacity: .5;
-      }
-      .x.axis path {
-        display: none;
-      }
-      .y.axis line, .y.axis path {
-        fill: none;
-        stroke: #000;
-      }
-    </style>
  
 </head>
  
+
+</script>
 <body>
- 
-    <svg id="visualisation" width="1000" height="500"></svg>
-    <!-- Include JavaScript dependencies -->
-    <script type="text/javascript" src="./target/scala-2.11/project-jsdeps.js"></script>
-    <!-- Include Scala.js compiled code -->
-    <script type="text/javascript" src="./target/scala-2.11/project-fastopt.js"></script>
-    <!-- Run JSApp -->
-    <script type="text/javascript" src="./target/scala-2.11/project-launcher.js"></script>
-    <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
-    <div class="container">
- 
-        <div class="jumbotron">
- 
-        </div>
- 
-    </div>
+ 	<div id="playground">
+</div>
+<canvas id="canvas" width="8000" height="800" style="position: relative"></canvas>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="../../target/scalajs-runtime.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/project-fastopt.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/project-jsdeps.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/project-launcher.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+  var mainInstance = $ScalaJSEnvironment.m["helloworld.Knapsack"];
+  var mainArgs = $ScalaJSEnvironment.makeNativeArrayWrapper(
+    $ScalaJSEnvironment.classes["java.lang.String"].array, []);
+  mainInstance.main(mainArgs);
+});
+//]]>
+    
+    
  
 </body>
 
