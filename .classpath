@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.18.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.18-sources.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.18.jar"/>
+	<classpathentry kind="lib" path="lib/jsch-0.1.53.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

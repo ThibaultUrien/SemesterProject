@@ -21,6 +21,7 @@ import java.util.GregorianCalendar
 import org.scalajs.dom.svg
 import scala.scalajs.js.Dynamic.{ global => g }
 import scala.util.Random
+import tutorial.webapp.Algebra.DDVector
 
 object TutorialApp extends JSApp {
   val canvasOrig = g.document.getElementById("canvas")
@@ -28,21 +29,57 @@ object TutorialApp extends JSApp {
   val canvasElem = canvasOrig.asInstanceOf[HTMLCanvasElement]
   val ctx = canvasElem.getContext("2d").asInstanceOf[Canvas2D]
   val w = 800
+  val scaleX = 1
+  val scaleY = 1
+  val repoUrl :String = "https://github.com/lampepfl/dotty.git"
+  val pointDiameter = 14
+  val spaceForArow = 17
+  val arrowHeadLength = 15
+  val arrowBaseHalfWidth = math.sqrt(arrowHeadLength*arrowHeadLength/3)
+  
   def main(): Unit = {
-    drawEdges
-    drawVertexes
+    
+    jQuery.get("nashorn:mozilla_compat.js");
+    
+    val graph = TestingGraph(100,5,5,150)
+    drawEdges(graph)
+    drawVertexes(graph)
   }
 
-  def drawVertexes = TestingGraph.foreachPoint {
+  def drawVertexes(graph:DrawnAsGraph) = graph.foreachPoint {
      v: Vertex =>
-     clearCircle(v.x,v.y)
+     drawVertex(v)
   }
-  def drawEdges = {
-    TestingGraph.foreachEdge{
+  def drawEdges(graph:DrawnAsGraph) = {
+    graph.foreachEdge{
       
       t=>
-        drawLine(t._1.x,t._1.y,t._2.x,t._2.y,"#"+anyColor, 4)
+        val start = t._1
+        val end = t._2
+        if(start.color == t._3 && end.color == t._3)
+          drawLine(start.x*scaleX,start.y*scaleY,end.x*scaleX,end.y*scaleY,"#"+t._3, 4)
+        else
+        {
+          val vec = (end.x*scaleX- start.x*scaleX,end.y*scaleY-start.y*scaleY)
+          val length = vec.norm
+          val lineDir = vec/length
+          val newStart = (start.x,start.y)*(scaleX,scaleY)
+          val newEnd = (end.x,end.y)*(scaleX,scaleY) - (lineDir * (spaceForArow+ pointDiameter))
+          drawLine(newStart.x,newStart.y,newEnd.x,newEnd.y,"#"+t._3, 4)
+          drawArrowHead(newEnd, lineDir, t._3)
+          
+        }
     }
+  }
+   def loadRepo(remoteURL : String) =
+  {
+    val localPath = File.createTempFile("TestGitRepository", "");
+        localPath.delete();
+       
+    Git.cloneRepository()
+                .setURI(remoteURL)
+                .setDirectory(localPath)
+                .call()
   }
   def anyColor = 
   {
@@ -50,14 +87,33 @@ object TutorialApp extends JSApp {
     val rand = new Random
     ((1 to 6) map {i=> chars(rand.nextInt(chars.size))}).mkString
   }
-  def clearCircle(x:Double, y:Double) = 
+  def drawVertex(v:Vertex ) = 
   {
     ctx.beginPath()
-    ctx.moveTo(x.doubleValue()+14,y)
-    ctx.arc(x, y, 14, 0, 2*Math.PI)
-    ctx.fillStyle = "#"+anyColor
+    ctx.moveTo(v.x.doubleValue()*scaleX+pointDiameter,v.y*scaleY)
+    ctx.arc(v.x*scaleX, v.y*scaleY, pointDiameter, 0, 2*Math.PI)
+    ctx.fillStyle = "#"+v.color
     ctx.fill()
     ctx.closePath()
+  }
+  def drawArrowHead(start : (Double,Double),dir:(Double,Double), color : String):Unit = 
+  {
+    ctx.beginPath()
+    val pt1 = start+(dir.piRotate*arrowBaseHalfWidth)
+    ctx.moveTo(pt1.x,pt1.y)
+    
+    val pt2 = start + (dir*arrowHeadLength)
+    ctx.lineTo(pt2.x, pt2.y)
+    
+    val pt3 = start-(dir.piRotate*arrowBaseHalfWidth)
+    
+    ctx.lineTo(pt3.x, pt3.y)
+    ctx.fillStyle = "#"+color;
+    ctx.fill();
+    
+    
+    ctx.closePath();
+   
   }
    def drawLine(x:Number, y:Number, xx:Number, yy:Number, strokeStyle:String = "#00C", lineWidth:Int = 1) = {
     ctx.beginPath()

@@ -9,7 +9,21 @@ import org.eclipse.jgit.revwalk.RevCommit
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val builder = new FileRepositoryBuilder()
+    //val file = new File("%TEMP%");
+    println()
+    val temp = 
+      if(System.getProperty("os.name").toLowerCase().contains("windows"))
+      {
+        System.getenv("TEMP")
+      }
+      else
+      {
+        System.getenv("TMPDIR")
+      }
+    println( temp)
+    val git = loadRepo("https://github.com/lampepfl/dotty.git")
+    git.log().call().asScala foreach println
+    /*val builder = new FileRepositoryBuilder()
     val dotyLocation = System.getProperty("user.dir").replaceAll("\\\\\\w+$", "\\\\dotty")
     val f = new File(dotyLocation+"\\.git")
  
@@ -19,6 +33,17 @@ object Main {
     //println(head)
     val log = git.log().call()
     log.asScala reduceLeftOption{(a:RevCommit,b:RevCommit)=> if(a.getCommitTime<b.getCommitTime)println("prout");b}
-    
+    */
+  }
+  
+  def loadRepo(remoteURL : String) =
+  {
+    val localPath = File.createTempFile("TestGitRepository", "");
+        localPath.delete();
+       
+    Git.cloneRepository()
+                .setURI(remoteURL)
+                .setDirectory(localPath)
+                .call()
   }
 }
