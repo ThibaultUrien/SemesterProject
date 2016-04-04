@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/C:/Users/Moi/EPFL/projet_semestre/project/project/}project-build...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/C:/Users/Moi/EPFL/nicesbt/project/project/}project-build...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: default#project-build;0.1-SNAPSHOT[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -698,28 +698,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-sbt#completion;0.13.9->jline#jline;2.11 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving jline#jline;2.11 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: jline#jline;2.11 {compile=[default(compile)]}[0m
-[0m[[0minfo[0m] [0mResolving jline#jline;2.11 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain-delegate: Checking cache for: dependency: jline#jline;2.11 {compile=[default(compile)]}[0m
-[0m[[0mdebug[0m] [0m		tried https://repo.typesafe.com/typesafe/ivy-releases/jline/jline/2.11/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=https://repo.typesafe.com/typesafe/ivy-releases/jline/jline/2.11/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: no ivy file found for jline#jline;2.11[0m
-[0m[[0mdebug[0m] [0m		tried https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/jline/jline/2.11/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/jline/jline/2.11/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0m	sbt-plugin-releases: no ivy file found for jline#jline;2.11[0m
-[0m[[0mdebug[0m] [0m		tried C:\Users\Moi\.ivy2\local\jline\jline\2.11\ivys\ivy.xml[0m
-[0m[[0mdebug[0m] [0m	local: no ivy file found for jline#jline;2.11[0m
-[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom[0m
-[0m[[0mdebug[0m] [0m	public: found md file for jline#jline;2.11[0m
-[0m[[0mdebug[0m] [0m		=> https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom (2.11)[0m
-[0m[[0mdebug[0m] [0mdownloading https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom ...[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom.sha1[0m
-[0m[[0mdebug[0m] [0msha1 OK for https://repo1.maven.org/maven2/jline/jline/2.11/jline-2.11.pom[0m
-[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] jline#jline;2.11!jline.pom(pom.original) (158ms)[0m
-[0m[[0minfo[0m] [0mResolving org.sonatype.oss#oss-parent;7 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.sonatype.oss#oss-parent;7 {}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.sonatype.oss#oss-parent;7[0m
-[0m[[0mdebug[0m] [0m	found jline#jline;2.11 in public[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: jline#jline;2.11[0m
+[0m[[0mdebug[0m] [0m	found jline#jline;2.11 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-sbt#completion;0.13.9->jline#jline;2.11 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-sbt#completion;0.13.9->jline#jline;2.11 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-sbt#completion;0.13.9->jline#jline;2.11 [compile->master][0m
@@ -3324,19 +3304,19 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.9!apply-macro.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.5!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 4823ms :: artifacts dl 124ms[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT compile produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT runtime produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT test produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT provided produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT optional produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT compile-internal produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT runtime-internal produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT test-internal produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT plugin produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT sources produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT docs produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT pom produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT scala-tool produced in C:\Users\Moi\EPFL\projet_semestre\project\project\target\resolution-cache\reports\default-project-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (4823ms resolve - 124ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3496ms :: artifacts dl 128ms[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT compile produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT runtime produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT test produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT provided produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT optional produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT compile-internal produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT runtime-internal produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT test-internal produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT plugin produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT sources produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT docs produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT pom produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT scala-tool produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (3496ms resolve - 128ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

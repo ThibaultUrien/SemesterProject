@@ -1,0 +1,38 @@
+package tutorial.webapp
+
+import org.eclipse.jgit.revwalk.RevCommit
+import org.eclipse.jgit.api.Git
+import scala.collection.JavaConverters._
+import networks.DrawnAsGraph
+import networks.Vertex
+import networks.Edge
+import networks.XYVertex
+
+object LogGraph
+{
+  def apply(g:Git, eval : CommitEvaluator)= 
+  {
+    val it = g.log().call()
+    val comList : Vector[CommitVertex] = (it.asScala map {
+        com => CommitVertex(com.getCommitTime,eval(com.getName),com,???)
+    }).toVector
+    val comMap = comList.zipWithIndex.map{case (c,i)=> c.commit.getName -> i}(collection.breakOut):Map[String,Int]
+    new LogGraph(comMap,comList)
+  }
+    
+}
+sealed class LogGraph ( 
+      val commitMap : Map[String,Int],
+      val commits : Vector[CommitVertex]
+)extends DrawnAsGraph[Vertex,Edge[Vertex]]{
+  def edges : Iterator[Edge[Vertex]] = ???
+  
+  def points = commits.iterator
+
+}
+
+case class CommitVertex (
+    val x : Double,
+    val y : Double,
+    val commit : RevCommit,
+    val color : String) extends XYVertex

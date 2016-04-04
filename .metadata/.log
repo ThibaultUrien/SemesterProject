@@ -1,0 +1,148 @@
+!SESSION 2016-04-04 18:28:18.558 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_77
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-04-04 18:30:07.346
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-04-04 18:30:07.488
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-04-04 18:30:07.505
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-04-04 18:31:40.443
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\jvm\src\main\scala-2.11 does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-04-04 18:33:30.576
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\TutorialApp.scala at: offset: 5293, length: 0
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-04-04 18:33:30.641
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\TutorialApp.scala at: offset: 5293, length: 0
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-04-04 18:33:40.682
+!MESSAGE Timeout in askOption
+!STACK 0
+java.lang.Throwable
+	at org.scalaide.core.compiler.IScalaPresentationCompiler$Implicits$RichResponse$.getOption$extension(IScalaPresentationCompiler.scala:343)
+	at org.scalaide.core.compiler.IScalaPresentationCompiler$Implicits$RichResponse$.getOrElse$extension(IScalaPresentationCompiler.scala:327)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$1.apply$mcZ$sp(ScalaCompilationUnit.scala:144)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:141)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:141)
+	at org.scalaide.util.Utils$.debugTimed(Utils.scala:29)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$$anonfun$buildStructure$2.apply(ScalaCompilationUnit.scala:140)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$$anonfun$buildStructure$2.apply(ScalaCompilationUnit.scala:134)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy$$anonfun$internal$1.apply(PresentationCompilerProxy.scala:105)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy$$anonfun$internal$1.apply(PresentationCompilerProxy.scala:104)
+	at scala.Option.flatMap(Option.scala:171)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy.internal(PresentationCompilerProxy.scala:104)
+	at org.scalaide.core.internal.jdt.model.ScalaCompilationUnit$class.buildStructure(ScalaCompilationUnit.scala:134)
+	at org.scalaide.core.internal.jdt.model.ScalaSourceFile.buildStructure(ScalaSourceFile.scala:73)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:259)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:579)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:316)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:302)
+	at org.eclipse.jdt.internal.core.JavaElement.getChildren(JavaElement.java:257)
+	at org.eclipse.jdt.internal.core.JavaElement.getChildrenOfType(JavaElement.java:271)
+	at org.eclipse.jdt.internal.core.CompilationUnit.getTypes(CompilationUnit.java:920)
+	at scala.tools.eclipse.contribution.weaving.jdt.core.NameLookupAspect.ajc$around$scala_tools_eclipse_contribution_weaving_jdt_core_NameLookupAspect$1$1c7010b1(NameLookupAspect.aj:105)
+	at org.eclipse.jdt.internal.core.NameLookup.seekTypesInSourcePackage(NameLookup.java:1108)
+	at org.eclipse.jdt.internal.core.NameLookup.seekTypes(NameLookup.java:1022)
+	at org.eclipse.jdt.internal.core.NameLookup.seekTypes(NameLookup.java:962)
+	at org.eclipse.jdt.internal.core.NameLookup.findAllTypes(NameLookup.java:328)
+	at org.eclipse.jdt.internal.core.NameLookup.seekTypes(NameLookup.java:995)
+	at org.eclipse.jdt.internal.core.NameLookup.seekTypes(NameLookup.java:962)
+	at org.eclipse.jdt.internal.core.SearchableEnvironment.findTypes(SearchableEnvironment.java:641)
+	at org.eclipse.jdt.internal.core.SearchableEnvironment.findTypes(SearchableEnvironment.java:474)
+	at org.eclipse.jdt.internal.core.SearchableEnvironment.findTypes(SearchableEnvironment.java:315)
+	at org.scalaide.core.internal.jdt.search.ScalaSelectionEngine$$anonfun$select$1.apply(ScalaSelectionEngine.scala:255)
+	at org.scalaide.core.internal.jdt.search.ScalaSelectionEngine$$anonfun$select$1.apply(ScalaSelectionEngine.scala:38)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy$$anonfun$internal$1.apply(PresentationCompilerProxy.scala:105)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy$$anonfun$internal$1.apply(PresentationCompilerProxy.scala:104)
+	at scala.Option.flatMap(Option.scala:171)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy.internal(PresentationCompilerProxy.scala:104)
+	at org.scalaide.core.internal.compiler.PresentationCompilerProxy.apply(PresentationCompilerProxy.scala:62)
+	at org.scalaide.core.internal.jdt.search.ScalaSelectionEngine.select(ScalaSelectionEngine.scala:38)
+	at org.scalaide.core.internal.hyperlink.JavaSelectionEngine$.getJavaElements(DeclarationHyperlinkDetector.scala:80)
+	at org.scalaide.core.internal.hyperlink.DeclarationHyperlinkDetector.javaDeclarationHyperlinkComputer(DeclarationHyperlinkDetector.scala:54)
+	at org.scalaide.core.internal.hyperlink.DeclarationHyperlinkDetector.findHyperlinks(DeclarationHyperlinkDetector.scala:43)
+	at org.scalaide.core.internal.hyperlink.DeclarationHyperlinkDetector.findHyperlinks(DeclarationHyperlinkDetector.scala:30)
+	at org.scalaide.core.internal.hyperlink.DeclarationHyperlinkDetector.runDetectionStrategy(DeclarationHyperlinkDetector.scala:26)
+	at org.scalaide.core.internal.hyperlink.BaseHyperlinkDetector$$anonfun$1.apply(BaseHyperlinkDetector.scala:38)
+	at org.scalaide.core.internal.hyperlink.BaseHyperlinkDetector$$anonfun$1.apply(BaseHyperlinkDetector.scala:38)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+	at scala.concurrent.impl.ExecutionContextImpl$AdaptedForkJoinTask.exec(ExecutionContextImpl.scala:121)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)

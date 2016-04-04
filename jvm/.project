@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>performance network</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.scala-ide.sdt.core.scalabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.scala-ide.sdt.core.scalanature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>C:-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala</name>
+			<type>2</type>
+			<location>C:/Users/Moi/EPFL/nicesbt/project/shared/src/main/scala</location>
+		</link>
+		<link>
+			<name>-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala</name>
+			<type>2</type>
+			<location>C:/Users/Moi/EPFL/nicesbt/project/shared/src/main/scala</location>
+		</link>
+		<link>
+			<name>-Users-Moi-EPFL-nicesbt-project-shared-src-test-scala</name>
+			<type>2</type>
+			<location>C:/Users/Moi/EPFL/nicesbt/project/shared/src/test/scala</location>
+		</link>
+		<link>
+			<name>C:-Users-Moi-EPFL-nicesbt-project-shared-src-test-scala</name>
+			<type>2</type>
+			<location>C:/Users/Moi/EPFL/nicesbt/project/shared/src/test/scala</location>
+		</link>
+	</linkedResources>
+</projectDescription>

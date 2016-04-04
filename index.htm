@@ -9,11 +9,17 @@
  
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 	<style>
+		#div1 {
+		    margin-top: 10px;
+		    height: 870px;
+		    width: 1550px;
+		}
+	</style>
+	<style>
 		#myDIV {
 		    margin-top: 10px;
-		    height: 800px;
-		    width: 1500px;
-		    overflow: auto;
+		    height: 870px;
+		    width: 1590px;
 		}
 	</style>
  
@@ -22,18 +28,25 @@
 
 </script>
 <body>
-<div id= myDIV >
- 	<div id="playground"></div>
- 	<canvas id="canvas" width="8000" height="800" style="position: relative"></canvas>
- </div>
+<div id= div1 >
+	<div id= div2 >
+	<canvas id="gradeLine" width="40" height="800" style="position: relative"></canvas>
+	 	<canvas id="canvas" width="1500" height="800" style="position: relative"></canvas>
+	 	<canvas id="timeLine" width="1500" height="40" style="position: relative"></canvas>
+	</div>
+</div>
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript" src="../../target/scalajs-runtime.js"></script>
-<script type="text/javascript" src="./target/scala-2.11/project-fastopt.js"></script>
-<script type="text/javascript" src="./target/scala-2.11/project-jsdeps.js"></script>
-<script type="text/javascript" src="./target/scala-2.11/project-launcher.js"></script>
+
+<script type="text/javascript" src="./js/target/scala-2.11/performance-network-fastopt.js"></script>
+<script type="text/javascript" src="./js/target/scala-2.11/performance-network-jsdeps.js"></script>
+<script type="text/javascript" src="edges.js"></script>
+<script type="text/javascript" src="vertexes.js"></script>
+<script type="text/javascript" src="./js/target/scala-2.11/performance-network-launcher.js"></script>
+
+
 
 <script type="text/javascript">
 //<![CDATA[
