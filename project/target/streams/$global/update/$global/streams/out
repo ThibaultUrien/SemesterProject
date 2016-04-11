@@ -3304,7 +3304,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.9!apply-macro.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.5!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3496ms :: artifacts dl 128ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3003ms :: artifacts dl 126ms[0m
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT compile produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT runtime produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT test produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-test.xml[0m
@@ -3318,5 +3318,5 @@
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT docs produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT pom produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#project-build;0.1-SNAPSHOT scala-tool produced in C:\Users\Moi\EPFL\nicesbt\project\project\target\resolution-cache\reports\default-project-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (3496ms resolve - 128ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (3003ms resolve - 126ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

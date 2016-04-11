@@ -7,18 +7,21 @@ import tutorial.webapp.Algebra.DDVector
 import tutorial.webapp.Algebra.Vec
 import networks.DrawnAsGraph
 
-class BlackDrawer(val canvasName:String, val lineWidth : Int, val pointDiameter : Int, val scale : (Double,Double)) extends GraphDrawer[DrawnAsGraph[Vertex,Edge[Vertex]]]{
+class BlackDrawer(
+    val canvasName:String,
+    val lineWidth : Int,
+    val pointRadius : Int,
+    val scale : (Double,Double)
+) extends GraphDrawer[DrawnAsGraph[Vertex,Edge[Vertex]]] with SimpleShifting{
   
-  private var origin = (0.0,0.0)
+  
   private var lastGraph:Option[DrawnAsGraph[Vertex,Edge[Vertex]]] = None
-  def shift(v:Vec) = {
-    origin+=v
+  def redraw = {
     lastGraph match {
       case Some(graph)=> draw(graph)
       case None =>
     }
   }
-  private def inRef(v : Vec)= (v-origin)*scale
   def draw(g : DrawnAsGraph[Vertex,Edge[Vertex]]) = {
     clear
     g.edges.foreach {
@@ -28,7 +31,7 @@ class BlackDrawer(val canvasName:String, val lineWidth : Int, val pointDiameter 
     g.points.foreach { 
       v => 
         
-        drawVertex(inRef(v.location), "#000000", pointDiameter) 
+        drawVertex(inRef(v.location), "#000000", pointRadius) 
     }
     
     lastGraph = Some(g)

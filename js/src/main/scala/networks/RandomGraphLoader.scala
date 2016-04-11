@@ -14,7 +14,7 @@ class RandomGraphLoader(
     val totalIntensity = pushIntenstity + checkoutIntenstiy + mergeIntenstiy
     (pushIntenstity / totalIntensity, (pushIntenstity+checkoutIntenstiy)/totalIntensity)
   }
-  def loadGraph(vertexFile : String, edgeFile : String, gradeFile : String)(onload :(ColoredGraph)=>Unit):Unit = {
+  def loadGraph(filesDir : String)(onload :(ColoredGraph)=>Unit):Unit = {
    
     val builder = new GraphBuilder
     (1 to numberOfOpperation ) foreach

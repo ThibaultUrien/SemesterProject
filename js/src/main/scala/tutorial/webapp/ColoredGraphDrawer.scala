@@ -6,21 +6,18 @@ import networks.Edge
 import networks.ColoredGraph
 import networks.ColoredGraph
 import tutorial.webapp.Algebra._
+import networks.SimpleVertex
 
 class ColoredGraphDrawer(
     val canvasName : String,
-    val pointDiameter : Double,
+    val pointRadius : Double,
     val scale:(Double,Double),
     val arrowHeadLength : Double,
     val spaceForArow : Double
-) extends GraphDrawer[ColoredGraph] {
+) extends GraphDrawer[ColoredGraph] with SimpleShifting {
   
-  private var origin = (0.0,0.0)
   private var lastDrawnGraph : Option[ColoredGraph] = None
-  def shift(v:Vec) = {
-    val newOrigin = origin + v
-    origin = (newOrigin.x.max(0),newOrigin.y.max(0))
-    
+  def redraw = {
     lastDrawnGraph match {
       case Some(thingToDraw) => draw(thingToDraw)
       case None =>
@@ -28,14 +25,12 @@ class ColoredGraphDrawer(
   }
   val arrowBaseHalfWidth = math.sqrt(arrowHeadLength*arrowHeadLength/3)
   
-  private def inRef(v : Vec)= (v-origin)*scale
-  
   def draw(drawn : ColoredGraph) : Unit =
   {
     
-    def drawVertexes(graph:DrawnAsGraph[Vertex,Edge[Vertex]]) = graph.points.foreach {
-     v: Vertex =>
-     drawVertex(inRef(v.location),"#"+v.color, pointDiameter)
+    def drawVertexes(graph:ColoredGraph) = graph.points.foreach {
+     v: SimpleVertex =>
+     drawVertex(inRef(v.location),"#"+v.color, pointRadius)
     }
     def drawEdges(graph:ColoredGraph) = {
       graph.edges.foreach{
@@ -51,7 +46,7 @@ class ColoredGraphDrawer(
             val vec = endPos- startPos 
             val length = vec.norm
             val lineDir = vec/length
-            val newEnd = endPos - (lineDir * (spaceForArow+ pointDiameter))
+            val newEnd = endPos - (lineDir * (spaceForArow+ pointRadius))
             drawLine(startPos, newEnd,"#"+t.color, 4)
             drawArrowHead(newEnd, lineDir, t.color, arrowBaseHalfWidth, arrowHeadLength) 
           }

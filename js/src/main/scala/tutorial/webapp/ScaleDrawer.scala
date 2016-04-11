@@ -2,6 +2,7 @@ package tutorial.webapp
 
 import scala.annotation.tailrec
 import tutorial.webapp.Algebra._
+import org.util.AproxProfiler
 
 trait ScaleDrawer extends Drawer{
   
@@ -9,24 +10,38 @@ trait ScaleDrawer extends Drawer{
   protected def doRescale(newScale: Double)
   def rescale(newScale: Double) = {
     doRescale(newScale)
+    
     draw()
+    
   }
+  /**
+   * move is unscaled and given in (second, grading unit)
+   */
   protected def doTranslate(move:Double)
+  /**
+   * move is unscaled and given in (second, grading unit)
+   */
   def translate(move:Double) = {
     doTranslate(move)
     draw
   }
+  /**
+   * location is unscaled and given in (second, grading unit)
+   */
   protected def doGoTo(location:Double)
+   /**
+   * location is unscaled and given in (second, grading unit)
+   */
   def goTo(location:Double) = {
     doGoTo(location)
     draw
   }
   def scale :Double
   def anotationAt(pos : Vec, index:Int) : String
-  def shiftForAnotations(text : String):Vec
-  def advance(from:Vec):Vec
-  def lineEnd(lineStart:Vec):Vec
-  def isEnough(drawingPos:Vec):Boolean = 
+  def shiftForAnotations(text : String, index:Int):Vec
+  def advance(from:Vec, indexFrom:Int):Vec
+  def lineEnd(lineStart:Vec, index:Int):Vec
+  def isEnough(drawingPos:Vec, index:Int):Boolean = 
     !(drawingPos >= (0.0,0.0) && drawingPos < (canvasElem.width,canvasElem.height))
   def start : Vec
   def draw() = 
@@ -34,10 +49,10 @@ trait ScaleDrawer extends Drawer{
     @tailrec
     def iterate(from:Vec, pointIndex : Int)
     {
-      if(!isEnough(from))
+      if(!isEnough(from,pointIndex))
       {
         drawAGraduation(from,pointIndex)
-        iterate(advance(from),pointIndex+1)
+        iterate(advance(from,pointIndex),pointIndex+1)
       }
     }
         
@@ -47,7 +62,7 @@ trait ScaleDrawer extends Drawer{
       ctx.moveTo(from._1,from._2)
       
       
-      val end = lineEnd(from)
+      val end = lineEnd(from,pointIndex)
       ctx.lineTo(end._1, end._2)
       ctx.strokeStyle = "#000000"
       ctx.lineWidth = 4
@@ -55,7 +70,7 @@ trait ScaleDrawer extends Drawer{
       ctx.closePath()
       
       val text = anotationAt(from,pointIndex)
-      val textStart = from + shiftForAnotations(text) 
+      val textStart = from + shiftForAnotations(text,pointIndex) 
       ctx.beginPath()
       ctx.font = "15px sans-serif"
       ctx.fillStyle = "#000000"

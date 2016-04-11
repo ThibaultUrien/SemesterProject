@@ -28,7 +28,7 @@ class TimeScale(val canvasName:String, scaleParam : Double) extends ScaleDrawer{
     }, canvasElem.height-1)
  
   def oneDayInSec = 60*60*24
-  def advance(from: (Double, Double)): (Double, Double) = from + (oneDayInSec*scale,0)
+  def advance(from: (Double, Double), index:Int): (Double, Double) = from + (oneDayInSec*scale,0)
   def anotationAt(pos: (Double, Double), pointIndex : Int): String = 
   {
     val date = new Date()
@@ -51,8 +51,8 @@ class TimeScale(val canvasName:String, scaleParam : Double) extends ScaleDrawer{
         ""
     )
   }
-  def lineEnd(lineStart: Vec): Vec = lineStart - (0.0,20.0)
-  def shiftForAnotations(text: String): Vec = (10,-10.0)
+  def lineEnd(lineStart: Vec, index:Int): Vec = lineStart - (0.0,20.0)
+  def shiftForAnotations(text: String, index:Int): Vec = (10,-10.0)
   protected def doGoTo(location: Double): Unit = timeOffset = math.max(location,0).intValue()
   protected def doRescale(newScale: Double): Unit = {
     if(newScale.isInfinity || newScale.isNaN || newScale == 0)

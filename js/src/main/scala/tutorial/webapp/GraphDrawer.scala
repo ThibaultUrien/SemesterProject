@@ -13,18 +13,17 @@ trait GraphDrawer[-Graph <:DrawnAsGraph[_<:Vertex,_<:Edge[_<:Vertex]]] extends D
   
   def draw(g:Graph):Unit
   
-  def shift(v:Vec)
   
 
  
   
-  protected def drawVertex(v:Vec, fillStyle : String, pointDiameter: Double) = 
+  protected def drawVertex(v:Vec, fillStyle : String, pointRadius: Double) = 
   {
     //println("draw point at "+v*scale)
     
     ctx.beginPath()
-    ctx.moveTo(v.x+pointDiameter,v.y)
-    ctx.arc(v.x, v.y, pointDiameter, 0, 2*Math.PI)
+    ctx.moveTo(v.x+pointRadius,v.y)
+    ctx.arc(v.x, v.y, pointRadius, 0, 2*Math.PI)
     ctx.fillStyle = fillStyle
     ctx.fill()
     ctx.closePath()

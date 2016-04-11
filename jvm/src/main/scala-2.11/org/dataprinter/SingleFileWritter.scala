@@ -2,9 +2,9 @@ package org.dataprinter
 
 import java.io.FileWriter
 
-class SingleFileWritter(filename:String,val fieldNames : Seq[String]) extends Writter{
+class SingleFileWritter(val fieldNames : Seq[String],filename:String,fileDir :String,fileExtension : String = "") extends Writter{
   
-  val writter = new FileWriter(filename+".js")
+  val writter = new FileWriter(fileDir+fieldNames+fileExtension)
   private var notFirst = false
   writter.write("var "+filename+" = [")
   def appendLine(txt: CharSequence): Unit = { 

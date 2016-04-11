@@ -1,15 +1,12 @@
 package networks
 
-import org.scalajs.dom.raw.FileReader
-import org.scalajs.dom.raw.Blob
 import scala.scalajs.js
-import org.scalajs.dom.raw.UIEvent
-import tutorial.webapp.Warning
-import org.scalajs.dom.raw.Event
+import scala.scalajs.js.Any.jsArrayOps
+import scala.scalajs.js.Any.wrapArray
 
 object BlackGraphLoader extends GraphLoader[SimpleGraph]{
   
-  def loadGraph(vertexFile : String, edgeFile : String, gradeFile : String)(onload:(SimpleGraph)=>Unit) {
+  def loadGraph(filesDir : String)(onload:(SimpleGraph)=>Unit) {
    
     
     def loadPoint()= {
@@ -47,10 +44,8 @@ object BlackGraphLoader extends GraphLoader[SimpleGraph]{
     def target:Number
   }
 }
-class SimpleGraph(val vertexes : Seq[SimpleVertex], val links : Seq[SimpleEdge]) extends DrawnAsGraph[SimpleVertex,SimpleEdge] {
+class SimpleGraph(val points : Seq[SimpleVertex], val edges : Seq[SimpleEdge]) extends DrawnAsGraph[SimpleVertex,SimpleEdge] {
   
-  def edges: Iterator[SimpleEdge] = links.iterator
-  def points: Iterator[SimpleVertex] = vertexes.iterator
 
 }
 object ErrorVertex extends SimpleVertex(10,10,"ff0000","I Am Error") 

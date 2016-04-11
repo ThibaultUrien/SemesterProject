@@ -5,7 +5,7 @@ import java.io.File
 import java.io.FileWriter
 
 object RepoData {
-   def loadRepo(remoteURL : String ):Git = {
+   def loadRepo(remoteURL : String):Git = {
     val localPath = File.createTempFile("TestGitRepository", "");
         localPath.delete();
         

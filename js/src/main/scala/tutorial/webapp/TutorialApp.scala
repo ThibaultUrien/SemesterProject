@@ -22,38 +22,58 @@ import tutorial.webapp.Algebra.DDVector
 import networks.RandomGraphLoader
 import networks.BlackGraphLoader
 import scala.scalajs.js.Date
+import networks.NColorGraphLoader
+import networks.NColoredGraph
+import networks.NColoredVertex
+import controlPan.FindPointedVertex
 
 object TutorialApp extends JSApp {
   val w = 800
   val scale = (100.0/60/60/24,8.0)
   val repoUrl :String = "https://github.com/lampepfl/dotty.git"
-  val pointDiameter = 14
+  val pointRadius = 14
   val spaceForArow = 17
   val arrowHeadLength = 15
   val arrowBaseHalfWidth = math.sqrt(arrowHeadLength*arrowHeadLength/3)
   
   
   def main(): Unit = {
-    
+    def updatePointedVertex(drawer : NColorDrawer,pointed : Option[NColoredVertex]) = {
+      drawer.highlightedPoint = pointed
+      drawer.redraw
+    }
     jQuery.get("nashorn:mozilla_compat.js");
-    val loader = BlackGraphLoader//new RandomGraphLoader(150,(0.0,8000/scale._1),(0.0,800/scale._2),150,5,5)
-    val drawer = new BlackDrawer("canvas",2,14,scale)//new ColoredGraphDrawer("canvas",14,scale,15,17)
-   val time = new TimeScale("timeLine",scale._1)
-    Scrolling(
+    val loader = NColorGraphLoader//new RandomGraphLoader(150,(0.0,8000/scale._1),(0.0,800/scale._2),150,5,5)
+    val drawer = new NColorDrawer("canvas",scale,14,2)//new ColoredGraphDrawer("canvas",14,scale,15,17)
+    val addapt = new ScaleAdaptator(scale._1,pointRadius * 5)//new TimeScale("timeLine",scale._1)
+    
+    FindPointedVertex (
+        "canvas",
+        (js.Dynamic.global.canvasOriginX.asInstanceOf[Double],js.Dynamic.global.canvasOriginY.asInstanceOf[Double]),
+        ()=>{(
+          drawer.getDrawnPoints,
+          drawer.origin,
+          drawer.scale,
+          drawer.pointRadius
+        )},
+        updatePointedVertex(drawer, _:Option[NColoredVertex])
+     )
+    loader.loadGraph(""){
+      g=> 
+      val time = addapt.spreadCommits(g)("timeLine",20)
+      drawer.draw(g)
+      drawer.shift(g.points(0).location)
+      time.translate(g.points(0).x)
+    
+      Scrolling(
       "canvas",
       {
         v=>
           val move = v/scale
           drawer.shift(-move)
-          time.translate(-move._1)
+          time.translate(-move.x)
       }
     )
-    
-    time.draw()
-    loader.loadGraph("vertexes", "edges", "grades"){
-      g=> drawer.draw(g)
-      drawer.shift(g.vertexes(0).location)
-      time.translate(g.vertexes(0).x)
     }
     
    

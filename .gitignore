@@ -13,3 +13,4 @@ hs_err_pid*
 sbt.bat
 .setting
 target/
+.metadata

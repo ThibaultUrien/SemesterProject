@@ -39,6 +39,7 @@ class OneColorNetworkVertexes(val vertexes : Seq[RevCommit], val rnd : Random)
   def grade(c:RevCommit) = rnd.nextInt(100)
   def forEachPoint(f :(RevCommit)=> Unit):Unit = vertexes foreach f  
 }
+
 class OneColorNetworkEdges(val edges : Seq[(Int,Int)]) 
   extends DataPrinter with EdgeAsSrcTrgt {
   

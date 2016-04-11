@@ -7,7 +7,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.5 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.5 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@66593905[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@7629f1af[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.5[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.5 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m	[2.10.5] org.scala-lang#scala-library;2.10.5[0m
@@ -201,7 +201,6 @@
 [0m[[0mdebug[0m] [0m	found org.scala-lang#jline;2.10.5 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.5->org.scala-lang#jline;2.10.5 [optional->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#jline;2.10.5->org.fusesource.jansi#jansi;1.4 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mno default cache defined: set to C:\Users\Moi\.ivy2\cache[0m
 [0m[[0minfo[0m] [0mResolving org.fusesource.jansi#jansi;1.4 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.fusesource.jansi#jansi;1.4 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.fusesource.jansi#jansi;1.4[0m
@@ -308,7 +307,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-http;8.1.16.v20140903!jetty-http.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty.orbit#javax.servlet;3.0.0.v201112011016!javax.servlet.jar(orbit)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-continuation;8.1.16.v20140903!jetty-continuation.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 338ms :: artifacts dl 15ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 448ms :: artifacts dl 51ms[0m
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT compile produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT runtime produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT test produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-test.xml[0m
@@ -323,5 +322,5 @@
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT pom produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT scala-tool produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-scala-tool.xml[0m
 [0m[[0mdebug[0m] [0m	report for performance-network-root-project#performance-network-root-project_sjs0.6_2.10;0.1-SNAPSHOT phantom-js-jetty produced in C:\Users\Moi\EPFL\nicesbt\project\target\resolution-cache\reports\performance-network-root-project-performance-network-root-project_sjs0.6_2.10-phantom-js-jetty.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (338ms resolve - 15ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (448ms resolve - 51ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m
