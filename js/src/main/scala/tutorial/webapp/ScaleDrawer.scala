@@ -72,7 +72,7 @@ trait ScaleDrawer extends Drawer{
       val text = anotationAt(from,pointIndex)
       val textStart = from + shiftForAnotations(text,pointIndex) 
       ctx.beginPath()
-      ctx.font = "15px sans-serif"
+      ctx.font = "20px sans-serif"
       ctx.fillStyle = "#000000"
       ctx.fillText(text, textStart._1, textStart._2)
       ctx.closePath()

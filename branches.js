@@ -8,7 +8,6 @@ var branches = [
 {"name" : "refs/remotes/origin/SethTisue-patch-1"},
 {"name" : "refs/remotes/origin/aborted/simplify-hk"},
 {"name" : "refs/remotes/origin/backend"},
-{"name" : "refs/remotes/origin/bench"},
 {"name" : "refs/remotes/origin/fix/#650-self-types"},
 {"name" : "refs/remotes/origin/master"},
 {"name" : "refs/remotes/origin/revert-675-fix/#652-erase-constructors"},

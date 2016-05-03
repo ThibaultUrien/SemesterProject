@@ -425,5 +425,6 @@ trait MouseEvent extends js.Object {
   val clientX: Number
   val clientY: Number
   val ctrlKey: Boolean
+  val button:Number
   def preventDefault(): Unit
 }

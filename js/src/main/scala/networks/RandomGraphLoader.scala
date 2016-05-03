@@ -9,7 +9,7 @@ class RandomGraphLoader(
     pushIntenstity : Double,
     checkoutIntenstiy : Double,
     mergeIntenstiy : Double
-) extends GraphLoader[ColoredGraph]{
+)/* extends GraphLoader[ColoredGraph]{
   val (pushCeil,checkoutCeil)= {
     val totalIntensity = pushIntenstity + checkoutIntenstiy + mergeIntenstiy
     (pushIntenstity / totalIntensity, (pushIntenstity+checkoutIntenstiy)/totalIntensity)
@@ -100,4 +100,4 @@ class RandomGraphLoader(
       
     }
   }
-}
+}*/

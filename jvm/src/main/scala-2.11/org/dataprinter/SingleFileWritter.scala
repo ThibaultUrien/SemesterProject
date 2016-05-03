@@ -4,7 +4,7 @@ import java.io.FileWriter
 
 class SingleFileWritter(val fieldNames : Seq[String],filename:String,fileDir :String,fileExtension : String = "") extends Writter{
   
-  val writter = new FileWriter(fileDir+fieldNames+fileExtension)
+  val writter = new FileWriter(fileDir+filename+fileExtension)
   private var notFirst = false
   writter.write("var "+filename+" = [")
   def appendLine(txt: CharSequence): Unit = { 

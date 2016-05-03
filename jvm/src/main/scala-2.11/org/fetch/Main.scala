@@ -10,6 +10,7 @@ import scala.collection.JavaConverters._
 import org.talktogit.RepoData
 import org.eclipse.jgit.api.ListBranchCommand.ListMode
 import org.talktogit.NColorNetwork
+import org.talktoworkbenc.DSVDownloader
 
 object Main 
 {
@@ -32,9 +33,8 @@ object Main
    
     val (vertexes,edges,branches) = NColorNetwork(repoUrl)
     
-    val evaluation = if(evalDataUrl != "random") {
-      println("No implementation for real commit evaluation system")
-        ???    
+    if(evalDataUrl != "random") {
+      //DSVDownloader.fetch(evalDataUrl, args(3), args(2))  
     }
     
     

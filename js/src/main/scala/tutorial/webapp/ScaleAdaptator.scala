@@ -1,54 +1,56 @@
 package tutorial.webapp
 
-import networks.DrawnAsGraph
+
 import networks.Vertex
 import networks.Edge
 import networks.Offsetable
 import Algebra._
 import scala.scalajs.js.Date
+import networks.Graph
 
 class ScaleAdaptator ( 
       val timeScale : Double,
       val commitMinDist : Int) {
-  def spreadCommits(
-      g : DrawnAsGraph[Offsetable with Vertex,Edge[Offsetable with Vertex]]
-  ) = {
+  def spreadCommits(g : Graph) = {
     
-    val distortion = new StretchyDays(g.points.head)
-    g.points.tail foreach distortion.addCommit
-    
+    val distortion = new StretchyDays(g.vertexes.head)
+    g.vertexes.tail foreach distortion.addCommit
     StrecthyTimeScale(distortion.dayLength,timeScale) _
   }
-  private class StretchyDays(firstComit: Offsetable with Vertex)  {
+  
+  
+  
+  private class StretchyDays(firstComit: Vertex)  {
     var dayLength : Seq[((Int,Int,Int),Int)] = {
       val firstDate = new Date
-      firstDate.setTime(1000.0 * firstComit.x)
+      firstDate.setTime(1000.0 * firstComit.date)
+      firstComit.x = firstComit.date * timeScale
       Seq(((firstDate.getDate(),firstDate.getMonth(),firstDate.getFullYear()),aScaledDaySecond))
     }
     var lastComit = firstComit
-    def addCommit(commit : Offsetable with Vertex) = {
-      commit.offset = lastComit.offset
+    def addCommit(commit : Vertex) = {
+      commit.x = commit.date * timeScale
       
-      val dist = (commit.x  - lastComit.x) * timeScale
+      val dist = (commit.x  - lastComit.x) 
       val date = new Date
-      date.setTime(1000.0*commit.location.x)
+      date.setTime(1000.0*commit.date)
       val timeKey = (date.getDate(),date.getMonth(),date.getFullYear())
         
       val addedOffset = if(dist < commitMinDist) {
         val dif = commitMinDist-dist
-        commit.offset += (dif,0.0)
+        commit.x += dif
         dif
       } else 0
     
-      appendOffset(timeKey, addedOffset.toInt)
+      appendOffset(timeKey,addedOffset.toInt)
       lastComit = commit
     }
     
     private def aScaledDaySecond = (60*60*24*timeScale).toInt
     private def aDay_mSecond = 60*60*24 *1000.0
     private def appendOffset(timeKey : (Int,Int,Int), addedOffset : Int):Unit = {
-      
       while(dayLength.head._1 != timeKey){
+        
         val oldHead = dayLength.head._1
         val d = new Date
         d.setTime(Date.UTC(oldHead._3, oldHead._2, oldHead._1)+aDay_mSecond)
@@ -80,9 +82,9 @@ class StrecthyTimeScale(val days : Vector[((Int,Int,Int),Int)], val canvasName :
       (if(d._2 == 0 || fullTime) "/"+d._3 else "") 
     else "")
   }
-  protected def doGoTo(location: Double): Unit = firstVisibleSecond = location
+  protected def doGoTo(location: Double): Unit = firstVisibleSecond = location/scale
   protected def doRescale(newScale: Double): Unit = ???
-  protected def doTranslate(move: Double): Unit = firstVisibleSecond += move
+  protected def doTranslate(move: Double): Unit = firstVisibleSecond += move/scale
   def lineEnd(lineStart: (Double, Double),index: Int): (Double, Double) = lineStart - (0.0,lineLenght)
   def shiftForAnotations(text: String,index: Int): (Double, Double) = (10,0)
   def start: (Double, Double) = {

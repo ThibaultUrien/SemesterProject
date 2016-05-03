@@ -10,28 +10,36 @@ import org.eclipse.jgit.api.ListBranchCommand.ListMode
 
 object NColorNetwork {
   def apply (repoUrl : String) = {
+    def uncoilNetwork(commits : Seq[RevCommit], heads : Seq[RevCommit]):Seq[Int] = {
+      var resultMap = Map[RevCommit,Int]()
     
-    val git = RepoData.loadRepo(repoUrl)
-    def getBranches(com : RevCommit)={
-      val repo = git.getRepository
-  		val walk = new RevWalk(repo);
-      val commit = walk.parseCommit(repo.resolve(com.getName + "^0"));
-  		repo.getAllRefs().entrySet().asScala.flatMap {
-  			e=>
-  			  
-  			  if (e.getKey().startsWith(Constants.R_HEADS)) {
-  			    
-  			    if (walk.isMergedInto(commit,walk.parseCommit(e.getValue().getObjectId()))) {
-  			      println(commit + "is merged into "+e.getValue.getName)
-  				    e.getValue.getName :: Nil
-				    }
-  			    else
-  			      Nil
-  			  }
-  			  else
-				      Nil
-  		}
+      def recSpread(parents : Seq[RevCommit],minY : Int):Int = {
+        val min2 =(parents.map{
+            c => 
+              resultMap.get(c) match {
+                case None => 0
+                case Some(i)=>i
+              }
+          }:+minY).max
+        parents
+        .filterNot { v => resultMap.contains(v) }
+        .sortBy { v => v.getCommitTime }
+        .foldLeft(min2){
+          (y,commit) => 
+            resultMap += commit -> y        
+            recSpread(commit.getParents, y)+1
+        }
+      }
+    
+      recSpread(heads, 0) 
+      val exaustiveMap = resultMap.withDefault { x => 0 }
+      commits map exaustiveMap
     }
+  
+  
+    val git = RepoData.loadRepo(repoUrl)
+   
+    
     
     val branche = git.branchList().setListMode( ListMode.ALL ).call
     val branchesComits = branche.asScala.map(ref=>(ref.getName,{
@@ -43,11 +51,11 @@ object NColorNetwork {
      ).toSeq
     
     
+    val branchHeads = branchesComits.map(t=>t._2.head)
        
     val orderedBranches = branchesComits.map(_._1)
     
     /*
-     * A twisted way to get which commit belong to wich branche
      * 
      * The net provide the following alternative (java style) :
      * RevCommit commit = walk.parseCommit(repo.resolve(args[1] + "^0"));
@@ -85,21 +93,22 @@ object NColorNetwork {
       case(c,i) => 
         c.getParents.map(x=>(comMap(x.getName),i))
     }
-    
+    val yPoses = uncoilNetwork(branchMap._1, branchHeads)
     (
       new NColorNetworkVertexes(
-        branchMap._1.zip(branchMap._2),
+        (branchMap._1, branchMap._2, yPoses).zipped.toList,
         new Random
       ),
       new OneColorNetworkEdges(edgeList),
       new OrderedBranches(orderedBranches)
     )
+    
   }
   
-  class NColorNetworkVertexes(val vertexes : TraversableOnce[(RevCommit,Seq[Int])], val rnd : Random) 
-  extends DataPrinter with PointAsTimeNameGradesBranches {
+  class NColorNetworkVertexes(val vertexes : TraversableOnce[(RevCommit,Seq[Int],Int)], val rnd : Random) 
+  extends DataPrinter with PointWithMostCompleteInfo {
     def grade(c:RevCommit) = rnd.nextInt(100)
-    def forEachPoint(f :(RevCommit,Seq[Int])=> Unit):Unit = vertexes foreach(t=>f(t._1,t._2))  
+    def forEachPoint(f :(RevCommit,Seq[Int],Int)=> Unit):Unit = vertexes foreach(t=>f(t._1,t._2,t._3))  
   }
 
   class NColorVertex(val ref : RevCommit,val branches : Seq[String]) {

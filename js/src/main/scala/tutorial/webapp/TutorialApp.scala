@@ -20,61 +20,61 @@ import scala.scalajs.js.Dynamic.{ global => g }
 import scala.util.Random
 import tutorial.webapp.Algebra.DDVector
 import networks.RandomGraphLoader
-import networks.BlackGraphLoader
 import scala.scalajs.js.Date
-import networks.NColorGraphLoader
-import networks.NColoredGraph
-import networks.NColoredVertex
-import controlPan.FindPointedVertex
+import networks.Graph
+import networks.Vertex
+import datas.HttpDsv
+import datas.DSVReader
+import datas.JSVertex
+import datas.DSVCommitInfo
+import networks.Edge
+import datas.JSEdge
+import datas.JSBrancheName
 
 object TutorialApp extends JSApp {
   val w = 800
-  val scale = (100.0/60/60/24,8.0)
-  val repoUrl :String = "https://github.com/lampepfl/dotty.git"
-  val pointRadius = 14
+  val scale = 100.0/60/60/24
+  val repoUrl :String = js.Dynamic.global.repoUrl.asInstanceOf[String]
+  val performanceURL = js.Dynamic.global.dataUrl.asInstanceOf[String]
+  val pointRadius =7
   val spaceForArow = 17
   val arrowHeadLength = 15
   val arrowBaseHalfWidth = math.sqrt(arrowHeadLength*arrowHeadLength/3)
+  val colorSeed = 1524
+  val lineWidth = 4
+  val verticalLineDistance = pointRadius * 5
+  val minPointSpace = 4*pointRadius
   
   
   def main(): Unit = {
-    def updatePointedVertex(drawer : NColorDrawer,pointed : Option[NColoredVertex]) = {
-      drawer.highlightedPoint = pointed
-      drawer.redraw
-    }
+    
     jQuery.get("nashorn:mozilla_compat.js");
-    val loader = NColorGraphLoader//new RandomGraphLoader(150,(0.0,8000/scale._1),(0.0,800/scale._2),150,5,5)
-    val drawer = new NColorDrawer("canvas",scale,14,2)//new ColoredGraphDrawer("canvas",14,scale,15,17)
-    val addapt = new ScaleAdaptator(scale._1,pointRadius * 5)//new TimeScale("timeLine",scale._1)
-    
-    FindPointedVertex (
+    val drawer = new GraphDrawer(
         "canvas",
-        (js.Dynamic.global.canvasOriginX.asInstanceOf[Double],js.Dynamic.global.canvasOriginY.asInstanceOf[Double]),
-        ()=>{(
-          drawer.getDrawnPoints,
-          drawer.origin,
-          drawer.scale,
-          drawer.pointRadius
-        )},
-        updatePointedVertex(drawer, _:Option[NColoredVertex])
-     )
-    loader.loadGraph(""){
-      g=> 
-      val time = addapt.spreadCommits(g)("timeLine",20)
-      drawer.draw(g)
-      drawer.shift(g.points(0).location)
-      time.translate(g.points(0).x)
-    
-      Scrolling(
-      "canvas",
-      {
-        v=>
-          val move = v/scale
-          drawer.shift(-move)
-          time.translate(-move.x)
-      }
+        pointRadius,
+        lineWidth,
+        verticalLineDistance,
+        colorSeed,
+        arrowHeadLength,
+        arrowBaseHalfWidth
     )
-    }
+    val addapt = new ScaleAdaptator(scale,minPointSpace)//new TimeScale("timeLine",scale._1)
+    
+    val dSVDataReader = new DSVReader
+    val makeVertex = Vertex(JSVertex.readData,_:Seq[DSVCommitInfo])
+    val makeEdges = Edge(JSEdge.readData,_:Seq[Vertex])
+    val makeGraph = (x:Seq[Vertex])=>{
+      val sortedVertex = x.sortBy { v => v.date }
+      Graph(sortedVertex,makeEdges(sortedVertex),JSBrancheName.readData map(_.name))}
+    val makeControl = Control(_:Graph,drawer,addapt)
+    val createDisplay = makeControl compose makeGraph compose makeVertex 
+    createDisplay(Nil)
+   /* HttpDsv.readData (  
+       performanceURL,
+       dSVDataReader.readData,
+       ()=> createDisplay(dSVDataReader.getReadenData)
+    )*/
+    
     
    
     
