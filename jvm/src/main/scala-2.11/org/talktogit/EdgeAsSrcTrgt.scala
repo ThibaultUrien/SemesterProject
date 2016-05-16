@@ -12,7 +12,6 @@ trait EdgeAsSrcTrgt {
        case (source,target) =>
          writer.appendEntry(source,target)
     }
-    println("all edges done")
   }
    
 

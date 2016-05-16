@@ -14,11 +14,17 @@ trait PointWithMostCompleteInfo {
             p.getCommitTime,
             y,
             "["+seqi.mkString(", ")+"]",
-            "\""+p.getFullMessage.replaceAll("\n", "\\\\n").replaceAll("\"", "\\\\\"")+"\"",
+            "\""+p.getFullMessage.flatMap(escapeEnoyingChar)+"\"",
             "\""+p.getCommitterIdent+"\""
             
         )
     )
-    println("all point done")
+  }
+  private def escapeEnoyingChar(c:Char):String = c match {
+    case '\n' => "\\n"
+    case '\"' => "\\\""
+    case '\r' => "\\r"
+    case '\\'=> "\\\\"
+    case c => ""+c
   }
 }

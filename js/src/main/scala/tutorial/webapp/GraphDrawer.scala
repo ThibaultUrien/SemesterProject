@@ -16,7 +16,7 @@ class GraphDrawer(
     val randomSeed :Long,
     val arrowHeadLength :Double,
     val arrowBaseHalfWidth :Double
-) extends Drawer with SimpleShifting{
+) extends Drawer {
   
   val randomForColor = new Random(randomSeed)
   private var colorList = Seq[String]()
@@ -27,13 +27,11 @@ class GraphDrawer(
   }
   
   def invertColor (color : String) = {
-    println("or col :"+color)
     val result = (color.grouped(2).map{ x => (0xff - Integer.parseInt(x, 16)).toHexString}).mkString("")
-    println("result col :"+result)
     result
   }
  
-  def draw(g :Graph):Unit = {
+  def draw(g :Graph, v : View):Unit = {
     def ySpreadCommits(vertexes : Seq[Vertex]) = {
         vertexes
         .groupBy { v => v.verticalIndex }
@@ -46,20 +44,21 @@ class GraphDrawer(
     
     
     val pointsInXFrame = g.vertexes
-      .dropWhile { p => inRefX(p.x)  < 0 }
-      .takeWhile { p => inRefX(p.x) < canvasElem.width }
+      .dropWhile { p => v.inRefX(p.x)  < 0 }
+      .takeWhile { p => v.inRefX(p.x) < canvasElem.width }
     
     
     
     val visibleEdge = g.edges.filter{
-      e=>inRefX(e.source.x)>0 && inRefX(e.target.x)<canvasElem.width
+      e=>v.inRefX(e.source.x)>0 && v.inRefX(e.target.x)<canvasElem.width
     }
     ySpreadCommits(pointsInXFrame++visibleEdge.flatMap(e=>e.source::e.target::Nil))
     visibleEdge foreach {
       e => 
         drawLink(
-            inRef(e.source.location),
-            inRef(e.target.location),
+            v.inRef(e.source.location),
+            v.inRef(e.target.location),
+            "#"+colors(e.source.verticalIndex),
             "#"+colors(e.target.verticalIndex),
             lineWidth)
     }
@@ -70,11 +69,10 @@ class GraphDrawer(
       .toMap
     pointsInXFrame.foreach { v => v.y = displayedYcoords(v.verticalIndex) }*/
     
-    pointsInXFrame foreach println
     
     val lastVisiblePoints = pointsInXFrame.filter {
         p =>
-          val visibleY = inRefY(p.y)
+          val visibleY = v.inRefY(p.y)
           visibleY>= 0 && visibleY < canvasElem.height 
     }
     g.visiblePoints = lastVisiblePoints
@@ -83,7 +81,7 @@ class GraphDrawer(
       case Some(higlight)=>
         if(lastVisiblePoints.contains(higlight))
             drawVertex(
-            inRef(higlight.location),
+            v.inRef(higlight.location),
             "#"+invertColor(colors(higlight.verticalIndex)),
             pointRadius + 5
         )
@@ -91,7 +89,7 @@ class GraphDrawer(
     lastVisiblePoints foreach {
       p =>
         drawVertex(
-            inRef(p.location),
+            v.inRef(p.location),
             "#"+colors(p.verticalIndex),
             pointRadius
         )
@@ -109,8 +107,6 @@ class GraphDrawer(
   
   protected def drawVertex(v:Vec, fillStyle : String, pointRadius: Double) = 
   {
-    //println("draw point at "+v*scale)
-    
     ctx.beginPath()
     ctx.moveTo(v.x+pointRadius,v.y)
     ctx.arc(v.x, v.y, pointRadius, 0, 2*Math.PI)
@@ -135,7 +131,7 @@ class GraphDrawer(
     val pt3 = start-(dir.piRotate*arrowBaseHalfWidth)
     
     ctx.lineTo(pt3.x, pt3.y)
-    ctx.fillStyle = "#"+color;
+    ctx.fillStyle = color;
     ctx.fill();
     
     
@@ -145,21 +141,20 @@ class GraphDrawer(
   protected def drawLink(
       source : (Double,Double),
       target : (Double,Double),
-      strokeStyle:String,
+      sourceStyle:String,
+      targetStyle:String,
       lineWidth:Int = 1) = {
     if(source.y ==  target.y) 
-      drawLine(source, target, strokeStyle, lineWidth)
+      drawLine(source, target, sourceStyle, lineWidth)
     else {
       val knee = (source.x,target.y)
-      drawLine(source,knee , strokeStyle, lineWidth)
+      drawLine(source,knee , sourceStyle, lineWidth)
       val dir = if(source.y<target.y) (0.0,1.0) else (0.0,-1.0)
-      drawArrowHead(knee - (dir * arrowHeadLength), dir, strokeStyle)
-      drawLine(knee, target, strokeStyle, lineWidth)
+      drawArrowHead(knee - (dir * arrowHeadLength), dir, sourceStyle)
+      drawLine(knee, target, targetStyle, lineWidth)
     }
   }
   protected def drawLine(source : (Double,Double), target : (Double,Double), strokeStyle:String, lineWidth:Int = 1) = {
-   // println("draw line from "+source*scale+" to "+target*scale)
-    
     ctx.beginPath()
     val from = source 
     ctx.moveTo(from.x,from.y)

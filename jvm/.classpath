@@ -17,6 +17,7 @@
   <classpathentry kind="lib" path="C:\Users\Moi\.ivy2\cache\org.apache.httpcomponents\httpcore\jars\httpcore-4.3.3.jar"/>
   <classpathentry kind="lib" path="C:\Users\Moi\.ivy2\cache\commons-logging\commons-logging\jars\commons-logging-1.1.3.jar"/>
   <classpathentry kind="lib" path="C:\Users\Moi\.ivy2\cache\commons-codec\commons-codec\jars\commons-codec-1.6.jar"/>
+  <classpathentry kind="lib" path="C:\Users\Moi\.ivy2\cache\junit\junit\jars\junit-4.8.1.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="output" path="bin"/>
 </classpath>

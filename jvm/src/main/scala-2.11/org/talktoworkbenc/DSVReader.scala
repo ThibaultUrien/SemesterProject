@@ -1,9 +1,15 @@
-package datas
+package org.talktoworkbenc
 
-import scala.scalajs.js.Date
+import java.util.GregorianCalendar
+import java.util.Date
+import java.util.Formatter.DateTime
+import java.time.format.DateTimeFormatter
+import java.time.ZonedDateTime
+
+
 
 class DSVReader {
-  private var allData : Seq[DSVCommitInfo] = Nil
+  @volatile private var allData : Seq[DSVCommitInfo] = Nil
   def readData(data:String) = {
      val filesLines = data.split("\n")
      val parser = DVSParser(filesLines(0))
@@ -17,7 +23,7 @@ class DSVReader {
   def getReadenData = this.synchronized(allData.sortBy { x => x.date }.toSeq)
   val parameters = 
         Seq("date",
-        "paramTest",
+        "param-test",
         "value",
         "success",
         "cilo",
@@ -27,7 +33,7 @@ class DSVReader {
         
   private object DVSParser {
     def apply(header:String) = {
-      val paramMap = header.split(" ").zipWithIndex.map{case (s,i)=> s-> i}(collection.breakOut):Map[String,Int]
+      val paramMap = header.split("[ \t]").zipWithIndex.map{case (s,i)=> s-> i}(collection.breakOut):Map[String,Int]
       val paramPos = 
         parameters
         .map{
@@ -59,33 +65,7 @@ class DSVReader {
       val units:Int,
       val complete : Int
   ){
-    private def ToZuluTime(s:String):Int = {
-      val lastChar = s.last.toUpper
-      val (offset,noTimecode) = 
-        if(lastChar.isDigit ) 
-          (0,s)
-        else (
-          (
-            if(lastChar == 'Z')
-              0
-            else if(lastChar >='A' && lastChar!='J' && lastChar <='Y') {
-              if( lastChar < 'J')
-                lastChar - 'A' + 1
-              else if(lastChar <= 'M')
-                lastChar - 'A'
-              else
-                'M'-lastChar
-            }
-            else throw new PerfReadingException(s+"assumed to be a date end with an unknow timecode : "+lastChar)
-          ), 
-          s.take(s.size-1)
-        )
-        val Array(fulldate,time) = noTimecode.split("T")
-        val colon = ":"
-        val Array(year,month,date) = fulldate.split(colon) map(_.toInt)
-        val Array( hours, minutes, seconds) = time.split(colon) map(_.toInt)
-        (Date.UTC(year, month, date, hours, minutes, seconds)/1000).toInt + offset*60*60
-     }
+    
     def parseResult (s : String) ={
       val perfixTable = Seq(
           ("m",-3),
@@ -112,7 +92,7 @@ class DSVReader {
       // cut on space that are note between two quote and allow toescape quote
       val regex = "\\s+(?=((\\\\[\\\\\"]|[^\\\\\"])*\"(\\\\[\\\\\"]|[^\\\\\"])*\")*(\\\\[\\\\\"]|[^\\\\\"])*$)"
       val split = s.split(regex) map(_.trim)
-      val time = ToZuluTime(split(date))
+      val time = ZonedDateTime.parse(split(date)).toEpochSecond()
       
       val magnitude = {
         val unit = split(units)
@@ -150,11 +130,33 @@ class DSVReader {
     }
   }
 }
+object DSVCommitInfo {
+  def names = Seq(
+    "date",
+    "testName",
+    "representativeTime",
+    "isSucces",
+    "confidenceIntervalLo",
+    "confidenceIntervalHi",
+    "allMesures"
+  )
+}
 sealed class DSVCommitInfo(
-    val date:Int,
+    val date:Long,
     val	testName : String,
     val representativeTime : Double,
     val isSucces : Boolean,
     val confidenceIntervalLo : Double,
     val confidenceIntervalHi : Double,
-    val allMesures : Seq[Double])
+    val allMesures : Seq[Double]) {
+  
+  def toStringSeq = Seq(
+      date,
+      "\""+testName+"\"",
+      representativeTime,
+      isSucces,
+      confidenceIntervalLo,
+      confidenceIntervalHi,
+      allMesures.mkString("[", ", ", "]")
+  )
+}

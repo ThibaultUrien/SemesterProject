@@ -5,7 +5,7 @@ import datas.JSEdge
 sealed trait Edge {
   def source : Vertex
   def target : Vertex
-  override def toString = "[ from"+source+" to "+source+" ]"
+  override def toString = "[ from"+source+" to "+target+" ]"
 }
 
 object Edge {
@@ -14,6 +14,7 @@ object Edge {
       e => new Edge {
         val source = vertexes(e.source.intValue())
         val target = vertexes(e.target.intValue())
+        assert(source.date<=target.date)
       }
     }
   }

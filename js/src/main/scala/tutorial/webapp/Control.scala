@@ -7,19 +7,24 @@ import org.scalajs.dom
 import Algebra._
 import networks.Vertex
 import scala.scalajs.js.Dynamic
+import networks.PerfBarStack
 
 object Control{
   def apply(
      graph : Graph,
      drawer : GraphDrawer,
-     timeAddaptator : ScaleAdaptator ) = {
+     bars : Seq[PerfBarStack],
+     perfDrawer : PerfsDrawer,
+     timeAddaptator : ScaleAdaptator 
+   ) = {
     val time  = timeAddaptator.spreadCommits(graph)("timeLine",20)
-    val center = graph.vertexes(0).location - (drawer.canvasDimentions/2)
+    val center = graph.vertexes.last.location - (drawer.canvasDimentions/2)
     val frameOffset = (Dynamic.global.canvasOriginX.asInstanceOf[Double],Dynamic.global.canvasOriginY.asInstanceOf[Double])
-    drawer.goTo(center)
-    time.goTo(center.x)
-    
-    drawer.draw(graph)
+    val view = new View
+    view.topLeft = center
+    drawer.draw(graph,view)
+    time.draw(view)
+    perfDrawer.draw(bars, view)
     
     val mouseState = new MouseState
     
@@ -56,7 +61,7 @@ object Control{
         val pointed = doPointedFind(newPos - frameOffset)
         if(pointed != graph.highlightedPoint){
           graph.highlightedPoint = pointed
-          drawer.draw(graph)
+          drawer.draw(graph,view)
         }
       }
       mouseState.mouseLastPos = newPos
@@ -77,7 +82,7 @@ object Control{
     def doPointedFind(pointer : Vec) : Option[Vertex] = {
       val possibleVertex = graph.visiblePoints
       val pointRadius = drawer.pointRadius
-      val visualPos = possibleVertex.map { p => (drawer.inRef(p.location))}
+      val visualPos = possibleVertex.map { p => (view.inRef(p.location))}
       visualPos
         .zip(possibleVertex)
         .dropWhile { p => p._1.x + pointRadius   < pointer.x }
@@ -89,14 +94,14 @@ object Control{
         }
     }
     def shiftView(move : Vec) = {
-      drawer.shift(-move)
-      time.translate(-move.x)
-      drawer.draw(graph)
-      time.draw()
+      view.topLeft -=move
+      time.draw(view)
+      drawer.draw(graph, view)
+      perfDrawer.draw(bars, view)
     }
     def updateHighligtedVertex(pointedVertex : Option[Vertex]) = {
       graph.highlightedPoint = pointedVertex
-      drawer.draw(graph)
+      drawer.draw(graph,view)
     }
     
     

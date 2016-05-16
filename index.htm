@@ -11,17 +11,11 @@
 	<style>
 		#div1 {
 		    margin-top: 10px;
-		    height: 870px;
+		    height: 1070px;
 		    width: 1550px;
 		}
 	</style>
-	<style>
-		#myDIV {
-		    margin-top: 10px;
-		    height: 870px;
-		    width: 1590px;
-		}
-	</style>
+	
  
 </head>
  
@@ -29,11 +23,9 @@
 </script>
 <body>
 <div id= div1 >
-	<div id= div2 >
-	<canvas id="gradeLine" width="40" height="800" style="position: relative"></canvas>
-	 	<canvas id="canvas" width="1500" height="800" style="position: relative"></canvas>
-	 	<canvas id="timeLine" width="1500" height="40" style="position: relative"></canvas>
-	</div>
+	<canvas id="performances" width="1500" height="400" style="position: relative"></canvas>
+ 	<canvas id="canvas" width="1500" height="600" style="position: relative"></canvas>
+ 	<canvas id="timeLine" width="1500" height="40" style="position: relative"></canvas>
 </div>
 
 <script type="text/javascript">
@@ -46,12 +38,14 @@
 <script type="text/javascript" src="https://d-d.me/tnc/dotty/report/js/ScalaMeter/data.js"></script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-fastopt.js"></script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-jsdeps.js"></script>
+<script type="text/javascript" src="./perf/ScalaMeter.js"></script>
 <script type="text/javascript" src="edges.js"></script>
 <script type="text/javascript" src="vertexes.js"></script>
 <script type="text/javascript" src="branches.js"></script>
+<script type="text/javascript" src="scalameter.js"></script>
 <script type="text/javascript">
-var canvasOriginX = 50
-var canvasOriginY = 10
+var canvasOriginX = 10
+var canvasOriginY = 420
 </script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-launcher.js"></script>
 

@@ -15,7 +15,7 @@ class ScaleAdaptator (
     
     val distortion = new StretchyDays(g.vertexes.head)
     g.vertexes.tail foreach distortion.addCommit
-    StrecthyTimeScale(distortion.dayLength,timeScale) _
+    StrecthyTimeScale(distortion.dayLength) _
   }
   
   
@@ -62,18 +62,18 @@ class ScaleAdaptator (
   }
 }
 object StrecthyTimeScale {
-  def apply (days : Seq[((Int,Int,Int),Int)], scale:Double)( canvasName : String,  lineLenght : Int) = {
+  def apply (days : Seq[((Int,Int,Int),Int)])( canvasName : String,  lineLenght : Int) = {
    
-    new StrecthyTimeScale(days.reverse.toVector,canvasName,scale,lineLenght)
+    new StrecthyTimeScale(days.reverse.toVector,canvasName,lineLenght)
   }
 }
-class StrecthyTimeScale(val days : Vector[((Int,Int,Int),Int)], val canvasName : String, val scale:Double, val lineLenght : Int) extends ScaleDrawer  {
+class StrecthyTimeScale(val days : Vector[((Int,Int,Int),Int)], val canvasName : String,  val lineLenght : Int) extends ScaleDrawer  {
   
-  var firstVisibleSecond = 0.0
-  def advance(from: (Double, Double),index: Int): (Double, Double) = {
+  
+  def advance(from: Vec,index: Int, v :View): (Double, Double) = {
     from + (days(index)._2,0.0)
   }
-  def anotationAt(pos: (Double, Double),index: Int): String = {
+  def anotationAt(pos: (Double, Double),index: Int, v :View): String = {
     val d  = days(index)._1
     val fullTime = index == 0 ||  pos.x>0 && pos.x - days(index-1)._2 <0
     
@@ -82,14 +82,11 @@ class StrecthyTimeScale(val days : Vector[((Int,Int,Int),Int)], val canvasName :
       (if(d._2 == 0 || fullTime) "/"+d._3 else "") 
     else "")
   }
-  protected def doGoTo(location: Double): Unit = firstVisibleSecond = location/scale
-  protected def doRescale(newScale: Double): Unit = ???
-  protected def doTranslate(move: Double): Unit = firstVisibleSecond += move/scale
-  def lineEnd(lineStart: (Double, Double),index: Int): (Double, Double) = lineStart - (0.0,lineLenght)
-  def shiftForAnotations(text: String,index: Int): (Double, Double) = (10,0)
-  def start: (Double, Double) = {
+  def lineEnd(lineStart: (Double, Double),index: Int,v :View): (Double, Double) = lineStart - (0.0,lineLenght)
+  def shiftForAnotations(text: String,index: Int,v :View): (Double, Double) = (10,0)
+  def start(v :View): (Double, Double) = {
     val d0 = days(0)._1
-    ((Date.UTC(d0._3,d0._2,d0._1)/1000.0-firstVisibleSecond)*scale,canvasElem.height-1)
+    ((Date.UTC(d0._3,d0._2,d0._1)/1000.0)*v.scale.x-v.topLeft.x,canvasElem.height-1)
   }
   override def isEnough(drawingPos:Vec, index:Int):Boolean = !(drawingPos < (canvasElem.width,canvasElem.height)) || index >= days.size
 

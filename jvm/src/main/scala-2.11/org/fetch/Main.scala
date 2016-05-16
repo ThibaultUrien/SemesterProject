@@ -17,9 +17,9 @@ object Main
   def main(args: Array[String]): Unit = {
     
     
-    def printToFile(printer : DataPrinter,file : String,fileDir : String) = 
+    def printToFile(printer : DataPrinter,file : String) = 
     {
-      val writer = new SingleFileWritter(printer.writtenFields,file,fileDir,".js")
+      val writer = new SingleFileWritter(printer.writtenFields,file,args(2),".js")
       printer.printData(writer)
       writer.close
     }
@@ -29,22 +29,23 @@ object Main
     val vertexesFile = "vertexes"
     val edgesFile = "edges"
     val branchesFile = "branches"
+    val testesFile = "scalameter"
     
-   
-    val (vertexes,edges,branches) = NColorNetwork(repoUrl)
+    val testes= if(evalDataUrl != "random") {
+      DSVDownloader.fetch(evalDataUrl, args(3), args(2))  
+    }else??? 
     
-    if(evalDataUrl != "random") {
-      //DSVDownloader.fetch(evalDataUrl, args(3), args(2))  
-    }
+    val (vertexes,edges,branches) = NColorNetwork(repoUrl,args(2))
     
-    
-    printToFile(branches, branchesFile,args(2))
-    
-    
-    printToFile(vertexes, vertexesFile,args(2))
+    printToFile(branches, branchesFile)
     
     
-    printToFile(edges, edgesFile,args(2))
+    printToFile(vertexes, vertexesFile)
+    
+    
+    printToFile(edges, edgesFile)
+    
+    printToFile(testes, testesFile)
     
    
   }

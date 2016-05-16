@@ -10,6 +10,9 @@ import org.scalajs.dom.raw.XMLHttpRequest
 import org.scalajs.dom.raw.Blob
 import java.util.concurrent.atomic.AtomicInteger
 import scala.concurrent.{ ExecutionContext, ExecutionContext$, Future, Promise, Await }
+/*
+ * Never used
+ */
 object HttpDsv {
   
   val oneFileTimeOut = 1000*60*2

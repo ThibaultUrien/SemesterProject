@@ -9,9 +9,9 @@ import scala.util.Random
 
 object OneColorNetwork {
   
-  def apply (repoUrl : String) = {
+  def apply (repoUrl : String, workingDir : String) = {
     
-    val git = RepoData.loadRepo(repoUrl)
+    val git = RepoData.loadRepo(repoUrl,workingDir)
     
     
     val it = git.log().call()

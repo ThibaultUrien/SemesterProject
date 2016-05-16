@@ -5,6 +5,7 @@ var branches = [
 {"name" : "refs/remotes/origin/DarkDimius-patch-3"},
 {"name" : "refs/remotes/origin/DarkDimius-patch-4"},
 {"name" : "refs/remotes/origin/DarkDimius-patch-5"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-6"},
 {"name" : "refs/remotes/origin/SethTisue-patch-1"},
 {"name" : "refs/remotes/origin/aborted/simplify-hk"},
 {"name" : "refs/remotes/origin/backend"},

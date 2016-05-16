@@ -9,7 +9,7 @@ import org.dataprinter.DataPrinter
 import org.eclipse.jgit.api.ListBranchCommand.ListMode
 
 object NColorNetwork {
-  def apply (repoUrl : String) = {
+  def apply (repoUrl : String, workingDir : String) = {
     def uncoilNetwork(commits : Seq[RevCommit], heads : Seq[RevCommit]):Seq[Int] = {
       var resultMap = Map[RevCommit,Int]()
     
@@ -37,7 +37,7 @@ object NColorNetwork {
     }
   
   
-    val git = RepoData.loadRepo(repoUrl)
+    val git = RepoData.loadRepo(repoUrl,workingDir)
    
     
     
@@ -55,49 +55,28 @@ object NColorNetwork {
        
     val orderedBranches = branchesComits.map(_._1)
     
-    /*
-     * 
-     * The net provide the following alternative (java style) :
-     * RevCommit commit = walk.parseCommit(repo.resolve(args[1] + "^0"));
-		 * for (Map.Entry<String, Ref> e : repo.getAllRefs().entrySet())
-  	 * if (e.getKey().startsWith(Constants.R_HEADS))
-  	 *		if (walk.isMergedInto(commit,
-  	 *				walk.parseCommit(e.getValue().getObjectId())))
-  	 *			System.out.println("Ref " + e.getValue().getName()
-  	 *					+ " contains commit " + commit);
-  	 * 
-  	 * which seem to work well only if every single branches has been pulled on the local machine. 
-     * */
+    
     val branchMap  = branchesComits
       .zipWithIndex
       .flatMap(t=> t._1._2.zipAll(Seq[Int](), t._1._2(0), t._2))
-      .sortBy(_._1.getName:String)
-      .foldLeft((Seq[RevCommit](),Seq[Seq[Int]]())) {
-        case((comSeq,branchSeq),(com,branche)) =>
-          if(comSeq.isEmpty)
-            (Seq(com),Seq(Seq(branche)))
-          else if(comSeq.head.getName == com.getName)
-            (comSeq,(branche+:branchSeq.head)+:branchSeq.tail)
-          else
-            (com+:comSeq,Seq(branche)+:branchSeq)
-            
-      }
+      .groupBy(t=>t._1)
+      .withDefault { c => Nil }
+      
+    val commits = git.log().call().asScala.toSeq
     
-    val indexComit = branchMap._1.zipWithIndex
+    val indexesCommits = commits.zipWithIndex
+    
+    val comMap = indexesCommits.map{case (c,i)=> c.getName -> i}(collection.breakOut):Map[String,Int]
     
     
-    val comMap = indexComit.map{case (c,i)=> c.getName -> i}(collection.breakOut):Map[String,Int]
-    
-    
-    val edgeList = indexComit.flatMap {
+    val edgeList = indexesCommits.flatMap {
       case(c,i) => 
         c.getParents.map(x=>(comMap(x.getName),i))
     }
-    val yPoses = uncoilNetwork(branchMap._1, branchHeads)
+    val yPoses = uncoilNetwork(commits, branchHeads)
     (
       new NColorNetworkVertexes(
-        (branchMap._1, branchMap._2, yPoses).zipped.toList,
-        new Random
+        (commits, (commits map branchMap).map(_ map(_._2)), yPoses).zipped.toList
       ),
       new OneColorNetworkEdges(edgeList),
       new OrderedBranches(orderedBranches)
@@ -105,19 +84,12 @@ object NColorNetwork {
     
   }
   
-  class NColorNetworkVertexes(val vertexes : TraversableOnce[(RevCommit,Seq[Int],Int)], val rnd : Random) 
+  class NColorNetworkVertexes(val vertexes : TraversableOnce[(RevCommit,Seq[Int],Int)]) 
   extends DataPrinter with PointWithMostCompleteInfo {
-    def grade(c:RevCommit) = rnd.nextInt(100)
     def forEachPoint(f :(RevCommit,Seq[Int],Int)=> Unit):Unit = vertexes foreach(t=>f(t._1,t._2,t._3))  
   }
 
-  class NColorVertex(val ref : RevCommit,val branches : Seq[String]) {
-    def updated(bName :String) = {
-      println("NColorVertex : multiple bracnh per vertex : ")
-      branches foreach println
-      new NColorVertex(ref,branches:+bName)
-    }
-  }
+  
   class OrderedBranches(val branches : Seq[String]) extends DataPrinter {
     def printData(writer: org.dataprinter.Writter): Unit = {
       branches foreach {

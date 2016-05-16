@@ -30,6 +30,10 @@ import datas.DSVCommitInfo
 import networks.Edge
 import datas.JSEdge
 import datas.JSBrancheName
+import datas.JSDSV
+import org.scalajs.dom
+import org.scalajs.dom.raw.UIEvent
+import networks.PerfBar
 
 object TutorialApp extends JSApp {
   val w = 800
@@ -44,11 +48,14 @@ object TutorialApp extends JSApp {
   val lineWidth = 4
   val verticalLineDistance = pointRadius * 5
   val minPointSpace = 4*pointRadius
-  
+  val barSpacing = 4
+  assert(barSpacing<minPointSpace)
+  val barWidth = minPointSpace - barSpacing
   
   def main(): Unit = {
     
     jQuery.get("nashorn:mozilla_compat.js");
+    println("Tuto A")
     val drawer = new GraphDrawer(
         "canvas",
         pointRadius,
@@ -58,26 +65,23 @@ object TutorialApp extends JSApp {
         arrowHeadLength,
         arrowBaseHalfWidth
     )
-    val addapt = new ScaleAdaptator(scale,minPointSpace)//new TimeScale("timeLine",scale._1)
-    
-    val dSVDataReader = new DSVReader
-    val makeVertex = Vertex(JSVertex.readData,_:Seq[DSVCommitInfo])
-    val makeEdges = Edge(JSEdge.readData,_:Seq[Vertex])
-    val makeGraph = (x:Seq[Vertex])=>{
-      val sortedVertex = x.sortBy { v => v.date }
-      Graph(sortedVertex,makeEdges(sortedVertex),JSBrancheName.readData map(_.name))}
-    val makeControl = Control(_:Graph,drawer,addapt)
-    val createDisplay = makeControl compose makeGraph compose makeVertex 
-    createDisplay(Nil)
-   /* HttpDsv.readData (  
-       performanceURL,
-       dSVDataReader.readData,
-       ()=> createDisplay(dSVDataReader.getReadenData)
-    )*/
+    val barDrawer = new PerfsDrawer("performances",barWidth)
+    val addapt = new ScaleAdaptator(scale,minPointSpace)
     
     
+    val unsortedVertexes = Vertex(JSVertex.readData)
+    val vertexes = unsortedVertexes.sortBy { v => v.date }
+    val edges = Edge(JSEdge.readData,unsortedVertexes)
+    val testesResult = PerfBar(JSDSV.readData,vertexes)
+    
+    Control(
+        Graph(vertexes,edges,JSBrancheName.readData map(_.name)),
+        drawer,
+        testesResult,
+        barDrawer,
+        addapt
+    )
    
-    
   }
 
   

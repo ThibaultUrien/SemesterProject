@@ -17,7 +17,10 @@ lazy val perfNet = crossProject.in(file(".")).
     libraryDependencies += "com.jcraft" % "jsch" % "0.1.53",
 	libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.19",
 	libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.19",
-	libraryDependencies += "org.eclipse.jgit" % "org.eclipse.jgit" % "4.2.0.201601211800-r"
+	libraryDependencies += "org.eclipse.jgit" % "org.eclipse.jgit" % "4.2.0.201601211800-r",
+	libraryDependencies ++= Seq(
+   		"junit" % "junit" % "4.8.1" % "test"
+	)
   ).
   jsSettings(
      libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.8.1",
