@@ -28,6 +28,7 @@ object Algebra
     def > = genCompOp(_>_)_
     def >= = genCompOp(_>=_)_
     def dot (v:Vec) = x*v.x+y*v.y
+    def direction = this / this.norm
     
     
     def piRotate = (-y,x)

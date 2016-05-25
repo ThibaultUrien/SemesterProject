@@ -1,0 +1,17 @@
+var branches = [
+{"name" : "refs/heads/master"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-1"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-2"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-3"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-4"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-5"},
+{"name" : "refs/remotes/origin/DarkDimius-patch-6"},
+{"name" : "refs/remotes/origin/SethTisue-patch-1"},
+{"name" : "refs/remotes/origin/aborted/simplify-hk"},
+{"name" : "refs/remotes/origin/backend"},
+{"name" : "refs/remotes/origin/fix/#650-self-types"},
+{"name" : "refs/remotes/origin/master"},
+{"name" : "refs/remotes/origin/revert-675-fix/#652-erase-constructors"},
+{"name" : "refs/remotes/origin/try/parent-constructors"},
+{"name" : "refs/remotes/origin/try/typer-reorg"},
+{"name" : "refs/remotes/origin/without-traces"}];

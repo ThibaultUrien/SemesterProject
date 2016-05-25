@@ -417,6 +417,7 @@ trait Canvas2D extends js.Object {
       startAngle: Number, endAngle: Number)
 }
 
+@js.native
 trait MouseEvent extends js.Object {
   val layerX: Number
   val layerY: Number

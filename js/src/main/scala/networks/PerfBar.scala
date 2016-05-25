@@ -42,7 +42,6 @@ object PerfBar {
     def takeAllPerfOfCommit( bufperfs : (Seq[PerfBarStack],Seq[JSDSV]),commit : Vertex):(Seq[PerfBarStack],Seq[JSDSV]) = {
       val perfs = bufperfs._2
       if(perfs.isEmpty){
-        println("Warning : some dsv might be older than any commit. Or something else is wrong.")
         bufperfs
         
       }
@@ -57,9 +56,9 @@ object PerfBar {
     val reversOrderCommit = commits.reverse
     val reversOrderPerf = testResult.sortBy { dsv => -dsv.date.intValue() }
     
-    reversOrderCommit
+    val matchedDSV = reversOrderCommit
       .foldLeft((Seq[PerfBarStack](),reversOrderPerf))(takeAllPerfOfCommit)
-      ._1
-      .sortBy(_.commit.date)
+    assert(matchedDSV._2.isEmpty)
+    matchedDSV._1.sortBy(_.commit.date)
   }
 }

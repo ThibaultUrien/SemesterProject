@@ -2,6 +2,7 @@ package networks
 
 import datas.JSVertex
 import datas.DSVCommitInfo
+import tutorial.webapp.Algebra._
 
 sealed trait Vertex {  
   
@@ -12,21 +13,25 @@ sealed trait Vertex {
   var x = 0.0
   val verticalIndex :Int
   val branches : Seq[Int]
+  val author : String
+  val comment : String
   override def toString = location.toString() 
 }
 
 object Vertex {
   def apply(commits : Seq[JSVertex]) = {
-    def vertex(time:Number, vertIndex : Number, hash:String, branch : Seq[Int]) = {
+    def vertex(time:Number, vertIndex : Number, hash:String, branch : Seq[Int],comt : String, auth:String) = {
       new Vertex {
         val name = hash
         val date = time.intValue()
         val branches : Seq[Int] = branch
         val verticalIndex :Int = vertIndex.intValue()
+        val author = auth
+        val comment = comt
       }
     }
     
-    commits.map(c=> vertex(c.time,c.y,c.name,c.branches))
+    commits.map(c=> vertex(c.time,c.y,c.name,c.branches,c.comment,c.author))
   }
   
 }

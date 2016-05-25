@@ -43,10 +43,10 @@ object TutorialApp extends JSApp {
   val pointRadius =7
   val spaceForArow = 17
   val arrowHeadLength = 15
-  val arrowBaseHalfWidth = math.sqrt(arrowHeadLength*arrowHeadLength/3)
+  val arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
   val colorSeed = 1524
   val lineWidth = 4
-  val verticalLineDistance = pointRadius * 5
+  val verticalLineDistance = pointRadius * 6
   val minPointSpace = 4*pointRadius
   val barSpacing = 4
   assert(barSpacing<minPointSpace)
@@ -70,7 +70,7 @@ object TutorialApp extends JSApp {
     
     
     val unsortedVertexes = Vertex(JSVertex.readData)
-    val vertexes = unsortedVertexes.sortBy { v => v.date }
+    val vertexes = unsortedVertexes.reverse
     val edges = Edge(JSEdge.readData,unsortedVertexes)
     val testesResult = PerfBar(JSDSV.readData,vertexes)
     
@@ -79,7 +79,8 @@ object TutorialApp extends JSApp {
         drawer,
         testesResult,
         barDrawer,
-        addapt
+        addapt,
+        (scale,1)
     )
    
   }

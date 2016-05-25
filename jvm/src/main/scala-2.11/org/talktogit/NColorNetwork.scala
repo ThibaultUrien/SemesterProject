@@ -7,31 +7,22 @@ import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.lib.Constants
 import org.dataprinter.DataPrinter
 import org.eclipse.jgit.api.ListBranchCommand.ListMode
+import scala.annotation.tailrec
 
 object NColorNetwork {
   def apply (repoUrl : String, workingDir : String) = {
-    def uncoilNetwork(commits : Seq[RevCommit], heads : Seq[RevCommit]):Seq[Int] = {
+    def uncoilNetwork(commits : Seq[RevCommit]):Seq[Int] = {
       var resultMap = Map[RevCommit,Int]()
-    
-      def recSpread(parents : Seq[RevCommit],minY : Int):Int = {
-        val min2 =(parents.map{
-            c => 
-              resultMap.get(c) match {
-                case None => 0
-                case Some(i)=>i
-              }
-          }:+minY).max
-        parents
-        .filterNot { v => resultMap.contains(v) }
-        .sortBy { v => v.getCommitTime }
-        .foldLeft(min2){
-          (y,commit) => 
-            resultMap += commit -> y        
-            recSpread(commit.getParents, y)+1
+      @tailrec
+      def recPropateToFirstParent(fromNy : (RevCommit,Int)):Unit = 
+        if(!resultMap.contains(fromNy._1)){
+          resultMap += fromNy
+          fromNy._1.getParents.headOption match {
+            case None =>
+            case Some(next)=> recPropateToFirstParent(next, fromNy._2)
+          }
         }
-      }
-    
-      recSpread(heads, 0) 
+      commits.zipWithIndex foreach recPropateToFirstParent 
       val exaustiveMap = resultMap.withDefault { x => 0 }
       commits map exaustiveMap
     }
@@ -49,10 +40,7 @@ object NColorNetwork {
         }
        )
      ).toSeq
-    
-    
-    val branchHeads = branchesComits.map(t=>t._2.head)
-       
+          
     val orderedBranches = branchesComits.map(_._1)
     
     
@@ -73,7 +61,7 @@ object NColorNetwork {
       case(c,i) => 
         c.getParents.map(x=>(comMap(x.getName),i))
     }
-    val yPoses = uncoilNetwork(commits, branchHeads)
+    val yPoses = uncoilNetwork(commits)
     (
       new NColorNetworkVertexes(
         (commits, (commits map branchMap).map(_ map(_._2)), yPoses).zipped.toList

@@ -10,37 +10,42 @@ import scala.scalajs.js.Dynamic
 import networks.PerfBarStack
 
 object Control{
+  val defaultViewSpeed = 20.0
+  val viewAcceleration = 1
+  val viewSpeedCap = 100.0
   def apply(
      graph : Graph,
      drawer : GraphDrawer,
      bars : Seq[PerfBarStack],
      perfDrawer : PerfsDrawer,
-     timeAddaptator : ScaleAdaptator 
+     timeAddaptator : ScaleAdaptator, 
+     scale : Vec
    ) = {
-    val time  = timeAddaptator.spreadCommits(graph)("timeLine",20)
-    val center = graph.vertexes.last.location - (drawer.canvasDimentions/2)
+    val time  = new StrecthyTimeScale("timeLine",20)
+    val spreadDays = timeAddaptator.spreadCommits(graph.vertexes).toVector
     val frameOffset = (Dynamic.global.canvasOriginX.asInstanceOf[Double],Dynamic.global.canvasOriginY.asInstanceOf[Double])
     val view = new View
-    view.topLeft = center
-    drawer.draw(graph,view)
-    time.draw(view)
-    perfDrawer.draw(bars, view)
+    view.scale = scale
+    
     
     val mouseState = new MouseState
     
     val target = drawer.canvasOrig
     
+    gotoCommit(graph.vertexes.head)
+    
     target.addEventListener("mousedown",onMouseDown _)
     target.addEventListener("mouseleave",onMouseUp _)
     target.addEventListener("mouseup",onMouseUp _)
     target.addEventListener("mousemove",onMouseMove _)
+    Dynamic.global.document.addEventListener("keypress",onKeyPress _)
     
+   
     def onMouseDown(evt:MouseEvent):js.Any = {
-      if(evt.button.intValue() == 0 )
+      if(graph.highlightedPoint == None )
         mouseState.mouse1down = true
       else{
-        mouseState.mouse2down = true
-        gotoCommit
+        gotoGithubCommit
       }
         
     }
@@ -54,7 +59,7 @@ object Control{
       val newPos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
       if(mouseState.mouse1down)
       {
-        val move = newPos - mouseState.mouseLastPos
+        val move =  mouseState.mouseLastPos - newPos
         shiftView(move)
       }
       else {
@@ -71,10 +76,33 @@ object Control{
     def onMouseWheel(evt:JQueryEventObject):js.Any = {
       mouseState.mouse1down = true
     }
-    def gotoCommit = {
+   
+    def onKeyPress(evt : dom.KeyboardEvent) : js.Any = {
+      val key = if(evt.key !=Unit)
+        evt.key.toLowerCase()
+        else 
+          throw new Exception("Try again with firefox")
+        
+      if( key == "left" || key == "arrowleft") {
+        if(evt.shiftKey)
+          gotoCommit(graph.vertexes.head)
+        else {
+          shiftView(((view.lastTranslation.x -  viewAcceleration) min (-defaultViewSpeed)max -viewSpeedCap),0)
+          
+        }
+      } else if(key == "right"|| key == "arrowright") {
+        if(evt.shiftKey)
+          gotoCommit(graph.vertexes.last)
+        else {
+          shiftView(((view.lastTranslation.x + viewAcceleration) max (defaultViewSpeed) min viewSpeedCap),0)
+        }
+      }
+    }
+    def gotoGithubCommit = {
       graph.highlightedPoint match {
         case None =>
         case Some(point)=>
+          updateHighligtedVertex(None)
           var win = dom.window.open(TutorialApp.repoUrl+"/commit/"+point.name, "_blank")
           win.focus();
       }
@@ -94,17 +122,24 @@ object Control{
         }
     }
     def shiftView(move : Vec) = {
-      view.topLeft -=move
-      time.draw(view)
+      view.topLeft +=move
+      time.draw(view,spreadDays)
       drawer.draw(graph, view)
       perfDrawer.draw(bars, view)
     }
+    def placeView(pos : Vec) = {
+      view.topLeft = pos
+      time.draw(view,spreadDays)
+      drawer.draw(graph, view)
+      perfDrawer.draw(bars, view)
+    }
+    def gotoCommit(v : Vertex) = placeView(centerOn(v))
     def updateHighligtedVertex(pointedVertex : Option[Vertex]) = {
       graph.highlightedPoint = pointedVertex
       drawer.draw(graph,view)
     }
     
-    
+    def centerOn(v:Vertex) = v.location - (drawer.canvasDimentions/2)
   }
   
   private class MouseState{

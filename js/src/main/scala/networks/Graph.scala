@@ -9,6 +9,8 @@ sealed trait Graph
   def branchesColor : Seq[String]
   def branchesName : Seq[String]
   var visiblePoints : Seq[Vertex]
+  var firstVisblePointIndex = 0
+  var lastVisiblePointIndex = 0
   var highlightedPoint : Option[Vertex]
 }
 
