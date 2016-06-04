@@ -20,6 +20,8 @@ object Algebra
     def * = genZipOp (_*_)_
     def *(d : Double) :Vec = (x*d,y*d)
     def /(d : Double) :Vec = (x/d,y/d)
+    def min = genZipOp(_ min _)_
+    def max = genZipOp(_ max _)_
     def / = genZipOp(_/_)_
     def unary_- : Vec = (-x,-y)
     private def genCompOp(f:(Double,Double)=>Boolean)(v:Vec):Boolean = f(x,v.x) && f(y,v.y)

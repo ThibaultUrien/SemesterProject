@@ -34,6 +34,7 @@ import datas.JSDSV
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import networks.PerfBar
+import networks.PerfBarChart
 
 object TutorialApp extends JSApp {
   val w = 800
@@ -55,7 +56,6 @@ object TutorialApp extends JSApp {
   def main(): Unit = {
     
     jQuery.get("nashorn:mozilla_compat.js");
-    println("Tuto A")
     val drawer = new GraphDrawer(
         "canvas",
         pointRadius,

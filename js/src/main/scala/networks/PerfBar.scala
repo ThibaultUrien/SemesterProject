@@ -1,7 +1,11 @@
 package networks
 
+
+
 import datas.DSVCommitInfo
+
 import datas.JSDSV
+
 import tutorial.webapp.Warning
 
 sealed class PerfBar (
@@ -12,19 +16,25 @@ sealed class PerfBar (
   val sucess : Boolean,
   val dateOfTest : Int
 )
-class PerfBarStack(notSortedbars : Seq[PerfBar], val commit : Vertex) {
-  val bars = notSortedbars.sortBy(-_.meanTime)
+object PerfBarStack {
+  def apply(notSortedbars: Seq[networks.PerfBar], commit: networks.Vertex) = {
+    new PerfBarStack(notSortedbars.sortBy(-_.meanTime), commit)
+  }
+}
+sealed class PerfBarStack(val bars : Seq[PerfBar], val commit : Vertex) {
+   
   def ++ (that : PerfBarStack) = {
     assert(commit == that.commit)
-    new PerfBarStack((bars++that.bars).sortBy(-_.meanTime),commit)
+    PerfBarStack((bars++that.bars).sortBy(-_.meanTime), commit)
   }
+  def filter(f:(PerfBar)=> Boolean) = new PerfBarStack(bars.filter(f),commit)
   
 }
 
 object PerfBar {
   def apply(testResult : Seq[JSDSV],commits : Seq[Vertex]):Seq[PerfBarStack] = {
     def perfBarStack(dsvs : Seq[JSDSV],commit:Vertex) = {
-      new PerfBarStack (
+      PerfBarStack.apply(
           dsvs.map { 
             dsv => 
               new PerfBar(
@@ -35,8 +45,7 @@ object PerfBar {
                   dsv.isSucces,
                   dsv.date.intValue()
               ) 
-          },
-        commit
+          },        commit
       )
     }
     def takeAllPerfOfCommit( bufperfs : (Seq[PerfBarStack],Seq[JSDSV]),commit : Vertex):(Seq[PerfBarStack],Seq[JSDSV]) = {
@@ -53,7 +62,7 @@ object PerfBar {
       }
           
     }
-    val reversOrderCommit = commits.reverse
+    val reversOrderCommit = commits.sortBy { c => c.authoringDate }.reverse
     val reversOrderPerf = testResult.sortBy { dsv => -dsv.date.intValue() }
     
     val matchedDSV = reversOrderCommit

@@ -8,15 +8,18 @@ import Algebra._
 import networks.Vertex
 import scala.scalajs.js.Dynamic
 import networks.PerfBarStack
+import networks.PerfBarChart
+import networks.PerfBar
 
 object Control{
   val defaultViewSpeed = 20.0
   val viewAcceleration = 1
   val viewSpeedCap = 100.0
+  private val mouseState = new MouseState
   def apply(
      graph : Graph,
      drawer : GraphDrawer,
-     bars : Seq[PerfBarStack],
+     barsStacks : Seq[PerfBarStack],
      perfDrawer : PerfsDrawer,
      timeAddaptator : ScaleAdaptator, 
      scale : Vec
@@ -27,17 +30,19 @@ object Control{
     val view = new View
     view.scale = scale
     
+    val barChart = new PerfBarChart(barsStacks)
     
-    val mouseState = new MouseState
     
-    val target = drawer.canvasOrig
+    val targets = Seq(drawer.canvasOrig,perfDrawer.canvasOrig)
     
-    gotoCommit(graph.vertexes.head)
-    
-    target.addEventListener("mousedown",onMouseDown _)
-    target.addEventListener("mouseleave",onMouseUp _)
-    target.addEventListener("mouseup",onMouseUp _)
-    target.addEventListener("mousemove",onMouseMove _)
+    gotoCommit(graph.vertexes.last)
+    targets.foreach {
+      target =>  
+        target.addEventListener("mousedown",onMouseDown _)
+        target.addEventListener("mouseleave",onMouseUp _)
+        target.addEventListener("mouseup",onMouseUp _)
+        target.addEventListener("mousemove",onMouseMove _)
+    }
     Dynamic.global.document.addEventListener("keypress",onKeyPress _)
     
    
@@ -57,16 +62,25 @@ object Control{
     }
     def onMouseMove(evt:MouseEvent):js.Any ={
       val newPos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
+      
+      
       if(mouseState.mouse1down)
       {
         val move =  mouseState.mouseLastPos - newPos
         shiftView(move)
       }
       else {
-        val pointed = doPointedFind(newPos - frameOffset)
-        if(pointed != graph.highlightedPoint){
-          graph.highlightedPoint = pointed
-          drawer.draw(graph,view)
+        val localGraphPos:Vec = localCoord(newPos, drawer)
+        val pointedVertex = findPointedVertex(localGraphPos)
+        if(pointedVertex != graph.highlightedPoint){
+          graph.highlightedPoint = pointedVertex
+          drawer.draw(graph,barChart,view)
+        }
+        val localChartPos:Vec = localCoord(newPos, perfDrawer)
+        val pointedBar = findPointedBar(localChartPos)
+        if(pointedBar != barChart.pointedBar) {
+          barChart.pointedBar = pointedBar
+          perfDrawer.draw(barChart, view)
         }
       }
       mouseState.mouseLastPos = newPos
@@ -107,7 +121,32 @@ object Control{
           win.focus();
       }
     }
-    def doPointedFind(pointer : Vec) : Option[Vertex] = {
+    def findPointedBar(pointer : Vec) : Option[(PerfBar,Double)] = 
+    if(pointer>=(0.0,0.0) && pointer<perfDrawer.dimensions){
+      val possibleStacks = barChart.visbleBars
+      val barHalfWidth = perfDrawer.barWidth/2
+      val visualPos = possibleStacks.map {s=>view.inRef(s.commit.location)}
+      val visualScale = barChart.currentScale
+      visualPos
+        .zip(possibleStacks)
+        .dropWhile { p => p._1.x + barHalfWidth   < pointer.x }
+        .headOption match {
+          case None => None
+          case Some(tuple)=> 
+            if(tuple._1.x - barHalfWidth < pointer.x)
+              tuple._2.bars
+              .reverse
+              .find { b => perfDrawer.dimensions.y - b.meanTime * visualScale<pointer.y} match {
+                case None => None
+                case Some(bar)=>Some((bar,tuple._2.commit.x))
+              }
+            else
+              None
+        }
+    }
+    else
+      None
+    def findPointedVertex(pointer : Vec) : Option[Vertex] = {
       val possibleVertex = graph.visiblePoints
       val pointRadius = drawer.pointRadius
       val visualPos = possibleVertex.map { p => (view.inRef(p.location))}
@@ -121,27 +160,27 @@ object Control{
           case Some(pointed) => Some(pointed._2)
         }
     }
-    def shiftView(move : Vec) = {
-      view.topLeft +=move
-      time.draw(view,spreadDays)
-      drawer.draw(graph, view)
-      perfDrawer.draw(bars, view)
+    def localCoord(v:Vec, local : Drawer) = {
+      val offset:Vec = (local.canvasElem.offsetLeft,local.canvasElem.offsetTop)
+      
+     v - offset
     }
+    def shiftView(move : Vec) = placeView(view.topLeft + move)
     def placeView(pos : Vec) = {
       view.topLeft = pos
       time.draw(view,spreadDays)
-      drawer.draw(graph, view)
-      perfDrawer.draw(bars, view)
+      perfDrawer.draw(barChart, view)
+      drawer.draw(graph,barChart, view)
     }
     def gotoCommit(v : Vertex) = placeView(centerOn(v))
     def updateHighligtedVertex(pointedVertex : Option[Vertex]) = {
       graph.highlightedPoint = pointedVertex
-      drawer.draw(graph,view)
+      drawer.draw(graph,barChart,view)
     }
     
     def centerOn(v:Vertex) = v.location - (drawer.canvasDimentions/2)
   }
-  
+  def mousePos = mouseState.mouseLastPos
   private class MouseState{
     var mouse1down = false
     var mouse2down = false

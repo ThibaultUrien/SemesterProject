@@ -617,3 +617,1303 @@ java.lang.AssertionError: assertion failed: Race condition detected: You are run
 
 !ENTRY org.scala-ide.sdt.core 1 0 2016-05-25 16:01:44.986
 !MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\PerfsDrawer.scala at: offset: 3206, length: 0
+!SESSION 2016-05-31 10:19:19.074 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-05-31 10:20:24.740
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-05-31 10:20:24.841
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-05-31 10:20:26.261
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2016-05-31 12:55:25.568 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-05-31 12:56:13.240
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-05-31 12:56:13.280
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-05-31 12:56:13.350
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+!SESSION 2016-06-01 10:43:18.102 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Moi\EPFL\nicesbt\project
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-01 10:43:49.794
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-01 10:43:49.981
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-01 10:43:50.023
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 10:45:22.893
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 10:45:27.158
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\jvm\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 10:48:20.506
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 11:23:17.790
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.lang.NullPointerException
+	at scala.reflect.internal.Definitions$DefinitionsClass.isByNameParamType(Definitions.scala:379)
+	at scala.reflect.internal.TreeInfo.isStableIdent(TreeInfo.scala:130)
+	at scala.reflect.internal.TreeInfo.isStableIdentifier(TreeInfo.scala:105)
+	at scala.reflect.internal.TreeInfo.isPath(TreeInfo.scala:95)
+	at scala.reflect.internal.TreeInfo.admitsTypeSelection(TreeInfo.scala:147)
+	at scala.tools.nsc.interactive.Global.stabilizedType(Global.scala:961)
+	at scala.tools.nsc.interactive.Global.typedTreeAt(Global.scala:810)
+	at scala.tools.nsc.interactive.Global$$anonfun$getTypedTreeAt$1.apply(Global.scala:840)
+	at scala.tools.nsc.interactive.Global$$anonfun$getTypedTreeAt$1.apply(Global.scala:840)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getTypedTreeAt(Global.scala:840)
+	at scala.tools.nsc.interactive.CompilerControl$AskTypeAtItem.apply$mcV$sp(CompilerControl.scala:326)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.Global.checkForMoreWork(Global.scala:518)
+	at scala.tools.nsc.interactive.Global.signalParseProgress(Global.scala:329)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.funDefRest(Parsers.scala:2619)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.funDefOrDcl(Parsers.scala:2576)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.defOrDcl(Parsers.scala:2461)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.nonLocalDefOrDcl(Parsers.scala:2473)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStat$1$$anonfun$applyOrElse$3.apply(Parsers.scala:3030)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStat$1$$anonfun$applyOrElse$3.apply(Parsers.scala:3030)
+	at scala.tools.nsc.doc.ScaladocSyntaxAnalyzer$ScaladocUnitParser.joinComment(ScaladocAnalyzer.scala:259)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStat$1.applyOrElse(Parsers.scala:3030)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStat$1.applyOrElse(Parsers.scala:3025)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.statSeq(Parsers.scala:2957)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.templateStats(Parsers.scala:3024)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStatSeq$1.apply(Parsers.scala:3011)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$templateStatSeq$1.apply(Parsers.scala:2988)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:462)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.templateStatSeq(Parsers.scala:2988)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.templateBody(Parsers.scala:2917)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.templateBodyOpt(Parsers.scala:2924)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.templateOpt(Parsers.scala:2888)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$classDef$1.apply(Parsers.scala:2751)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$classDef$1.apply(Parsers.scala:2731)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.savingClassContextBounds(Parsers.scala:327)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.classDef(Parsers.scala:2731)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.tmplDef(Parsers.scala:2706)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.topLevelTmplDef(Parsers.scala:2693)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$topStat$1$$anonfun$applyOrElse$2.apply(Parsers.scala:2980)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$topStat$1$$anonfun$applyOrElse$2.apply(Parsers.scala:2980)
+	at scala.tools.nsc.doc.ScaladocSyntaxAnalyzer$ScaladocUnitParser.joinComment(ScaladocAnalyzer.scala:259)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$topStat$1.applyOrElse(Parsers.scala:2980)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$topStat$1.applyOrElse(Parsers.scala:2973)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.statSeq(Parsers.scala:2957)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.topStatSeq(Parsers.scala:2972)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$compilationUnit$1.topstats$1(Parsers.scala:3170)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$compilationUnit$1.topstats$1(Parsers.scala:3162)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$compilationUnit$1.apply(Parsers.scala:3176)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$compilationUnit$1.apply(Parsers.scala:3138)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:462)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.compilationUnit(Parsers.scala:3138)
+	at scala.tools.nsc.ast.parser.Parsers$SourceFileParser$$anonfun$parseStartRule$1.apply(Parsers.scala:146)
+	at scala.tools.nsc.ast.parser.Parsers$SourceFileParser$$anonfun$parseStartRule$1.apply(Parsers.scala:146)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$parse$1.apply(Parsers.scala:352)
+	at scala.tools.nsc.ast.parser.Parsers$Parser$$anonfun$parse$1.apply(Parsers.scala:352)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.parseRule(Parsers.scala:345)
+	at scala.tools.nsc.ast.parser.Parsers$Parser.parse(Parsers.scala:352)
+	at scala.tools.nsc.ast.parser.Parsers$UnitParser.smartParse(Parsers.scala:241)
+	at scala.tools.nsc.ast.parser.SyntaxAnalyzer.scala$tools$nsc$ast$parser$SyntaxAnalyzer$$initialUnitBody(SyntaxAnalyzer.scala:87)
+	at scala.tools.nsc.ast.parser.SyntaxAnalyzer$ParserPhase.apply(SyntaxAnalyzer.scala:99)
+	at scala.tools.nsc.Global$GlobalPhase$$anonfun$applyPhase$1.apply$mcV$sp(Global.scala:440)
+	at scala.tools.nsc.Global$GlobalPhase.withCurrentUnit(Global.scala:431)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:440)
+	at scala.tools.nsc.Global$Run$$anonfun$compileLate$2$$anonfun$apply$1.apply(Global.scala:1609)
+	at scala.tools.nsc.Global$Run$$anonfun$compileLate$2$$anonfun$apply$1.apply(Global.scala:1609)
+	at scala.reflect.internal.SymbolTable.enteringPhase(SymbolTable.scala:235)
+	at scala.tools.nsc.Global$Run$$anonfun$compileLate$2.apply(Global.scala:1609)
+	at scala.tools.nsc.Global$Run$$anonfun$compileLate$2.apply(Global.scala:1608)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:742)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1194)
+	at scala.tools.nsc.Global$Run.compileLate(Global.scala:1608)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$parseAndEnter(Global.scala:656)
+	at scala.tools.nsc.interactive.Global.backgroundCompile(Global.scala:562)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:25)
+!SESSION 2016-06-01 16:23:42.367 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-01 16:32:05.757
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-01 16:32:05.974
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-01 16:32:07.963
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 16:34:31.919
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-01 16:49:08.385
+!MESSAGE Throwable during asyncExec
+!STACK 0
+scala.reflect.internal.FatalError: ThisType(method vertex) for sym which is not a class
+	at scala.reflect.internal.Reporting$class.abort(Reporting.scala:59)
+	at scala.reflect.internal.SymbolTable.abort(SymbolTable.scala:16)
+	at scala.reflect.internal.Types$ThisType.<init>(Types.scala:1167)
+	at scala.reflect.internal.Types$UniqueThisType.<init>(Types.scala:1187)
+	at scala.reflect.internal.Types$ThisType$.apply(Types.scala:1191)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$findMirrorSymbol(Global.scala:873)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16$$anonfun$apply$18.apply(Global.scala:946)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16$$anonfun$apply$18.apply(Global.scala:945)
+	at scala.collection.TraversableLike$WithFilter$$anonfun$foreach$1.apply(TraversableLike.scala:778)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:777)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:945)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-06-01 17:36:27.718
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\Drawer.scala at: offset: 1070, length: 0
+!SESSION 2016-06-02 14:38:38.538 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-02 14:40:22.651
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-02 14:40:22.925
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-02 14:40:23.354
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:49:18.603
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:49:47.779
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\networks\PerfBar.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:49:48.542
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\networks\PerfBar.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:49:49.953
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\networks\PerfBar.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:50:08.041
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:53:58.374
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\jvm\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 14:54:23.891
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\js\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.text 4 2 2016-06-02 15:07:33.828
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.text".
+!STACK 0
+org.eclipse.jface.text.BadPositionCategoryException
+	at org.eclipse.jface.text.AbstractDocument.removePositionCategory(AbstractDocument.java:1138)
+	at org.scalaide.ui.internal.completion.ScalaCompletionProposalImpl$$anon$1.left(ScalaCompletionProposalImpl.scala:202)
+	at org.eclipse.jface.text.link.LinkedModeModel.exit(LinkedModeModel.java:341)
+	at org.eclipse.jface.text.link.LinkedModeModel$DocumentListener.documentChanged(LinkedModeModel.java:202)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged2(AbstractDocument.java:769)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:736)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:721)
+	at org.eclipse.jface.text.AbstractDocument.fireDocumentChanged(AbstractDocument.java:796)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1191)
+	at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:194)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1210)
+	at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:180)
+	at org.eclipse.jface.text.projection.ProjectionTextStore.replace(ProjectionTextStore.java:111)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1184)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1210)
+	at org.eclipse.jface.text.projection.ProjectionDocument.replace(ProjectionDocument.java:629)
+	at org.eclipse.jface.text.DefaultDocumentAdapter.replaceTextRange(DefaultDocumentAdapter.java:248)
+	at org.eclipse.swt.custom.StyledText.modifyContent(StyledText.java:7268)
+	at org.eclipse.swt.custom.StyledText.sendKeyEvent(StyledText.java:8111)
+	at org.eclipse.swt.custom.StyledText.doBackspace(StyledText.java:2285)
+	at org.eclipse.swt.custom.StyledText.invokeAction(StyledText.java:7058)
+	at org.eclipse.swt.custom.StyledText.handleKey(StyledText.java:5959)
+	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5986)
+	at org.eclipse.swt.custom.StyledText$7.handleEvent(StyledText.java:5663)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4353)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1085)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1070)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1112)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1108)
+	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1529)
+	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4722)
+	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:343)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4610)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:339)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5023)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2549)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3759)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+!SESSION 2016-06-02 15:17:18.539 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-02 15:22:22.944
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-02 15:22:22.989
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-02 15:22:23.555
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 15:25:50.397
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\networks\PerfBarChart.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.Global.checkForMoreWork(Global.scala:518)
+	at scala.tools.nsc.interactive.Global.signalDone(Global.scala:359)
+	at scala.tools.nsc.typechecker.Typers$Typer.runTyper$1(Typers.scala:5417)
+	at scala.tools.nsc.typechecker.Typers$Typer.scala$tools$nsc$typechecker$Typers$Typer$$typedInternal(Typers.scala:5422)
+	at scala.tools.nsc.typechecker.Typers$Typer.body$2(Typers.scala:5369)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed(Typers.scala:5373)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedByValueExpr(Typers.scala:5451)
+	at scala.tools.nsc.typechecker.Typers$Typer.scala$tools$nsc$typechecker$Typers$Typer$$typedStat$1(Typers.scala:3047)
+	at scala.tools.nsc.typechecker.Typers$Typer$$anonfun$65.apply(Typers.scala:3151)
+	at scala.tools.nsc.typechecker.Typers$Typer$$anonfun$65.apply(Typers.scala:3151)
+	at scala.collection.immutable.List.loop$1(List.scala:173)
+	at scala.collection.immutable.List.mapConserve(List.scala:189)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedStats(Typers.scala:3151)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedTemplate(Typers.scala:1921)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedModuleDef(Typers.scala:1808)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedMemberDef$1(Typers.scala:5309)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed1(Typers.scala:5358)
+	at scala.tools.nsc.typechecker.Typers$Typer.runTyper$1(Typers.scala:5395)
+	at scala.tools.nsc.typechecker.Typers$Typer.scala$tools$nsc$typechecker$Typers$Typer$$typedInternal(Typers.scala:5422)
+	at scala.tools.nsc.typechecker.Typers$Typer.body$2(Typers.scala:5369)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed(Typers.scala:5373)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedByValueExpr(Typers.scala:5451)
+	at scala.tools.nsc.typechecker.Typers$Typer.scala$tools$nsc$typechecker$Typers$Typer$$typedStat$1(Typers.scala:3047)
+	at scala.tools.nsc.typechecker.Typers$Typer$$anonfun$65.apply(Typers.scala:3151)
+	at scala.tools.nsc.typechecker.Typers$Typer$$anonfun$65.apply(Typers.scala:3151)
+	at scala.collection.immutable.List.loop$1(List.scala:173)
+	at scala.collection.immutable.List.mapConserve(List.scala:189)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedStats(Typers.scala:3151)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedPackageDef$1(Typers.scala:5014)
+	at scala.tools.nsc.typechecker.Typers$Typer.typedMemberDef$1(Typers.scala:5311)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed1(Typers.scala:5358)
+	at scala.tools.nsc.typechecker.Typers$Typer.runTyper$1(Typers.scala:5395)
+	at scala.tools.nsc.typechecker.Typers$Typer.scala$tools$nsc$typechecker$Typers$Typer$$typedInternal(Typers.scala:5422)
+	at scala.tools.nsc.typechecker.Typers$Typer.body$2(Typers.scala:5369)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed(Typers.scala:5373)
+	at scala.tools.nsc.typechecker.Typers$Typer.typed(Typers.scala:5447)
+	at scala.tools.nsc.typechecker.Analyzer$typerFactory$$anon$3.apply(Analyzer.scala:102)
+	at scala.tools.nsc.Global$GlobalPhase$$anonfun$applyPhase$1.apply$mcV$sp(Global.scala:440)
+	at scala.tools.nsc.Global$GlobalPhase.withCurrentUnit(Global.scala:431)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:440)
+	at scala.tools.nsc.interactive.Global$TyperRun$$anonfun$applyPhase$1.apply(Global.scala:1225)
+	at scala.tools.nsc.interactive.Global$TyperRun$$anonfun$applyPhase$1.apply(Global.scala:1225)
+	at scala.reflect.internal.SymbolTable.enteringPhase(SymbolTable.scala:235)
+	at scala.tools.nsc.interactive.Global$TyperRun.applyPhase(Global.scala:1225)
+	at scala.tools.nsc.interactive.Global$TyperRun.typeCheck(Global.scala:1218)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$typeCheck(Global.scala:668)
+	at scala.tools.nsc.interactive.Global$$anonfun$backgroundCompile$5$$anonfun$apply$8.apply(Global.scala:583)
+	at scala.tools.nsc.interactive.Global$$anonfun$backgroundCompile$5.apply(Global.scala:579)
+	at scala.tools.nsc.interactive.Global$$anonfun$backgroundCompile$5.apply(Global.scala:579)
+	at scala.collection.TraversableLike$WithFilter$$anonfun$foreach$1.apply(TraversableLike.scala:778)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:777)
+	at scala.tools.nsc.interactive.Global.backgroundCompile(Global.scala:579)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:25)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-02 15:25:53.576
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\networks\PerfBarChart.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.eclipse.text 4 2 2016-06-02 16:08:02.384
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.text".
+!STACK 0
+org.eclipse.jface.text.BadPositionCategoryException
+	at org.eclipse.jface.text.AbstractDocument.removePositionCategory(AbstractDocument.java:1138)
+	at org.scalaide.ui.internal.completion.ScalaCompletionProposalImpl$$anon$1.left(ScalaCompletionProposalImpl.scala:202)
+	at org.eclipse.jface.text.link.LinkedModeModel.exit(LinkedModeModel.java:341)
+	at org.eclipse.jface.text.link.LinkedModeModel$DocumentListener.documentChanged(LinkedModeModel.java:202)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged2(AbstractDocument.java:769)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:736)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:721)
+	at org.eclipse.jface.text.AbstractDocument.fireDocumentChanged(AbstractDocument.java:796)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1191)
+	at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:194)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1210)
+	at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:180)
+	at org.eclipse.jface.text.projection.ProjectionTextStore.replace(ProjectionTextStore.java:111)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1184)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1210)
+	at org.eclipse.jface.text.projection.ProjectionDocument.replace(ProjectionDocument.java:629)
+	at org.eclipse.jface.text.DefaultDocumentAdapter.replaceTextRange(DefaultDocumentAdapter.java:248)
+	at org.eclipse.swt.custom.StyledText.modifyContent(StyledText.java:7268)
+	at org.eclipse.swt.custom.StyledText.sendKeyEvent(StyledText.java:8111)
+	at org.eclipse.swt.custom.StyledText.doContent(StyledText.java:2481)
+	at org.eclipse.swt.custom.StyledText.handleKey(StyledText.java:5955)
+	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5986)
+	at org.eclipse.swt.custom.StyledText$7.handleEvent(StyledText.java:5663)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4353)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1085)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1070)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1112)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1108)
+	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1529)
+	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4722)
+	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:343)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4610)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:339)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5023)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2549)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3759)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+!SESSION 2016-06-04 15:06:26.204 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-04 15:08:35.308
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-04 15:08:35.630
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-04 15:08:35.840
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-06-04 15:28:14.914
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\Control.scala at: offset: 5398, length: 0
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-04 16:11:35.614
+!MESSAGE Throwable during asyncExec
+!STACK 0
+java.util.NoSuchElementException: key not found: C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\Algebra.scala
+	at scala.collection.MapLike$class.default(MapLike.scala:228)
+	at scala.collection.AbstractMap.default(Map.scala:59)
+	at scala.collection.MapLike$class.apply(MapLike.scala:141)
+	at scala.tools.nsc.interactive.Global$$anon$4.scala$collection$mutable$SynchronizedMap$$super$apply(Global.scala:174)
+	at scala.collection.mutable.SynchronizedMap$class.apply(SynchronizedMap.scala:48)
+	at scala.tools.nsc.interactive.Global$$anon$4.apply(Global.scala:174)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$12.apply(Global.scala:850)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:949)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2$$anonfun$apply$16.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global.scala$tools$nsc$interactive$Global$$withTempUnits(Global.scala:853)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$getDocComment$2.apply(Global.scala:944)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global$$anonfun$respond$1.apply(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.respondGradually(Global.scala:706)
+	at scala.tools.nsc.interactive.Global.respond(Global.scala:699)
+	at scala.tools.nsc.interactive.Global.getDocComment(Global.scala:943)
+	at scala.tools.nsc.interactive.CompilerControl$AskDocCommentItem.apply$mcV$sp(CompilerControl.scala:376)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:504)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:429)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-04 16:26:17.420
+!MESSAGE Error in Scala compiler
+!STACK 0
+java.lang.AssertionError: assertion failed: Tried to find 'Drawer.sjsir' in 'C:\Users\Moi\EPFL\nicesbt\project\js\target\scala-2.11\classes\tutorial\webapp' but it is not a directory
+	at scala.reflect.io.AbstractFile.fileNamed(AbstractFile.scala:250)
+	at org.scalajs.core.compiler.GenJSFiles$class.getFileFor(GenJSFiles.scala:49)
+	at org.scalajs.core.compiler.GenJSFiles$class.genIRFile(GenJSFiles.scala:27)
+	at org.scalajs.core.compiler.GenJSCode.genIRFile(GenJSCode.scala:31)
+	at org.scalajs.core.compiler.GenJSCode$JSCodePhase$$anonfun$apply$6.apply(GenJSCode.scala:279)
+	at org.scalajs.core.compiler.GenJSCode$JSCodePhase$$anonfun$apply$6.apply(GenJSCode.scala:278)
+	at scala.collection.TraversableLike$WithFilter$$anonfun$foreach$1.apply(TraversableLike.scala:778)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at scala.collection.generic.TraversableForwarder$class.foreach(TraversableForwarder.scala:35)
+	at scala.collection.mutable.ListBuffer.foreach(ListBuffer.scala:45)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:777)
+	at org.scalajs.core.compiler.GenJSCode$JSCodePhase.apply(GenJSCode.scala:278)
+	at scala.tools.nsc.Global$GlobalPhase$$anonfun$applyPhase$1.apply$mcV$sp(Global.scala:440)
+	at scala.tools.nsc.Global$GlobalPhase.withCurrentUnit(Global.scala:431)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:440)
+	at scala.tools.nsc.Global$GlobalPhase$$anonfun$run$1.apply(Global.scala:398)
+	at scala.tools.nsc.Global$GlobalPhase$$anonfun$run$1.apply(Global.scala:398)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:742)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1194)
+	at scala.tools.nsc.Global$GlobalPhase.run(Global.scala:398)
+	at org.scalajs.core.compiler.GenJSCode$JSCodePhase.run(GenJSCode.scala:168)
+	at scala.tools.nsc.Global$Run.compileUnitsInternal(Global.scala:1501)
+	at scala.tools.nsc.Global$Run.compileUnits(Global.scala:1486)
+	at scala.tools.nsc.Global$Run.compileSources(Global.scala:1481)
+	at scala.tools.nsc.Global$Run.compile(Global.scala:1582)
+	at xsbt.CachedCompiler0.run(CompilerInterface.scala:116)
+	at xsbt.CachedCompiler0.run(CompilerInterface.scala:95)
+	at xsbt.CompilerInterface.run(CompilerInterface.scala:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:41)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-06-04 17:00:12.194 -----------------------------------------------
+eclipse.buildId=4.3.0-vfinal-2015-12-01T15:55:22Z-Typesafe
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-04 17:02:14.152
+!MESSAGE Preference scala.compiler.sourceLevel was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.scala-ide.sdt.core 2 0 2016-06-04 17:02:14.427
+!MESSAGE Preference scala.compiler.installation was uninitialized for js, setting default to 2.11.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-06-04 17:02:19.290
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Moi'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.scala-ide.sdt.core 4 0 2016-06-04 17:10:02.690
+!MESSAGE Error in Scala compiler
+!STACK 0
+scala.reflect.internal.FatalError: C:\Users\Moi\EPFL\nicesbt\project\jvm\-Users-Moi-EPFL-nicesbt-project-shared-src-main-scala does not exist or is not a directory
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.checkDir(MutableSettings.scala:271)
+	at scala.tools.nsc.settings.MutableSettings$OutputDirs.add(MutableSettings.scala:261)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:72)
+	at xsbt.CachedCompiler0$$anonfun$2.apply(CompilerInterface.scala:71)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at xsbt.CachedCompiler0.<init>(CompilerInterface.scala:71)
+	at xsbt.CompilerInterface.newCompiler(CompilerInterface.scala:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sbt.compiler.AnalyzingCompiler.call(AnalyzingCompiler.scala:101)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:56)
+	at sbt.compiler.AnalyzingCompiler.newCachedCompiler(AnalyzingCompiler.scala:51)
+	at sbt.compiler.CompilerCache$$anon$2.apply(CompilerCache.scala:47)
+	at sbt.compiler.AnalyzingCompiler.compile(AnalyzingCompiler.scala:39)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply$mcV$sp(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileScala$1$1.apply(AggressiveCompile.scala:95)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:165)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileScala$1(AggressiveCompile.scala:94)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:142)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:84)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:66)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:64)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:62)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:61)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:89)
+	at sbt.inc.Incremental$.compile(Incremental.scala:61)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:54)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:156)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:68)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:43)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.util.internal.Suppress$DeprecatedWarning$$anonfun$aggressivelyCompile$1.apply(Suppress.scala:72)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.aggressiveCompile(EclipseSbtBuildManager.scala:221)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.runCompiler(EclipseSbtBuildManager.scala:146)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.update(EclipseSbtBuildManager.scala:128)
+	at org.scalaide.core.internal.builder.zinc.EclipseSbtBuildManager.build(EclipseSbtBuildManager.scala:88)
+	at org.scalaide.core.internal.project.scopes.BuildScopeUnit.build(BuildScopeUnit.scala:73)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:53)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager$$anonfun$build$1.apply(SbtScopesBuildManager.scala:50)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.scalaide.core.internal.project.SbtScopesBuildManager.build(SbtScopesBuildManager.scala:50)
+	at org.scalaide.core.internal.project.ScalaProject.build(ScalaProject.scala:619)
+	at org.scalaide.core.internal.builder.ScalaBuilder.build(ScalaBuilder.scala:117)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-06-04 17:30:45.413
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\jvm\src\main\scala-2.11\org\talktogit\RepoData.scala at: offset: 1302, length: 0
+
+!ENTRY org.scala-ide.sdt.core 1 0 2016-06-04 18:30:07.258
+!MESSAGE Timeout while resolving hyperlink in C:\Users\Moi\EPFL\nicesbt\project\js\src\main\scala\tutorial\webapp\PerfsDrawer.scala at: offset: 3894, length: 0

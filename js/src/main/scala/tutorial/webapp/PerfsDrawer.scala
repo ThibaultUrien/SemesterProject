@@ -2,6 +2,7 @@ package tutorial.webapp
 
 import networks.PerfBarStack
 import networks.PerfBar
+import networks.PerfBarChart
 import networks.Vertex
 import Algebra._
 import networks.PerfBarStack
@@ -12,8 +13,10 @@ class PerfsDrawer(
 ) extends Drawer {
   private val margin = 5
   private val darkeningCoef = -0.2
-  def draw(perfBars : Seq[PerfBarStack], v : View) : Unit = {
-    def oneMin = 1e3 * 60
+  private val highlightStroke = 3
+  private val testInfoMaxWidth = 400
+  def draw(perfChart : PerfBarChart, v : View) : Unit = {
+    def oneMin = 60
     def someMins = oneMin * 4
     def oneHour = oneMin * 60
     def someHours = oneHour * 4
@@ -27,17 +30,17 @@ class PerfsDrawer(
           
         math.pow(10, exponent)*5
       }
-      if(range<4e-3) {
-        ("ns",powTenShift(1e6),1e-6)
+      if(range<4e-6) {
+        ("ns",powTenShift(1e9),1e-9)
       }
-      else if(range<4) {
-        ("µs",powTenShift(1e3),1e-3)
+      else if(range<4e-3) {
+        ("µs",powTenShift(1e6),1e-6)
       }
-      else if(range < 4e3) {
-        ("ms",powTenShift(1),1)
+      else if(range < 4) {
+        ("ms",powTenShift(3),1e-3)
       }
       else if(range < someMins) {
-        ("s",powTenShift(1e-3),1e3)
+        ("s",powTenShift(1),1)
       }
       else if(range < someHours) {
         ("min",1,oneMin)
@@ -49,24 +52,7 @@ class PerfsDrawer(
         ("day",1,aDay)
       }
     }
-    clear
-    
-    val visibleStack = perfBars
-      .dropWhile { 
-        stack => v.inRefX(stack.commit.x) + barWidth/2 < 0
-      }
-      .takeWhile {
-        stack => v.inRefX(stack.commit.x) - barWidth/2 < canvasElem.width 
-      }
-    if(!visibleStack.isEmpty){
-      val tallestBar = 
-      visibleStack
-        .reduce((a,b)=>if(b.bars.head.meanTime>a.bars.head.meanTime)b else a)
-        .bars
-        .head
-      val yScale = canvasElem.height / tallestBar.meanTime
-      val graduationsUnit = chooseBestUnit(tallestBar.meanTime)
-      println(this.getClass + " "+graduationsUnit + " " +tallestBar.meanTime)
+    def drawTimeLines(graduationsUnit:(String,Double,Double),yScale : Double) = {
       (0 to 11) map (_ * graduationsUnit._2) foreach {
         d=>
           val graduationInms= d * graduationsUnit._3
@@ -78,8 +64,66 @@ class PerfsDrawer(
           ctx.fillText(d.toInt+" "+graduationsUnit._1, canvasElem.width -100, scaledD - 10)
           ctx.closePath()
       }
-      visibleStack.foreach(stack =>stack.bars.foreach(drawABar(_, stack.commit, yScale, v)))
-    }else noTestHere
+    }
+    
+    clear
+    
+    val visibleStacks = perfChart.barStacks
+      .dropWhile { 
+        stack => v.inRefX(stack.commit.x) + barWidth/2 < 0
+      }
+      .takeWhile {
+        stack => v.inRefX(stack.commit.x) - barWidth/2 < canvasElem.width 
+      }
+    val interstingStacks = if(perfChart.intrestingTests.isEmpty)
+        visibleStacks
+      else
+        visibleStacks
+          .map {
+            s => s.filter {b => perfChart.intrestingTests.contains(b.testName)}
+          }
+          .filterNot(_.bars.isEmpty)
+          
+    perfChart.visbleBars = interstingStacks  
+    if(!interstingStacks.isEmpty){
+      val tallestBar = 
+      interstingStacks
+        .reduce((a,b)=>if(b.bars.head.meanTime>a.bars.head.meanTime)b else a)
+        .bars
+        .head
+      val yScale = canvasElem.height / tallestBar.meanTime
+      perfChart.currentScale = yScale
+      val graduationsUnit = chooseBestUnit(tallestBar.meanTime)
+      drawTimeLines(graduationsUnit, yScale)
+      interstingStacks.foreach(stack =>stack.bars.foreach(drawABar(_, stack.commit, yScale, v)))
+      perfChart.pointedBar match {
+        case None =>
+        case Some((bar,barX))=>
+          val barHeight = bar.meanTime*yScale
+          val start = (v.inRefX(barX) - barWidth/2,margin+canvasElem.height - barHeight)
+          val color = hashStringInColor(bar.testName)
+          ctx.strokeStyle = "#"+darken(color)
+          ctx.lineWidth = 3
+          ctx.lineWidth = highlightStroke
+          ctx.strokeRect(start.x-highlightStroke, start.y-highlightStroke, barWidth+highlightStroke*2, canvasElem.height+highlightStroke - margin)
+          val barText = 
+            bar.testName+"\n\n"+
+            "Average time over "+bar.allTimes.size+" instance" + 
+            (if(bar.allTimes.size > 1)
+              "s"
+            else "")+
+            " : "+bar.meanTime+"s\n"+
+            "Confidence interval : [ "+bar.confidenceInterval._1+"s, "+bar.confidenceInterval._2+" ]\n\n"+
+            "Results in details :\n"+
+            bar.allTimes.mkString("s, ")
+          drawDialogueBox(Control.mousePos,barText , testInfoMaxWidth)
+      }
+    }else {
+      val yScale = canvasElem.height /10.0
+      perfChart.currentScale =yScale
+      drawTimeLines(chooseBestUnit(10), yScale)
+    }
+    
     
   }
   private def hashStringInColor(s:String) = s.hashCode().toHexString.padTo(6, '0').take(6)
@@ -95,23 +139,7 @@ class PerfsDrawer(
         
     }.mkString
     
-  private def noTestHere = {
-      val textOffest = (225,0)
-      val lineWidth = canvasElem.width/20.0
-      val lineVec = (1.0,1.0)*(canvasElem.height +lineWidth*2.0)
-      (0 to 12) foreach {
-        i=>
-          val source = (2.5*(i-3)*lineWidth,-lineWidth)
-          drawLine(source, source + lineVec, "lightgray", lineWidth.toInt)
-      }
-      val clearRecDim = (textOffest.x *2.1,70)
-      ctx.clearRect((canvasElem.width-clearRecDim.x)/2, ( canvasElem.height)/2-clearRecDim.y*0.8, clearRecDim.x, clearRecDim.y)
-      ctx.beginPath()
-      ctx.font = "bold 60px sans-serif"
-      ctx.fillStyle = "lightgray"
-      ctx.fillText("NO TEST HERE",(canvasElem.width)/2-textOffest.x ,( canvasElem.height)/2-textOffest.y)
-      ctx.closePath()
-  }
+ 
   private def drawABar(bar : PerfBar,ofCommit : Vertex, barScale : Double, v : View) : Unit = {
     val barHeight = bar.meanTime*barScale
     val start = (v.inRefX(ofCommit.x) - barWidth/2,margin+canvasElem.height - barHeight)

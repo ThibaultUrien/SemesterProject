@@ -1,12 +1,12 @@
 package tutorial.webapp
 
-
-import networks.Edge
-import networks.Vertex
-import Algebra.DDVector
-import tutorial.webapp.Algebra._
-import networks.Graph
 import scala.util.Random
+import Algebra.DDVector
+import networks.Graph
+import networks.Vertex
+import tutorial.webapp.Algebra.Vec
+import networks.PerfBarChart
+
 
 class GraphDrawer(
     val canvasName: String,
@@ -19,6 +19,10 @@ class GraphDrawer(
 ) extends Drawer {
   
   val randomForColor = new Random(randomSeed)
+  val maxDialogueWidth = 400
+  val highlightedPointRadius = pointRadius + 5
+  val linkedMarkerRadius = highlightedPointRadius + 5
+  val linkColor = "#B0E0E6"
   private var colorList = Seq[String]("000000")
   def colors (i : Int) = {
     while(colorList.size <= i)
@@ -28,8 +32,8 @@ class GraphDrawer(
   
   
  
-  def draw(g :Graph, v : View):Unit = {
-    //TODO point linked wit bad color probably related with bug here.
+  def draw(g :Graph,perf : PerfBarChart, v : View):Unit = {
+    
     def ySpreadCommits(vertexes : Set[Vertex]) = {
         vertexes
         .groupBy { comit => comit.verticalIndex }
@@ -50,6 +54,9 @@ class GraphDrawer(
       e=>v.inRefX(e.source.x)<canvasElem.width && v.inRefX(e.target.x)>=0
     }
     ySpreadCommits((visibleEdge.flatMap(e=>e.source::e.target::Nil)).toSet)
+    
+    perf.visbleBars.foreach { s => linkToPerf(s.commit,v)}
+    
     visibleEdge foreach {
       e => 
         drawLink(
@@ -67,16 +74,7 @@ class GraphDrawer(
           visibleY>= 0 && visibleY < canvasElem.height 
     }
     g.visiblePoints = lastVisiblePoints
-    g.highlightedPoint match {
-      case None =>
-      case Some(higlight)=>
-        if(lastVisiblePoints.contains(higlight))
-            drawVertex(
-            v.inRef(higlight.location),
-            "#"+colors(higlight.verticalIndex),
-            pointRadius + 5
-        )
-    }
+    
     
     lastVisiblePoints foreach {
       p =>
@@ -87,6 +85,18 @@ class GraphDrawer(
         )
     }
     
+    g.highlightedPoint match {
+      case None =>
+      case Some(higlight)=>
+        if(lastVisiblePoints.contains(higlight)){
+            drawVertex(
+              v.inRef(higlight.location),
+              "#"+colors(higlight.verticalIndex),
+              pointRadius + 5
+            )
+          drawDialogueBox(v.inRef(higlight.location) + (10.0,10.0),higlight.author + "\n\n"+higlight.comment.split("\n").head + "\n",maxDialogueWidth)
+        }
+    }
   }
   
   final def canvasDimentions : Vec =(canvasElem.width,canvasElem.height)
@@ -130,6 +140,15 @@ class GraphDrawer(
     
     ctx.closePath();
    
+  }
+  protected def linkToPerf (commit:Vertex,v:View) = {
+    val pointLocation = v.inRef(commit.location)
+    drawVertex(pointLocation, linkColor, linkedMarkerRadius)
+    drawLine(pointLocation, (pointLocation.x,0.0), linkColor)
+    if(pointLocation.y >= 0)
+      drawArrowHead((pointLocation.x,0.0), (.0,1.0), linkColor)
+    else
+      drawArrowHead((pointLocation.x,arrowHeadLength), (.0,-1.0), linkColor)
   }
   protected def drawLink(
       source : (Double,Double),
@@ -176,6 +195,6 @@ class GraphDrawer(
       
     }
   }
-  //TODO black stuff around lines?
+  
   
 } 
