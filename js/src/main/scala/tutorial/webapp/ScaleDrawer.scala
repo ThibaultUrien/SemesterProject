@@ -6,7 +6,10 @@ import org.util.AproxProfiler
 
 trait ScaleDrawer[Scale] extends Drawer{
   
-  
+  def font : String
+  def textStyle : String
+  def lineStyle : String
+  def lineWidth : Int
   def anotationAt(pos : Vec, index:Int, v :View, scale : Scale) : String
   def posForAnotations(text : String,graduationPos : Vec, index:Int, v :View, scale : Scale): Vec
   def advance(from:Vec, indexFrom:Int, v :View, scale : Scale):Vec
@@ -34,20 +37,20 @@ trait ScaleDrawer[Scale] extends Drawer{
       
       val end = lineEnd(from,pointIndex,v,scale)
       ctx.lineTo(end._1, end._2)
-      ctx.strokeStyle = "#000000"
-      ctx.lineWidth = 4
+      ctx.strokeStyle = lineStyle
+      ctx.lineWidth = lineWidth
       ctx.stroke()
       ctx.closePath()
       
       val text = anotationAt(from,pointIndex,v,scale)
       val textStart = posForAnotations(text,from,pointIndex,v,scale) 
       ctx.beginPath()
-      ctx.font = "18px sans-serif"
-      ctx.fillStyle = "#000000"
+      ctx.font = font
+      ctx.fillStyle = textStyle
       ctx.fillText(text, textStart._1, textStart._2)
       ctx.closePath()
     }
-    clear
+    newFrame
     val theStart = start(v,scale)
     iterate(theStart._1,theStart._2)
   }

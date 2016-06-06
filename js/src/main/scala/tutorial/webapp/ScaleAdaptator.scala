@@ -71,10 +71,19 @@ class ScaleAdaptator (
   }
 }
 
-class StrecthyTimeScale(val canvasName : String,  val lineLenght : Int) extends ScaleDrawer[Vector[((Int,Int,Int),Double)]]  {
+class StrecthyTimeScale(
+    val canvasName : String,
+    val lineLenght : Int,
+    val font : String,
+    val textStyle : String
+) extends ScaleDrawer[Vector[((Int,Int,Int),Double)]]  {
   def aDaySecond = 60*60*24
   def aDayPx(v:View) = (aDaySecond * v.scale.x).toInt
-  def theOnlyY = canvasElem.height-1
+  def theOnlyY = 0
+  
+  def lineStyle: String = "black"
+  def lineWidth: Int = 2
+
   def advance(from: Vec,indexFrom: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = {
     if(indexFrom+1<days.length && indexFrom+1 >=0)
       (v.inRefX(days(indexFrom+1)._2),theOnlyY)
@@ -104,8 +113,8 @@ class StrecthyTimeScale(val canvasName : String,  val lineLenght : Int) extends 
   }
   private def toUTC (d:(Int,Int,Int))= (Date.UTC(d._3,d._2,d._1)/1000.0)
   private def toPx (d:(Int,Int,Int),v:View)= toUTC(d)*v.scale.x
-  def lineEnd(lineStart: (Double, Double),index: Int,v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = lineStart - (0.0,lineLenght)
-  def posForAnotations(text: String,graduationPos:Vec, index: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = graduationPos + (10,0)
+  def lineEnd(lineStart: (Double, Double),index: Int,v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = lineStart + (0.0,lineLenght)
+  def posForAnotations(text: String,graduationPos:Vec, index: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = graduationPos + (10,20)
   def start(v :View, days : Vector[((Int,Int,Int),Double)]): (Vec,Int) = {
     def makeOobStart(indexOfNearestDay : Int): (Vec,Int) = {
         val closestDay = days(indexOfNearestDay)._2

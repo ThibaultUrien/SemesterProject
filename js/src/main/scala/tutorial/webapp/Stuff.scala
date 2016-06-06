@@ -30,6 +30,10 @@ trait DOMElement extends js.Object {
   def pageXOffset: Number
   def pageYOffset: Number
   def getBoundingClientRect() : js.Object
+  def offsetParent : DOMElement
+  
+  var offsetLeft : Int
+  var offsetTop : Int
 }
 @js.native
 trait JQueryStatic extends js.Object {
@@ -77,8 +81,6 @@ trait HTMLCanvasElement extends DOMElement {
   def getContext(kind: String): js.Any // depends on the kind
   var width : Int
   var height : Int
-  var offsetLeft : Int
-  var offsetTop : Int
 }
 @js.native
 trait Canvas2D extends js.Object {
@@ -105,6 +107,7 @@ trait Canvas2D extends js.Object {
   def arc(x: Number, y: Number, radius: Number,
       startAngle: Number, endAngle: Number)
   def measureText(text:String):TextMetrics
+  def getBoundingClientRect : DOMRect
   
 }
 @js.native

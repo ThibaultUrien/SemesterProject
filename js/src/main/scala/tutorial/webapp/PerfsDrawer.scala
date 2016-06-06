@@ -9,7 +9,12 @@ import networks.PerfBarStack
 
 class PerfsDrawer(
     val canvasName: String,
-    val barWidth : Int
+    val barWidth : Int,
+    val fontSize : Int,
+    val fontName : String,
+    val textStyle : String,
+    val bubbleFontSize : Int,
+    val bubbleFontName : String
 ) extends Drawer {
   private val margin = 5
   private val darkeningCoef = -0.2
@@ -57,32 +62,30 @@ class PerfsDrawer(
         d=>
           val graduationInms= d * graduationsUnit._3
           val scaledD = canvasElem.height - graduationInms * yScale
-          drawLine((0,scaledD), (canvasElem.width,scaledD), "lightgray", 2)
+          drawLine((0,scaledD), (canvasElem.width,scaledD), "lightgray")
           ctx.beginPath()
-          ctx.font = "18px sans-serif"
-          ctx.fillStyle = "lightgray"
+          ctx.font = fontSize+"px "+fontName
+          ctx.fillStyle = textStyle
           ctx.fillText(d.toInt+" "+graduationsUnit._1, canvasElem.width -100, scaledD - 10)
           ctx.closePath()
       }
     }
     
-    clear
+    newFrame
     
-    val visibleStacks = perfChart.barStacks
+    val interstingStacks = perfChart.barStacks
       .dropWhile { 
         stack => v.inRefX(stack.commit.x) + barWidth/2 < 0
       }
       .takeWhile {
         stack => v.inRefX(stack.commit.x) - barWidth/2 < canvasElem.width 
       }
-    val interstingStacks = if(perfChart.intrestingTests.isEmpty)
-        visibleStacks
-      else
-        visibleStacks
-          .map {
-            s => s.filter {b => perfChart.intrestingTests.contains(b.testName)}
-          }
-          .filterNot(_.bars.isEmpty)
+      .map {
+        s => s.filter {b => perfChart.isIntresting(b.testName)}
+      }
+      .filterNot(_.bars.isEmpty)
+   
+         
           
     perfChart.visbleBars = interstingStacks  
     if(!interstingStacks.isEmpty){
@@ -102,7 +105,7 @@ class PerfsDrawer(
           val barHeight = bar.meanTime*yScale
           val start = (v.inRefX(barX) - barWidth/2,margin+canvasElem.height - barHeight)
           val color = hashStringInColor(bar.testName)
-          ctx.strokeStyle = "#"+darken(color)
+          ctx.strokeStyle = "#"+changeBrightness(color,darkeningCoef)
           ctx.lineWidth = 3
           ctx.lineWidth = highlightStroke
           ctx.strokeRect(start.x-highlightStroke, start.y-highlightStroke, barWidth+highlightStroke*2, canvasElem.height+highlightStroke - margin)
@@ -116,7 +119,7 @@ class PerfsDrawer(
             "Confidence interval : [ "+bar.confidenceInterval._1+"s, "+bar.confidenceInterval._2+" ]\n\n"+
             "Results in details :\n"+
             bar.allTimes.mkString("s, ")
-          drawDialogueBox(Control.mousePos,barText , testInfoMaxWidth)
+          drawDialogueBox(Control.mousePos,barText , testInfoMaxWidth,bubbleFontSize,bubbleFontName)
       }
     }else {
       val yScale = canvasElem.height /10.0
@@ -126,18 +129,7 @@ class PerfsDrawer(
     
     
   }
-  private def hashStringInColor(s:String) = s.hashCode().toHexString.padTo(6, '0').take(6)
-  private def darken(color : String) = 
-    color.grouped(2).map{
-      c=>
-        val intcolor = Integer.parseInt(c,16)
-        math.round(math.min(math.max(0, intcolor + (intcolor * darkeningCoef)), 255))
-          .toHexString
-          .reverse
-          .padTo(2, '0')
-          .reverse
-        
-    }.mkString
+  
     
  
   private def drawABar(bar : PerfBar,ofCommit : Vertex, barScale : Double, v : View) : Unit = {
@@ -146,7 +138,7 @@ class PerfsDrawer(
     val color = hashStringInColor(bar.testName)
     ctx.fillStyle = "#"+color
     ctx.fillRect(start.x, start.y, barWidth, canvasElem.height - margin)
-    ctx.strokeStyle = "#"+darken(color)
+    ctx.strokeStyle = "#"+changeBrightness(color, darkeningCoef)
     ctx.lineWidth = 3
     ctx.strokeRect(start.x, start.y, barWidth, canvasElem.height - margin)
   }

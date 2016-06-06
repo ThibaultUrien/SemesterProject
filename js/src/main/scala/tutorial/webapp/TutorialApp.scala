@@ -16,6 +16,7 @@ import scala.collection.JavaConverters._
 import java.io.File
 import java.util.GregorianCalendar
 import org.scalajs.dom.svg
+import org.scalajs.dom
 import scala.scalajs.js.Dynamic.{ global => g }
 import scala.util.Random
 import tutorial.webapp.Algebra.DDVector
@@ -35,44 +36,86 @@ import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import networks.PerfBar
 import networks.PerfBarChart
+import controlPan.Legends
 
 object TutorialApp extends JSApp {
   val w = 800
   val scale = 100.0/60/60/24
   val repoUrl :String = js.Dynamic.global.repoUrl.asInstanceOf[String]
   val performanceURL = js.Dynamic.global.dataUrl.asInstanceOf[String]
-  val pointRadius =7
-  val spaceForArow = 17
-  val arrowHeadLength = 15
+  val pointRadius =4
+  
+  val arrowHeadLength = pointRadius*2
+  val spaceForArow = arrowHeadLength + pointRadius
   val arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
   val colorSeed = 1524
-  val lineWidth = 4
+  val lineWidth = 2
   val verticalLineDistance = pointRadius * 6
   val minPointSpace = 4*pointRadius
   val barSpacing = 4
+  val networkRatioH = 0.6
+  val legendRatio = 0.2
+  val timeH = 20
+  val marginBot = 45
   assert(barSpacing<minPointSpace)
   val barWidth = minPointSpace - barSpacing
+  val bubbleMaxWidth = 200
+  val fontSize = 12
+  val bubbleFontSize = 10
+  val fontName = "sans-serif"
+  val perfScaleTextStyle = "lightgray"
+  val divBorderWidth = 10
+  val checkBoxSide = 20
+  val tickThickness = 3;
+  val checkBoxLeftOffset = 4
+  val legendTextLeftOffset = 28
   
   def main(): Unit = {
     
     jQuery.get("nashorn:mozilla_compat.js");
     val drawer = new GraphDrawer(
-        "canvas",
+        "network",
         pointRadius,
         lineWidth,
         verticalLineDistance,
         colorSeed,
         arrowHeadLength,
-        arrowBaseHalfWidth
+        arrowBaseHalfWidth,
+        bubbleFontSize,
+        fontName
     )
-    val barDrawer = new PerfsDrawer("performances",barWidth)
+    val barDrawer = new PerfsDrawer(
+        "barchart",
+        barWidth,
+        fontSize,
+        fontName,
+        perfScaleTextStyle,
+        bubbleFontSize,
+        fontName
+    )
     val addapt = new ScaleAdaptator(scale,minPointSpace)
-    
+    val time  = new StrecthyTimeScale(
+        "timeline",
+        10,
+        fontSize+"px "+fontName,
+        "black"
+      )
     
     val unsortedVertexes = Vertex(JSVertex.readData)
     val vertexes = unsortedVertexes.reverse
     val edges = Edge(JSEdge.readData,unsortedVertexes)
     val testesResult = PerfBar(JSDSV.readData,vertexes)
+    val filterTextField = g.document.getElementById("filter")
+    val legend = new Legends("legend",
+      checkBoxSide,
+      fontName,
+      "black",
+      (checkBoxSide * 0.2).toInt, 
+      checkBoxSide,
+      tickThickness,
+      checkBoxLeftOffset,
+      legendTextLeftOffset
+    )
     
     Control(
         Graph(vertexes,edges,JSBrancheName.readData map(_.name)),
@@ -80,7 +123,11 @@ object TutorialApp extends JSApp {
         testesResult,
         barDrawer,
         addapt,
-        (scale,1)
+        (scale,1),
+        time,
+        divBorderWidth,
+        legend,
+        filterTextField
     )
    
   }

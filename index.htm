@@ -3,17 +3,42 @@
  
 <head>
     <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
     <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
  
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 	<style>
+		#wrapper {
+		    width: 1290px;
+		    height: 600px; 
+		}
 		#div1 {
 		    margin-top: 10px;
-		    height: 1070px;
-		    width: 1550px;
+			margin-left: 20px;
+		    height: 600px;
+		    width: 1000px;
+		    border-size:1px;
+			border-style:ridge;
+			border-color:lightgray;
+			float:left;
+			position: relative;
 		}
+		#div3 {
+			height: 520px;
+		    width: 250px;
+		    border-size: 1px;
+			border-style:solid;
+			border-color:lightgray;
+		}
+		#div2 {
+			margin-top: 10px;
+			height: 600px;
+		    width: 250px;
+			float:left;
+		}
+		
 	</style>
 	
  
@@ -22,12 +47,27 @@
 
 </script>
 <body>
-<div id= div1 >
-	<div id="popup" style="display: none">oink</div>
-	<canvas id="performances" width="1500" height="400" style="position: relative"></canvas>
- 	<canvas id="canvas" width="1500" height="600" style="position: relative"></canvas>
- 	<canvas id="timeLine" width="1500" height="40" style="position: relative"></canvas>
+<div id=wrapper>
+	
+	<div id = div2>
+		<script type="text/javascript">
+			 document.write("<center><h1>DOTTY</h1></center>")
+		</script>
+		<div id= div3>
+			<canvas id="legend" height= "470px" width= "250px" style ="position:relative"></canvas>
+		  	 Filter<br>
+	 	 	<input type="text" name="filter" id="filter"><br>
+		</div>
+	</div>
+	
+	<div id= div1>
+		<canvas id="barchart" width= "1000px" height= "227px" style ="position:relative"></canvas>
+	 	<canvas id="network" width= "1000" height= "343px" style ="position:relative"></canvas>
+	 	<canvas id="timeline" height= "20px" width= "1000x" style ="position:relative"></canvas>
+	</div>
 </div>
+
+
 
 <script type="text/javascript">
 

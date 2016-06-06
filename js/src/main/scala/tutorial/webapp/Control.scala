@@ -10,6 +10,8 @@ import scala.scalajs.js.Dynamic
 import networks.PerfBarStack
 import networks.PerfBarChart
 import networks.PerfBar
+import controlPan.Legends
+import scala.annotation.tailrec
 
 object Control{
   val defaultViewSpeed = 20.0
@@ -22,16 +24,25 @@ object Control{
      barsStacks : Seq[PerfBarStack],
      perfDrawer : PerfsDrawer,
      timeAddaptator : ScaleAdaptator, 
-     scale : Vec
+     scale : Vec,
+     time : StrecthyTimeScale,
+     divBorderWidth : Int, 
+     legend : Legends,
+     filter : Dynamic
    ) = {
-    val time  = new StrecthyTimeScale("timeLine",20)
+    
     val spreadDays = timeAddaptator.spreadCommits(graph.vertexes).toVector
     val frameOffset = (Dynamic.global.canvasOriginX.asInstanceOf[Double],Dynamic.global.canvasOriginY.asInstanceOf[Double])
     val view = new View
+    var filterString = filter.value.toString()
     view.scale = scale
+    val legendScroll = new View
     
     val barChart = new PerfBarChart(barsStacks)
     
+    
+    
+    legend.draw(barChart, legendScroll,filterString)
     
     val targets = Seq(drawer.canvasOrig,perfDrawer.canvasOrig)
     
@@ -39,11 +50,17 @@ object Control{
     targets.foreach {
       target =>  
         target.addEventListener("mousedown",onMouseDown _)
-        target.addEventListener("mouseleave",onMouseUp _)
+        target.addEventListener("mouseleave",onMouseExit _)
         target.addEventListener("mouseup",onMouseUp _)
         target.addEventListener("mousemove",onMouseMove _)
     }
+    legend.canvasOrig.addEventListener("mousedown",onMouseDownLegend _)
+    legend.canvasOrig.addEventListener("mouseup",onMouseUp _)
+    legend.canvasOrig.addEventListener("mouseleave",onMouseUp _)
+    legend.canvasOrig.addEventListener("mousemove",onMouseMoveLegend _)
     Dynamic.global.document.addEventListener("keypress",onKeyPress _)
+    Dynamic.global.document.addEventListener("keyup",onKeyRelease _)
+    
     
    
     def onMouseDown(evt:MouseEvent):js.Any = {
@@ -91,8 +108,57 @@ object Control{
       mouseState.mouse1down = true
     }
    
+    def onMouseDownLegend(evt:MouseEvent):js.Any = {
+      val pos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
+      findPointedCheckBox(localCoord(pos, legend)) match {
+        case None =>
+          mouseState.mouse1down = true
+        case Some(test) => 
+          barChart.swithInterest(test)
+          perfDrawer.draw(barChart, view)
+          legend.draw(barChart, legendScroll,filterString)
+          drawer.draw(graph, barChart, view)
+      }
+    }
+    def onMouseMoveLegend(evt:MouseEvent):js.Any ={
+      val newPos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
+      
+      
+      if(mouseState.mouse1down)
+      {
+        val move =  mouseState.mouseLastPos - newPos
+        legendScroll.topLeft += (0,move.y)
+        legend.draw(barChart, legendScroll,filterString)
+      }
+      mouseState.mouseLastPos = newPos
+      
+    }
+    def onMouseExit(evt:MouseEvent):js.Any ={
+      if(graph.highlightedPoint != None) {
+        graph.highlightedPoint = None
+        drawer.draw(graph, barChart, view)
+      }
+      if(barChart.pointedBar != None) {
+        barChart.pointedBar = None
+        perfDrawer.draw(barChart, view)
+      }
+      onMouseUp(evt)
+      
+    }
+    def onMouseWheelLegend(evt:JQueryEventObject):js.Any = {
+      mouseState.mouse1down = true
+    }
+    def onKeyRelease(evt : dom.KeyboardEvent) : js.Any = {
+      println("key u p")
+      if(Dynamic.global.document.activeElement == filter) {
+        filterString = filter.value.toString()
+        legend.draw(barChart, legendScroll, filterString)
+      }
+    }
     def onKeyPress(evt : dom.KeyboardEvent) : js.Any = {
-      val key = if(evt.key !=Unit)
+      
+      if(Dynamic.global.document.activeElement != filter){
+        val key = if(evt.key !=Unit)
         evt.key.toLowerCase()
         else 
           throw new Exception("Try again with firefox")
@@ -111,7 +177,10 @@ object Control{
           shiftView(((view.lastTranslation.x + viewAcceleration) max (defaultViewSpeed) min viewSpeedCap),0)
         }
       }
+      }
+      
     }
+    def onFilterChanged(evt : dom.KeyboardEvent) : js.Any = ???
     def gotoGithubCommit = {
       graph.highlightedPoint match {
         case None =>
@@ -121,6 +190,35 @@ object Control{
           win.focus();
       }
     }
+    def findPointedCheckBox(pointer:Vec):Option[String] = 
+      if(
+        pointer >= (
+            legend.checkBoxLeftOffset,
+            legend.textPosition(0, legendScroll)-legend.checkBoxSide
+        ) &&
+        pointer <(
+            legend.checkBoxLeftOffset+legend.checkBoxSide,
+            legend.textPosition(barChart.existingTestName.length-1, legendScroll)
+        )
+      ){
+        
+        val poses = barChart.existingTestName
+        .zipWithIndex
+        .map {
+          t => (t._1,legend.textPosition(t._2, legendScroll))
+        }
+        println(pointer)
+        poses foreach println
+        poses.find(_._2>pointer.y) match {
+          case None => None
+          case Some(box)=> 
+            if(box._2 - legend.checkBoxSide <= pointer.y) 
+              Some(box._1)
+            else
+              None
+        }
+        
+      } else None
     def findPointedBar(pointer : Vec) : Option[(PerfBar,Double)] = 
     if(pointer>=(0.0,0.0) && pointer<perfDrawer.dimensions){
       val possibleStacks = barChart.visbleBars
@@ -161,9 +259,18 @@ object Control{
         }
     }
     def localCoord(v:Vec, local : Drawer) = {
-      val offset:Vec = (local.canvasElem.offsetLeft,local.canvasElem.offsetTop)
-      
-     v - offset
+      @tailrec
+      def rec(elem : DOMElement, acc : Vec = (0.0,0.0)):Vec = {
+        if(elem != null) {
+          val offset = acc + (elem.offsetLeft,elem.offsetTop)
+          val parent = elem.offsetParent
+          rec(parent,offset)
+        }else
+          acc
+        
+      }
+      val offset:Vec = rec(local.canvasDom)
+      v - offset
     }
     def shiftView(move : Vec) = placeView(view.topLeft + move)
     def placeView(pos : Vec) = {
@@ -178,7 +285,7 @@ object Control{
       drawer.draw(graph,barChart,view)
     }
     
-    def centerOn(v:Vertex) = v.location - (drawer.canvasDimentions/2)
+    def centerOn(v:Vertex) = v.location - (drawer.dimensions/2)
   }
   def mousePos = mouseState.mouseLastPos
   private class MouseState{

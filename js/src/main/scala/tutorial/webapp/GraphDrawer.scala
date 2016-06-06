@@ -15,7 +15,9 @@ class GraphDrawer(
     val verticalLineDistance : Int,
     val randomSeed :Long,
     val arrowHeadLength :Int,
-    val arrowBaseHalfWidth :Int
+    val arrowBaseHalfWidth :Int,
+    val bubbleFontSize : Int,
+    val bubbleFontName : String
 ) extends Drawer {
   
   val randomForColor = new Random(randomSeed)
@@ -42,7 +44,8 @@ class GraphDrawer(
         .zipWithIndex
         .foreach(t=>t._1._2 foreach(_.y = t._2*verticalLineDistance))    
     }
-    clear
+    
+    newFrame
     
     val pointsInXFrame = g.vertexes
       .dropWhile { p => v.inRefX(p.x)  < 0 }
@@ -78,7 +81,7 @@ class GraphDrawer(
     
     lastVisiblePoints foreach {
       p =>
-        drawVertex(
+        drawDisc(
             v.inRef(p.location),
             "#"+colors(p.verticalIndex),
             pointRadius
@@ -89,35 +92,19 @@ class GraphDrawer(
       case None =>
       case Some(higlight)=>
         if(lastVisiblePoints.contains(higlight)){
-            drawVertex(
+            drawDisc(
               v.inRef(higlight.location),
               "#"+colors(higlight.verticalIndex),
               pointRadius + 5
             )
-          drawDialogueBox(v.inRef(higlight.location) + (10.0,10.0),higlight.author + "\n\n"+higlight.comment.split("\n").head + "\n",maxDialogueWidth)
+          drawDialogueBox(v.inRef(higlight.location) + (10.0,10.0),higlight.author + "\n\n"+higlight.comment.split("\n").head + "\n",maxDialogueWidth,bubbleFontSize,bubbleFontName)
         }
     }
   }
   
-  final def canvasDimentions : Vec =(canvasElem.width,canvasElem.height)
-  
-
   
   
-
- 
   
-  protected def drawVertex(v:Vec, fillStyle : String, pointRadius: Double) = 
-  {
-    ctx.beginPath()
-    ctx.moveTo(v.x+pointRadius,v.y)
-    ctx.arc(v.x, v.y, pointRadius, 0, 2*Math.PI)
-    ctx.fillStyle = fillStyle
-    ctx.fill()
-    ctx.closePath()
-    
-    
-  }
   protected def drawArrowHead(
       start : (Double,Double),
       dir:(Double,Double),
@@ -143,7 +130,7 @@ class GraphDrawer(
   }
   protected def linkToPerf (commit:Vertex,v:View) = {
     val pointLocation = v.inRef(commit.location)
-    drawVertex(pointLocation, linkColor, linkedMarkerRadius)
+    drawDisc(pointLocation, linkColor, linkedMarkerRadius)
     drawLine(pointLocation, (pointLocation.x,0.0), linkColor)
     if(pointLocation.y >= 0)
       drawArrowHead((pointLocation.x,0.0), (.0,1.0), linkColor)
