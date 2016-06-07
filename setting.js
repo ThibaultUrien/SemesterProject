@@ -8,7 +8,7 @@ var SharedSetting = {
 	"indexFileLocalName" : "ScalaMeter.js",
 	"testFileSeprator" : "\"file\"",
 	"fileNameRegex" : " : \"([^\"]+)\"",
-	"workingDir" : "",
+	"workingDir" : "..\\",
 	"vertexesFile" : "vertexes",
     "edgesFile" : "edges",
     "branchesFile" : "branches",

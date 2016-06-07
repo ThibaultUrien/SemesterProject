@@ -13,6 +13,9 @@ import org.talktoworkbenc.DSVDownloader
 import scala.io.Source
 import java.util.regex.Pattern
 import java.security.KeyStore
+import java.awt.Desktop
+import java.net.URI
+import java.io.File
 
 object Main 
 {
@@ -22,7 +25,7 @@ object Main
     
     
     val params = 
-      Source.fromFile("setting.js")
+      Source.fromFile("..\\setting.js")
       .getLines()
       .toSeq
       .dropWhile { s => !s.contains("SharedSetting") }
@@ -90,6 +93,12 @@ object Main
     printToFile(edges, edgesFile)
     
     printToFile(testes, testesFile)
+    
+    if(Desktop.isDesktopSupported())
+    {
+      val page = new File(workingDir+"index.htm").getCanonicalFile.toURI()
+      Desktop.getDesktop().browse(page);
+    }
     
    
   }

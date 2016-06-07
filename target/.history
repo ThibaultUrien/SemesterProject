@@ -90,3 +90,8 @@ perfNetJVM/run
 fastOptJS
 perfNetJVM/run
 fastOptJS
+show java-home
+show javaHome
+javaHome
+show javac
+exit
