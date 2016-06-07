@@ -17,14 +17,17 @@ class GraphDrawer(
     val arrowHeadLength :Int,
     val arrowBaseHalfWidth :Int,
     val bubbleFontSize : Int,
-    val bubbleFontName : String
+    val bubbleFontName : String,
+    val bubbleTextStyle : String,
+    val maxDialogueWidth : Int,
+    val highlightedPointRadius : Int,
+    val linkedMarkerRadius : Int,
+    val linkColor :String
 ) extends Drawer {
   
   val randomForColor = new Random(randomSeed)
-  val maxDialogueWidth = 400
-  val highlightedPointRadius = pointRadius + 5
-  val linkedMarkerRadius = highlightedPointRadius + 5
-  val linkColor = "#B0E0E6"
+  
+  
   private var colorList = Seq[String]("000000")
   def colors (i : Int) = {
     while(colorList.size <= i)
@@ -97,7 +100,7 @@ class GraphDrawer(
               "#"+colors(higlight.verticalIndex),
               pointRadius + 5
             )
-          drawDialogueBox(v.inRef(higlight.location) + (10.0,10.0),higlight.author + "\n\n"+higlight.comment.split("\n").head + "\n",maxDialogueWidth,bubbleFontSize,bubbleFontName)
+          drawDialogueBox(v.inRef(higlight.location) + (10.0,10.0),higlight.author + "\n\n"+higlight.comment.split("\n").head + "\n",maxDialogueWidth,bubbleFontSize,bubbleFontName, bubbleTextStyle)
         }
     }
   }

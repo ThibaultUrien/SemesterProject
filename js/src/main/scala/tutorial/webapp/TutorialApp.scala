@@ -24,10 +24,7 @@ import networks.RandomGraphLoader
 import scala.scalajs.js.Date
 import networks.Graph
 import networks.Vertex
-import datas.HttpDsv
-import datas.DSVReader
 import datas.JSVertex
-import datas.DSVCommitInfo
 import networks.Edge
 import datas.JSEdge
 import datas.JSBrancheName
@@ -38,9 +35,10 @@ import networks.PerfBar
 import networks.PerfBarChart
 import controlPan.Legends
 
+
 object TutorialApp extends JSApp {
-  val w = 800
-  val scale = 100.0/60/60/24
+  
+ /* val scale = 100.0/60/60/24
   val repoUrl :String = js.Dynamic.global.repoUrl.asInstanceOf[String]
   val performanceURL = js.Dynamic.global.dataUrl.asInstanceOf[String]
   val pointRadius =4
@@ -53,10 +51,6 @@ object TutorialApp extends JSApp {
   val verticalLineDistance = pointRadius * 6
   val minPointSpace = 4*pointRadius
   val barSpacing = 4
-  val networkRatioH = 0.6
-  val legendRatio = 0.2
-  val timeH = 20
-  val marginBot = 45
   assert(barSpacing<minPointSpace)
   val barWidth = minPointSpace - barSpacing
   val bubbleMaxWidth = 200
@@ -64,57 +58,76 @@ object TutorialApp extends JSApp {
   val bubbleFontSize = 10
   val fontName = "sans-serif"
   val perfScaleTextStyle = "lightgray"
-  val divBorderWidth = 10
+  //val divBorderWidth = 10
   val checkBoxSide = 20
   val tickThickness = 3;
   val checkBoxLeftOffset = 4
-  val legendTextLeftOffset = 28
+  val legendTextLeftOffset = 28*/
   
   def main(): Unit = {
     
     jQuery.get("nashorn:mozilla_compat.js");
+    val sharedSetting = js.Dynamic.global.SharedSetting
+    val networkSetting =  js.Dynamic.global.NetworkSetting.asInstanceOf[NtwrkSetting]
+    val barchartSetting = js.Dynamic.global.BarchartSetting.asInstanceOf[BrchrtSetting]
+    val legendSetting = js.Dynamic.global.LegendSetting.asInstanceOf[LgndSetting]
+    
+    val scale = sharedSetting.defaultTimeScale.asInstanceOf[Number].doubleValue()
     val drawer = new GraphDrawer(
-        "network",
-        pointRadius,
-        lineWidth,
-        verticalLineDistance,
-        colorSeed,
-        arrowHeadLength,
-        arrowBaseHalfWidth,
-        bubbleFontSize,
-        fontName
+        networkSetting.canvasId,
+        networkSetting.pointRadius,
+        networkSetting.lineWidth,
+        networkSetting.verticalLineDistance,
+        networkSetting.colorSeed.longValue(),
+        networkSetting.arrowHeadLength,
+        networkSetting.arrowBaseHalfWidth,
+        networkSetting.bubbleFontSize,
+        networkSetting.bubbleFontName,
+        networkSetting.bubbleTextStyle,
+        networkSetting.maxDialogueWidth,
+        networkSetting.highlightedPointRadius,
+        networkSetting.linkedMarkerRadius,
+        networkSetting.linkColor
     )
     val barDrawer = new PerfsDrawer(
-        "barchart",
-        barWidth,
-        fontSize,
-        fontName,
-        perfScaleTextStyle,
-        bubbleFontSize,
-        fontName
+        barchartSetting.canvasId,
+        barchartSetting.barWidth,
+        barchartSetting.scaleFontSize,
+        barchartSetting.scaleFontName,
+        barchartSetting.scaleTextStyle,
+        barchartSetting.bubbleFontSize,
+        barchartSetting.bubbleFontName,
+        barchartSetting.bubbleTextStyle
     )
-    val addapt = new ScaleAdaptator(scale,minPointSpace)
+    val addapt = new ScaleAdaptator(scale,networkSetting.minPointSpace)
     val time  = new StrecthyTimeScale(
-        "timeline",
-        10,
-        fontSize+"px "+fontName,
-        "black"
+        networkSetting.scaleCanvasId,
+        networkSetting.scaleLineLenght,
+        networkSetting.scaleFontSize+"px "+networkSetting.scaleFontName,
+        networkSetting.scaleTextStyle,
+        networkSetting.scaleLineStyle,
+        networkSetting.scaleLineWidth
       )
     
     val unsortedVertexes = Vertex(JSVertex.readData)
     val vertexes = unsortedVertexes.reverse
     val edges = Edge(JSEdge.readData,unsortedVertexes)
     val testesResult = PerfBar(JSDSV.readData,vertexes)
-    val filterTextField = g.document.getElementById("filter")
-    val legend = new Legends("legend",
-      checkBoxSide,
-      fontName,
-      "black",
-      (checkBoxSide * 0.2).toInt, 
-      checkBoxSide,
-      tickThickness,
-      checkBoxLeftOffset,
-      legendTextLeftOffset
+    val filterTextField = g.document.getElementById(legendSetting.filterTextFieldId)
+    val datePicker = g.document.getElementById(networkSetting.datePickerId)
+    val datePickerPopup = g.document.getElementById(networkSetting.datePickerPopupId)
+    val dateOkButton = g.document.getElementById(networkSetting.dateOkButtonId)
+    
+    val legend = new Legends(
+      legendSetting.canvasId,
+      legendSetting.textSize,
+      legendSetting.fontName,
+      legendSetting.textStyle,
+      legendSetting.interline, 
+      legendSetting.checkBoxSide,
+      legendSetting.tickThickness,
+      legendSetting.checkBoxLeftOffset,
+      legendSetting.legendTextLeftOffset
     )
     
     Control(
@@ -125,9 +138,10 @@ object TutorialApp extends JSApp {
         addapt,
         (scale,1),
         time,
-        divBorderWidth,
         legend,
-        filterTextField
+        filterTextField,
+        sharedSetting.repoUrl.toString.dropRight(4)
+        
     )
    
   }

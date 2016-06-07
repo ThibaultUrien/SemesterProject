@@ -75,15 +75,31 @@ class StrecthyTimeScale(
     val canvasName : String,
     val lineLenght : Int,
     val font : String,
-    val textStyle : String
+    val textStyle : String,
+    val lineStyle: String,
+    val lineWidth: Int
 ) extends ScaleDrawer[Vector[((Int,Int,Int),Double)]]  {
   def aDaySecond = 60*60*24
   def aDayPx(v:View) = (aDaySecond * v.scale.x).toInt
   def theOnlyY = 0
-  
-  def lineStyle: String = "black"
-  def lineWidth: Int = 2
-
+ 
+  def findDate(year : Int,month : Int, day : Int, in : Vector[((Int,Int,Int),Double)]):Double = {
+    val utc = toUTC(day,month,year)
+    if(utc<=toUTC(in(0)._1)) {
+      in(0)._2
+    }
+    else if(utc>=toUTC(in.last._1)){
+      in.last._2
+    } else {
+      in.find(_._1 == (day,month,year)) match {
+        case None => 
+          in.last._2
+        case Some(time)=>
+          time._2
+      }
+    }
+    
+  }
   def advance(from: Vec,indexFrom: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = {
     if(indexFrom+1<days.length && indexFrom+1 >=0)
       (v.inRefX(days(indexFrom+1)._2),theOnlyY)

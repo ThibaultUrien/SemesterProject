@@ -58,12 +58,10 @@ class Legends(
       val indicatorLength = scrollBarLength - barCours
       val scrollStart = v.topLeft.y / ratio
       val start = scrollBarStart + (0.0,scrollStart)
-      println(this.getClass+" start "+ start)
       ctx.clearRect(scrollBarStart.x, scrollBarStart.y, scrollBarThickness, scrollBarLength)
       drawDisc(start, barColor, scrollBarThickness/2)
       if(indicatorLength > 0 ) {
         val end = start + (0.0, indicatorLength)
-        println(this.getClass+" end "+ end)
         drawLine(start, end, barColor, scrollBarThickness)
         drawDisc(end, barColor, scrollBarThickness/2)
       }

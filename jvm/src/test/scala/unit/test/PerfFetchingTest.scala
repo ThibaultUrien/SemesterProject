@@ -38,7 +38,7 @@ class PerfFetchingTest extends TestCase{
     val perfFile = "/js/ScalaMeter/data.js"
     val perfFrolder = ".."+File.separator+"perf"
     
-    val data = DSVDownloader.fetch(testUrl, perfFile, "")  
+    val data = DSVDownloader.fetch(testUrl, testUrl+perfFile,"ScalaMeter.js","..\\", "date param-test value success cilo cihi units complete", "\n", regex )  
     val indexFilePath = perfFrolder+File.separator+"ScalaMeter.js"
     val filesToGet = DSVDownloader.filesToGet(indexFilePath)
     producedEntries = new FakeWritter(data.writtenFields)

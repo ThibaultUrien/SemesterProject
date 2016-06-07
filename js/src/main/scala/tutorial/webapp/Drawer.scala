@@ -36,7 +36,7 @@ trait Drawer {
     ctx.fill()
     ctx.closePath()  
   }
-  protected def drawDialogueBox(pos : Vec,text : String, windowMaxWidth : Int, fontSize : Int, fontType : String, fontEffect : String = "") = {
+  protected def drawDialogueBox(pos : Vec,text : String, windowMaxWidth : Int, fontSize : Int, fontType : String,fontColor:String = "black", fontEffect : String = "") = {
     val margin = (20.0,10.0)
     val padding = (10.0,10.0)
     val fontHWratio = 0.9
@@ -71,7 +71,7 @@ trait Drawer {
     val adjustedPos = (pos min (dimensions - dialogueDim)) max (.0,.0)
     ctx.fillStyle = "#fffAF0"
     ctx.fillRect(adjustedPos.x, adjustedPos.y, dialogueDim.x, dialogueDim.y)
-    ctx.strokeStyle = "black"
+    ctx.strokeStyle = fontColor
     ctx.lineWidth = 1
     ctx.strokeRect(adjustedPos.x, adjustedPos.y, dialogueDim.x, dialogueDim.y)
     

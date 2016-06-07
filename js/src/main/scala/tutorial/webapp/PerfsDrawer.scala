@@ -14,7 +14,8 @@ class PerfsDrawer(
     val fontName : String,
     val textStyle : String,
     val bubbleFontSize : Int,
-    val bubbleFontName : String
+    val bubbleFontName : String,
+    val bubbleTextStyle : String
 ) extends Drawer {
   private val margin = 5
   private val darkeningCoef = -0.2
@@ -118,8 +119,12 @@ class PerfsDrawer(
             " : "+bar.meanTime+"s\n"+
             "Confidence interval : [ "+bar.confidenceInterval._1+"s, "+bar.confidenceInterval._2+" ]\n\n"+
             "Results in details :\n"+
-            bar.allTimes.mkString("s, ")
-          drawDialogueBox(Control.mousePos,barText , testInfoMaxWidth,bubbleFontSize,bubbleFontName)
+            bar.allTimes.mkString("s, ")+
+            (if(!bar.misc.isEmpty)
+              "\n\n"+bar.misc.mkString("\n")
+            else
+              "")
+          drawDialogueBox(Control.mousePos,barText , testInfoMaxWidth,bubbleFontSize,bubbleFontName,bubbleTextStyle)
       }
     }else {
       val yScale = canvasElem.height /10.0

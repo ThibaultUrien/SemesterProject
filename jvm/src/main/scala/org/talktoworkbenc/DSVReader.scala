@@ -5,15 +5,33 @@ import java.util.Date
 import java.util.Formatter.DateTime
 import java.time.format.DateTimeFormatter
 import java.time.ZonedDateTime
+import java.time.format.DateTimeParseException
 
 
 
-class DSVReader {
+class DSVReader(val parameters : String, val testSeparator : String, val paramSeparator : String) {
   @volatile private var allData : Seq[DSVCommitInfo] = Nil
-  def readData(data:String) = {
-     val filesLines = data.split("\n")
-     val parser = DVSParser(filesLines(0))
-     val newData = filesLines.tail.map(parser.parseResult _)
+  def readData(data:String)= {
+     val filesLines = data.split(testSeparator)
+     val parser = DVSParser(parameters)
+     val newData = filesLines.flatMap{
+       l=>
+       try{parser.parseResult(l,paramSeparator)::Nil}
+       catch {
+         case perf : PerfReadingException => 
+           println(perf.getMessage+" Ignoring this result.")
+           Nil
+         case format : NumberFormatException =>
+           println("For result \""+ l +"\" : "+format.getMessage+". Ignoring this result.")
+           Nil
+         case illarg : IllegalArgumentException =>
+           println("For result \""+ l +" : "+illarg.getMessage+". Ignoring this result.")
+           Nil
+         case date : DateTimeParseException =>
+           println("For result \""+ l +"\" : "+date.getMessage+" (as a date). Ignoring this result.")
+           Nil
+       }
+     }
      
      this.synchronized(allData ++:= newData)
   }
@@ -21,7 +39,7 @@ class DSVReader {
    * data sorted by date
    */
   def getReadenData = this.synchronized(allData.sortBy { x => x.date }.toSeq)
-  val parameters = 
+  val keyParameters = 
         Seq("date",
         "param-test",
         "value",
@@ -35,7 +53,7 @@ class DSVReader {
     def apply(header:String) = {
       val paramMap = header.split("[ \t]").zipWithIndex.map{case (s,i)=> s-> i}(collection.breakOut):Map[String,Int]
       val paramPos = 
-        parameters
+        keyParameters
         .map{
           s=>
             paramMap.get(s) match {
@@ -51,7 +69,8 @@ class DSVReader {
           paramPos(4),
           paramPos(5),
           paramPos(6),
-          paramPos(7)
+          paramPos(7),
+          paramMap.toSeq.filterNot(t=> keyParameters.contains(t._1))
       )
     }
   }
@@ -63,10 +82,11 @@ class DSVReader {
       val cilo : Int,
       val cihi : Int,
       val units:Int,
-      val complete : Int
+      val complete : Int,
+      val unknowStuff : Seq[(String,Int)]
   ){
     
-    def parseResult (s : String) ={
+    def parseResult (s : String, paramSeparator : String) ={
       val perfixTable = Seq(
           ("m",-3),
           ("n",-9),
@@ -90,8 +110,8 @@ class DSVReader {
           ("y",-24)
       )
       // cut on space that are note between two quote and allow toescape quote
-      val regex = "\\s+(?=((\\\\[\\\\\"]|[^\\\\\"])*\"(\\\\[\\\\\"]|[^\\\\\"])*\")*(\\\\[\\\\\"]|[^\\\\\"])*$)"
-      val split = s.split(regex) map(_.trim)
+     
+      val split = s.split(paramSeparator) map(_.trim)
       val time = ZonedDateTime.parse(split(date)).toEpochSecond()
       
       val magnitude = {
@@ -125,7 +145,8 @@ class DSVReader {
           split(success).toBoolean,
           split(cilo).toDouble * magnitude,
           split(cihi).toDouble * magnitude,
-          resultsInMs
+          resultsInMs,
+          unknowStuff.filterNot(t=> t._1 == "ignore" || t._2>=split.size ).map(t=> t._1+" : " + split(t._2))
       )
     }
   }
@@ -138,7 +159,8 @@ object DSVCommitInfo {
     "isSucces",
     "confidenceIntervalLo",
     "confidenceIntervalHi",
-    "allMesures"
+    "allMesures",
+    "misc"
   )
 }
 sealed class DSVCommitInfo(
@@ -148,8 +170,15 @@ sealed class DSVCommitInfo(
     val isSucces : Boolean,
     val confidenceIntervalLo : Double,
     val confidenceIntervalHi : Double,
-    val allMesures : Seq[Double]) {
-  
+    val allMesures : Seq[Double],
+    val miscValues : Seq[String]) {
+  private def escapeEnoyingChar(c:Char):String = c match {
+    case '\n' => "\\n"
+    case '\"' => "\\\""
+    case '\r' => "\\r"
+    case '\\'=> "\\\\"
+    case c => ""+c
+  }
   def toStringSeq = Seq(
       date,
       "\""+testName+"\"",
@@ -157,6 +186,7 @@ sealed class DSVCommitInfo(
       isSucces,
       confidenceIntervalLo,
       confidenceIntervalHi,
-      allMesures.mkString("[", ", ", "]")
+      allMesures.mkString("[", ", ", "]"),
+      miscValues.map(_.map(escapeEnoyingChar)).mkString("[", ", ", "]")
   )
 }

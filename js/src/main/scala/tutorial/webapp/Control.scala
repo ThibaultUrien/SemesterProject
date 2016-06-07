@@ -12,6 +12,9 @@ import networks.PerfBarChart
 import networks.PerfBar
 import controlPan.Legends
 import scala.annotation.tailrec
+import org.w3c.dom.events.Event
+import scala.scalajs.js.Date
+import org.scalajs.jquery.jQuery
 
 object Control{
   val defaultViewSpeed = 20.0
@@ -26,15 +29,15 @@ object Control{
      timeAddaptator : ScaleAdaptator, 
      scale : Vec,
      time : StrecthyTimeScale,
-     divBorderWidth : Int, 
      legend : Legends,
-     filter : Dynamic
+     filter : Dynamic,
+     repoUrl : String
    ) = {
     
     val spreadDays = timeAddaptator.spreadCommits(graph.vertexes).toVector
-    val frameOffset = (Dynamic.global.canvasOriginX.asInstanceOf[Double],Dynamic.global.canvasOriginY.asInstanceOf[Double])
     val view = new View
     var filterString = filter.value.toString()
+    var datePopupOppen = false
     view.scale = scale
     val legendScroll = new View
     
@@ -60,6 +63,8 @@ object Control{
     legend.canvasOrig.addEventListener("mousemove",onMouseMoveLegend _)
     Dynamic.global.document.addEventListener("keypress",onKeyPress _)
     Dynamic.global.document.addEventListener("keyup",onKeyRelease _)
+    
+    time.canvasOrig.addEventListener("mousedown",onTimeClick _)
     
     
    
@@ -120,6 +125,19 @@ object Control{
           drawer.draw(graph, barChart, view)
       }
     }
+    def onTimeClick(evt:MouseEvent):js.Any = {
+      val result = js.Dynamic.global.prompt("Go to a date",new Date().toDateString())
+      if(result!= null && result.toString != "")
+      try {
+        val date = new Date(result.toString)
+        val target = time.findDate(date.getFullYear(),date.getMonth(),date.getDate(), spreadDays)
+        placeView (target-drawer.dimensions.y,view.topLeft.y)
+      }catch {
+        case probalyBadFormat :  Exception => 
+      }
+      
+    }
+    
     def onMouseMoveLegend(evt:MouseEvent):js.Any ={
       val newPos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
       
@@ -149,7 +167,6 @@ object Control{
       mouseState.mouse1down = true
     }
     def onKeyRelease(evt : dom.KeyboardEvent) : js.Any = {
-      println("key u p")
       if(Dynamic.global.document.activeElement == filter) {
         filterString = filter.value.toString()
         legend.draw(barChart, legendScroll, filterString)
@@ -186,7 +203,7 @@ object Control{
         case None =>
         case Some(point)=>
           updateHighligtedVertex(None)
-          var win = dom.window.open(TutorialApp.repoUrl+"/commit/"+point.name, "_blank")
+          var win = dom.window.open(repoUrl+"/commit/"+point.name, "_blank")
           win.focus();
       }
     }
@@ -207,8 +224,6 @@ object Control{
         .map {
           t => (t._1,legend.textPosition(t._2, legendScroll))
         }
-        println(pointer)
-        poses foreach println
         poses.find(_._2>pointer.y) match {
           case None => None
           case Some(box)=> 

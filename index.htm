@@ -3,7 +3,6 @@
  
 <head>
     <meta charset="UTF-8">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
     <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
@@ -41,17 +40,51 @@
 		
 	</style>
 	
- 
+
+    <link rel="stylesheet" type="text/css" href="/css/_dist-editor.css?update_25_04_2016_1"/>
+
+
+    
+      <link rel="stylesheet" type="text/css" href="/css/light.css?update_25_04_2016_1"/>
 </head>
  
 
-</script>
+
 <body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./setting.js"></script>
+<div id="date_popup">
+    <div>
+        Go to this moment: <input type="text" id="datePicker" >
+        <input type="button" value="Ok" id="ok_date"/>
+    </div>
+</div>
 <div id=wrapper>
 	
 	<div id = div2>
 		<script type="text/javascript">
-			 document.write("<center><h1>DOTTY</h1></center>")
+
+			 document.write("<center><h1>"+SharedSetting.title+"</h1></center>")
+			 $("#date_popup").dialog({
+		        open: function() {
+		            $('#datePicker').removeAttr("disabled");
+	       		},
+		        close: function () {
+		            $('#datePicker').datepicker('hide');
+		        }
+    		});
+
+		    $("#datePicker").datepicker();
+			$("#date_popup").dialog("close");
+		    $("#pop_button").click(function() {
+		        $('#datePicker').attr("disabled", true);
+		        
+		        $("#date_popup").dialog("open");
+	   		});
+			
 		</script>
 		<div id= div3>
 			<canvas id="legend" height= "470px" width= "250px" style ="position:relative"></canvas>
@@ -69,38 +102,21 @@
 
 
 
-<script type="text/javascript">
-
-  var repoUrl = "https://github.com/lampepfl/dotty"
-  var dataUrl = "https://d-d.me/tnc/dotty/report"
-</script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
 <script type="text/javascript" src="https://d-d.me/tnc/dotty/report/js/ScalaMeter/data.js"></script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-fastopt.js"></script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-jsdeps.js"></script>
-<script type="text/javascript" src="./perf/ScalaMeter.js"></script>
 <script type="text/javascript" src="edges.js"></script>
 <script type="text/javascript" src="vertexes.js"></script>
 <script type="text/javascript" src="branches.js"></script>
 <script type="text/javascript" src="scalameter.js"></script>
 <script type="text/javascript">
-var canvasOriginX = 10
-var canvasOriginY = 420
 </script>
 <script type="text/javascript" src="./js/target/scala-2.11/performance-network-launcher.js"></script>
 
 
 
 <script type="text/javascript">
-//<![CDATA[
-$(function() {
-  var mainInstance = $ScalaJSEnvironment.m["helloworld.Knapsack"];
-  var mainArgs = $ScalaJSEnvironment.makeNativeArrayWrapper(
-    $ScalaJSEnvironment.classes["java.lang.String"].array, []);
-  mainInstance.main(mainArgs);
-});
-//]]>
+
     
     
  

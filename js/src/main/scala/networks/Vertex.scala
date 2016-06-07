@@ -1,7 +1,6 @@
 package networks
 
 import datas.JSVertex
-import datas.DSVCommitInfo
 import tutorial.webapp.Algebra._
 
 sealed trait Vertex {  

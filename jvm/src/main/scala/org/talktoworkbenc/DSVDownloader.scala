@@ -12,17 +12,25 @@ import java.security.cert.CertificateFactory
 import java.io.FileInputStream
 import org.dataprinter.DataPrinter
 import org.dataprinter.Writter
-import scala.reflect.runtime.universe._
+import javax.net.ssl.SSLHandshakeException
 
 object DSVDownloader {
   val dsvFilePattern =  Pattern.compile(" : \"([^\"]+)\"")
-  def fetch(dataDomainUrl : String, indexFile : String, workingDir : String) = {
+  def fetch(
+    dataDomainUrl : String,
+    indexFileUrl : String,
+    indexFileLocalName : String,
+    workingDir : String,
+    prameters : String,
+    testSeparator : String,
+    paramSeparator : String
+  ) = {
     val destination  = new File(workingDir+File.separator+"perf")
     if(destination.exists() && destination.isDirectory() || destination.mkdir()) {
-      val indexFilePath = destination.getPath+File.separator+"ScalaMeter.js"
-      download(dataDomainUrl+indexFile, indexFilePath)
+      val indexFilePath = destination.getPath+File.separator+indexFileLocalName
+      download(indexFileUrl, indexFilePath)
       val allFiles = filesToGet(indexFilePath) 
-      val dsvReader = new DSVReader
+      val dsvReader = new DSVReader(prameters,testSeparator, paramSeparator)
       allFiles.par foreach(s=>fetchOneDSV(dataDomainUrl,s, dsvReader))
       new DSVPrinter(dsvReader.getReadenData)
     }
@@ -46,14 +54,38 @@ object DSVDownloader {
          
      }
   }
+  private def handleHTTPSReject[A](urlFrom : String,f:(String)=>A):A = {
+    try {
+      val v = f(urlFrom)
+      println("succed "+urlFrom+" on first try")
+      v
+    }
+    catch {
+      case e : SSLHandshakeException =>
+        if(urlFrom.startsWith("https")) {
+          e.printStackTrace()
+          val newUrl = "http"+urlFrom.drop("https".size)
+          println("Cant reach "+urlFrom+", new attempt with : "+newUrl)
+          f(newUrl)
+        }
+        else throw e
+    }
+  }
   private def download(urlFrom : String, to:DSVReader)={
-    to.readData(Source.fromURL(urlFrom).mkString)
+    handleHTTPSReject(urlFrom, s=>to.readData(Source.fromURL(s).mkString))   
   }
   private def download(urlFrom : String, fileTo : String)={
-    val website = new URL(urlFrom);
-    val rbc = Channels.newChannel(website.openStream());
-    val fos = new FileOutputStream(fileTo);
-    fos.getChannel().transferFrom(rbc, 0, Long.MaxValue);
+    handleHTTPSReject(urlFrom, 
+      {   
+        s =>
+          val website = new URL(urlFrom);
+          val rbc = Channels.newChannel(website.openStream());
+          val fos = new FileOutputStream(fileTo);
+          fos.getChannel().transferFrom(rbc, 0, Long.MaxValue);
+          rbc.close() 
+      }
+    )
+    
   }
   private def fetchOneDSV(dataDomainUrl : String, fileName : String, reader : DSVReader):Unit = {
     

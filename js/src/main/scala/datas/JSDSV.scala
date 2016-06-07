@@ -10,6 +10,7 @@ trait JSDSV extends js.Object {
   def confidenceIntervalLo : Number
   def confidenceIntervalHi : Number
   def allMesures : js.Array[Number]
+  def misc : js.Array[String]
 }
 object JSDSV  extends JSData {
   type Self = JSDSV

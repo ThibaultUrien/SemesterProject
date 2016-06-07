@@ -73,3 +73,20 @@ fastOptJS
 eclipse
 fastOptJS
 exit
+eclipse
+fastOptJS
+perfNetJVM
+run perfNetJVM
+run
+run JVM
+reload
+run
+perfNetJVM/run
+eclipse
+exit
+perfNetJVM/run
+exit
+perfNetJVM/run
+fastOptJS
+perfNetJVM/run
+fastOptJS

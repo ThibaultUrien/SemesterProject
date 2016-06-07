@@ -2,7 +2,7 @@ package networks
 
 
 
-import datas.DSVCommitInfo
+
 
 import datas.JSDSV
 
@@ -14,7 +14,8 @@ sealed class PerfBar (
   val meanTime : Double,
   val confidenceInterval : (Double,Double),
   val sucess : Boolean,
-  val dateOfTest : Int
+  val dateOfTest : Int,
+  val misc : Seq[String] 
 )
 object PerfBarStack {
   def apply(notSortedbars: Seq[networks.PerfBar], commit: networks.Vertex) = {
@@ -43,9 +44,11 @@ object PerfBar {
                   dsv.representativeTime.doubleValue(),
                   (dsv.confidenceIntervalLo.doubleValue(),dsv.confidenceIntervalHi.doubleValue()),
                   dsv.isSucces,
-                  dsv.date.intValue()
+                  dsv.date.intValue(),
+                  if(dsv.misc != null)dsv.misc else Nil
               ) 
-          },        commit
+          },
+          commit
       )
     }
     def takeAllPerfOfCommit( bufperfs : (Seq[PerfBarStack],Seq[JSDSV]),commit : Vertex):(Seq[PerfBarStack],Seq[JSDSV]) = {
