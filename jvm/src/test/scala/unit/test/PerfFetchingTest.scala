@@ -1,9 +1,9 @@
 package unit.test
 
 import org.junit.Test
-import org.dataprinter.Writter
-import org.talktogit.NColorNetwork
-import org.talktogit.RepoData
+import ch.epfl.performanceNetwork.printers.Writter
+import ch.epfl.performanceNetwork.gitInterface.NetworkDownloader
+import ch.epfl.performanceNetwork.gitInterface.RepoData
 import org.junit.Test
 import junit.framework.TestCase
 import org.junit.Assert._
@@ -11,7 +11,7 @@ import scala.collection.JavaConverters._
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.revwalk.RevCommit
 import scala.Vector
-import org.talktoworkbenc.DSVDownloader
+import ch.epfl.performanceNetwork.benchmarkInterface.BenchDataDownloader
 import java.io.File
 import scala.io.Source
 import java.util.Calendar
@@ -38,9 +38,9 @@ class PerfFetchingTest extends TestCase{
     val perfFile = "/js/ScalaMeter/data.js"
     val perfFrolder = ".."+File.separator+"perf"
     
-    val data = DSVDownloader.fetch(testUrl, testUrl+perfFile,"ScalaMeter.js","..\\", "date param-test value success cilo cihi units complete", "\n", regex )  
+    val data = BenchDataDownloader.fetch(testUrl, testUrl+perfFile,"ScalaMeter.js","..\\", "date param-test value success cilo cihi units complete", "\n","\"file\"\\s*:\\s*\"([^\"]+)\"", regex )  
     val indexFilePath = perfFrolder+File.separator+"ScalaMeter.js"
-    val filesToGet = DSVDownloader.filesToGet(indexFilePath)
+    val filesToGet = BenchDataDownloader.filesToGet(indexFilePath,"\"file\"\\s*:\\s*\"([^\"]+)\"")
     producedEntries = new FakeWritter(data.writtenFields)
     data.printData(producedEntries)
     

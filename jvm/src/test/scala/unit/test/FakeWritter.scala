@@ -1,6 +1,6 @@
 package unit.test
 
-import org.dataprinter.Writter
+import ch.epfl.performanceNetwork.printers.Writter
 
 class FakeWritter (val fieldNames :Seq[String]) extends Writter {
   private var entries : Vector[Seq[String]] = Vector()

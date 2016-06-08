@@ -13,4 +13,10 @@ hs_err_pid*
 sbt.bat
 .setting
 target/
+js/target/
+jvm/target/
+repo/
+branches.js
+edges.js
+scalameter.js
 .metadata

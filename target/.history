@@ -95,3 +95,23 @@ show javaHome
 javaHome
 show javac
 exit
+fastOptJS
+perfNetJVM/run
+eclipse
+perfNetJVM/run
+eclipse
+perfNetJVM/run
+fastOptJS
+eclipse
+fastOptJS
+perfNetJVM/run
+fastOptJS
+exit
+fastOptJS
+exit
+fullOptJS
+reload
+fullOptJS
+fastOptJS
+perfNetJS/fullOptJS
+exit

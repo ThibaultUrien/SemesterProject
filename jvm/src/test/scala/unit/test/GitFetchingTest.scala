@@ -1,9 +1,9 @@
 package unit.test
 
 import org.junit.Test
-import org.dataprinter.Writter
-import org.talktogit.NColorNetwork
-import org.talktogit.RepoData
+import ch.epfl.performanceNetwork.printers.Writter
+import ch.epfl.performanceNetwork.gitInterface.NetworkDownloader
+import ch.epfl.performanceNetwork.gitInterface.RepoData
 import org.junit.Test
 import junit.framework.TestCase
 import org.junit.Assert._
@@ -24,7 +24,7 @@ class GitFetchingTest extends TestCase{
   override def setUp() = {
     testRepoUrl = "https://github.com/lampepfl/dotty.git"
     
-    val (vertexes,edges,branches) = NColorNetwork(testRepoUrl,"")
+    val (vertexes,edges,branches) = NetworkDownloader(testRepoUrl,"","")
     vertexResults = new FakeWritter(vertexes.writtenFields)
     edgesResults = new FakeWritter(edges.writtenFields)
     branchResults = new FakeWritter(branches.writtenFields)
@@ -84,22 +84,7 @@ class GitFetchingTest extends TestCase{
         assertTrue("source : "+sourceIndex+" with time : "+timeSource+" is youger than "+targetIndex+" with time "+timeTarget,timeSource<=timeTarget)
     }
   }
-  /**
-   * Either every parent had been set before by another node 
-   * and their height is lesser that this node height, or at least one have been set by this node
-   * and its height is the same
-   * */
-  @Test def testYIsLogical = {
-    parentMap.toSeq.foreach{
-      t=> 
-        val childY = vertexResults.getEntryParameter(t._2.head._2, "y").toInt
-        val parentsY = t._2.map(t=>vertexResults.getEntryParameter(t._1, "y").toInt)
-        
-        val noYSet = parentsY forall(_<childY)
-        val atLeastOneSet = parentsY contains childY
-        assertTrue("height of parents : "+parentsY+", height of child : "+childY+".\nIt's not the behavior expected by the y giving algorithme and can be a symptome of a bug.",noYSet || atLeastOneSet)
-    }
-  }
+  
   
   
  

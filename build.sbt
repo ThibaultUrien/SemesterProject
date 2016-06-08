@@ -30,16 +30,18 @@ lazy val perfNet = crossProject.in(file(".")).
 	jsDependencies += RuntimeDOM,
 
 	skip in packageJSDependencies := false,
-
 	// uTest settings
 	libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0" % "test",
 	testFrameworks += new TestFramework("utest.runner.Framework"),
 
 	persistLauncher in Compile := true,
-	persistLauncher in Test := false,
+	persistLauncher in Test := true,
 	scalaJSSemantics ~= { _.withAsInstanceOfs(
   org.scalajs.core.tools.sem.CheckedBehavior.Compliant) }
   )
+
+  persistLauncher in Compile := true
+  persistLauncher in Test := true
 
 lazy val perfNetJVM = perfNet.jvm
 lazy val perfNetJS = perfNet.js
