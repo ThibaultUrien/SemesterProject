@@ -18,5 +18,6 @@ jvm/target/
 repo/
 branches.js
 edges.js
+vertexes.js
 scalameter.js
 .metadata
