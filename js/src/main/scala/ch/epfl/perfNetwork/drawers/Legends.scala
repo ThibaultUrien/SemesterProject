@@ -15,10 +15,10 @@ class Legends(
     val checkBoxSide : Int,
     val tickThickness : Int,
     val checkBoxLeftOffset : Int,
-    val textLeftOffset : Int
+    val textLeftOffset : Int,
+    val darkeningCoef : Double
   ) extends Drawer{
   val lineWidth = (textSize + interline) max (checkBoxSide + interline)
-  private val darkeningCoef = -0.2
   private val minRatioBarView = 2.0
   private val relativeCheckStart = (0.2,0.4)
   private val relativeCheckKnee = (0.5,0.7)

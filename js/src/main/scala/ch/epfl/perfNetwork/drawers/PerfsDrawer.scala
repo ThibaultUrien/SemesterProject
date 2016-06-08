@@ -16,12 +16,12 @@ class PerfsDrawer(
     val bubbleFontSize : Int,
     val lineCountCeil : Int,
     val bubbleFontName : String,
-    val bubbleTextStyle : String
+    val bubbleTextStyle : String,
+    val darkeningCoef : Double,
+    val highlightStroke : Int,
+    val testInfoMaxWidth : Int
 ) extends Drawer {
   private val margin = 5
-  private val darkeningCoef = -0.2
-  private val highlightStroke = 3
-  private val testInfoMaxWidth = 400
   def draw(perfChart : PerfBarChart, v : View) : Unit = {
     def oneMin = 60
     def someMins = oneMin * lineCountCeil

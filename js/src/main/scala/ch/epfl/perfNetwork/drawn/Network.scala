@@ -1,7 +1,9 @@
 package ch.epfl.perfNetwork.drawn
 
+import scala.util.Random
 
-sealed trait Graph 
+
+sealed trait Network 
 {
   def vertexes : Seq[Vertex]
   def edges : Seq[Edge]
@@ -11,21 +13,31 @@ sealed trait Graph
   var firstVisblePointIndex = 0
   var lastVisiblePointIndex = 0
   var highlightedPoint : Option[Vertex]
+  val randomSeed : Long
+  val randomForColor = new Random(randomSeed)
+  private var colorList = Seq[String]("000000")
+  def colors (i : Int) = {
+    while(colorList.size <= i)
+      colorList :+= randomForColor.nextInt(0x1000000).toHexString.padTo(6, "0").mkString
+    colorList(i)
+  }
 }
 
-object Graph {
-  def apply(vertx : Seq[Vertex], edgs : Seq[Edge], branches : Seq[String]) = {
+object Network {
+  def apply(vertx : Seq[Vertex], edgs : Seq[Edge], branches : Seq[String], seed: Long) = {
     def colorHash(s:String):String = {
       val hash = s.hashCode()
       hash.toHexString.padTo(6, '0').take(6)
     }
-    new Graph {
+    
+    new Network {
       val vertexes = vertx
       val edges = edgs
       val branchesName = branches
       val branchesColor = branchesName map colorHash 
       var visiblePoints : Seq[Vertex] = Nil
       var highlightedPoint : Option[Vertex] = None
+      val randomSeed = seed
     }
   }
 }

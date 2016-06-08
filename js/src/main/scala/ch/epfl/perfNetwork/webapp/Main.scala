@@ -19,7 +19,7 @@ import ch.epfl.perfNetwork.drawn.Vertex
 import ch.epfl.perfNetwork.jsfacade.JSVertex
 import ch.epfl.perfNetwork.drawn.Edge
 import ch.epfl.perfNetwork.drawn.PerfBar
-import ch.epfl.perfNetwork.drawn.Graph
+import ch.epfl.perfNetwork.drawn.Network
 import ch.epfl.perfNetwork.drawers.StretchyTimeScaleDrawer
 import scala.scalajs.js.Any.fromString
 import scala.scalajs.js.Dynamic.{global => g}
@@ -27,33 +27,7 @@ import ch.epfl.perfNetwork.jsfacade.JSNetworkSetting
 
 
 object Main extends JSApp {
-  
- /* val scale = 100.0/60/60/24
-  val repoUrl :String = js.Dynamic.global.repoUrl.asInstanceOf[String]
-  val performanceURL = js.Dynamic.global.dataUrl.asInstanceOf[String]
-  val pointRadius =4
-  
-  val arrowHeadLength = pointRadius*2
-  val spaceForArow = arrowHeadLength + pointRadius
-  val import ch.epfl.perfNetwork.webapp.Control
-arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
-  val colorSeed = 1524
-  val lineWidth = 2
-  val verticalLineDistance = pointRadius * 6
-  val minPointSpace = 4*pointRadius
-  val barSpacing = 4
-  assert(barSpacing<minPointSpace)
-  val barWidth = minPointSpace - barSpacing
-  val bubbleMaxWidth = 200
-  val fontSize = 12
-  val bubbleFontSize = 10
-  val fontName = "sans-serif"
-  val perfScaleTextStyle = "lightgray"
-  //val divBorderWidth = 10
-  val checkBoxSide = 20
-  val tickThickness = 3;
-  val checkBoxLeftOffset = 4
-  val legendTextLeftOffset = 28*/
+
   
   def main(): Unit = {
     
@@ -70,7 +44,6 @@ arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
         networkSetting.pointRadius,
         networkSetting.lineWidth,
         networkSetting.verticalLineDistance,
-        networkSetting.colorSeed.longValue(),
         networkSetting.arrowHeadLength,
         networkSetting.arrowBaseHalfWidth,
         networkSetting.bubbleFontSize,
@@ -90,7 +63,10 @@ arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
         barchartSetting.bubbleFontSize,
         barchartSetting.lineCountCeil,
         barchartSetting.bubbleFontName,
-        barchartSetting.bubbleTextStyle
+        barchartSetting.bubbleTextStyle,
+        barchartSetting.barBoundLightOffset,
+        2,
+        barchartSetting.bubbleMaxWidth
     )
     val addapt = new ScaleAdaptator(scale,networkSetting.minPointSpace)
     val time  = new StretchyTimeScaleDrawer(
@@ -120,11 +96,12 @@ arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
       legendSetting.checkBoxSide,
       legendSetting.tickThickness,
       legendSetting.checkBoxLeftOffset,
-      legendSetting.legendTextLeftOffset
+      legendSetting.legendTextLeftOffset,
+      barchartSetting.barBoundLightOffset
     )
     
     Control(
-        Graph(vertexes,edges,JSBrancheName.readData map(_.name)),
+        Network(vertexes,edges,JSBrancheName.readData map(_.name),networkSetting.colorSeed.longValue()),
         drawer,
         testesResult,
         barDrawer,
@@ -139,14 +116,6 @@ arrowBaseHalfWidth = (math.sqrt(arrowHeadLength*arrowHeadLength/3.0)).toInt
    
   }
 
-  
-  
-  def anyColor = 
-  {
-    val chars = ('1' to '9') ++:('a' to 'f')
-    val rand = new Random
-    ((1 to 6) map {i=> chars(rand.nextInt(chars.size))}).mkString
-  }
  
   
  

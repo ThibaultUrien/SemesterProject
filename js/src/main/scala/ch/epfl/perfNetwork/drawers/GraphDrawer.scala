@@ -2,7 +2,7 @@ package ch.epfl.perfNetwork.drawers
 
 import scala.scalajs.js.Any.fromString
 import scala.util.Random
-import ch.epfl.perfNetwork.drawn.Graph
+import ch.epfl.perfNetwork.drawn.Network
 import ch.epfl.perfNetwork.drawn.PerfBarChart
 import ch.epfl.perfNetwork.drawn.Vertex
 import ch.epfl.perfNetwork.webapp.Algebra._
@@ -14,7 +14,6 @@ class GraphDrawer(
     val pointRadius : Int,
     val lineWidth : Int,
     val verticalLineDistance : Int,
-    val randomSeed :Long,
     val arrowHeadLength :Int,
     val arrowBaseHalfWidth :Int,
     val bubbleFontSize : Int,
@@ -26,20 +25,11 @@ class GraphDrawer(
     val linkColor :String
 ) extends Drawer {
   
-  val randomForColor = new Random(randomSeed)
-  
-  
-  private var colorList = Seq[String]("000000")
-  def colors (i : Int) = {
-    while(colorList.size <= i)
-      colorList :+= randomForColor.nextInt(0x1000000).toHexString.padTo(6, "0").mkString
-    colorList(i)
-  }
   
   
  
-  def draw(g :Graph,perf : PerfBarChart, v : View):Unit = {
-    
+  def draw(g :Network,perf : PerfBarChart, v : View):Unit = {
+    def colors(i :Int) = g.colors(i)
     def ySpreadCommits(vertexes : Set[Vertex]) = {
         vertexes
         .groupBy { comit => comit.verticalIndex }

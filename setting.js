@@ -18,7 +18,6 @@ var SharedSetting = {
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
 	"branchesFile" : "branches",
-	"certFile" : "StartComClass1PrimaryIntermediateServerCA.crt",
 	"testesFile" : "testesFile"
 
 };
@@ -39,7 +38,7 @@ var NetworkSetting = {
 	"bubbleTextStyle" : "black",
 	"canvasId" : "network",
 	"scaleCanvasId" : "timeline",
-	"colorSeed" : 1524,
+	"colorSeed" : 15,
 	"maxDialogueWidth" : 400,
     "highlightedPointRadius" : 9,
     "linkedMarkerRadius" : 13,
@@ -62,6 +61,7 @@ var BarchartSetting =  {
 	"bubbleMaxWidth" : 200,
 	"scaleFontSize" : 12,
 	"bubbleFontSize" : 10,
+	"barBoundLightOffset" : -0.2,
 	"bubbleFontName" : "sans-serif",
 	"scaleFontName" : "sans-serif",
 	"scaleTextStyle" : "lightgray",

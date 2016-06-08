@@ -18,8 +18,6 @@ object Main
   def main(args: Array[String]): Unit = {
     
     
-    
-    
     val params = 
       Source.fromFile("setting.js")
       .getLines()
@@ -99,9 +97,9 @@ object Main
     if(Desktop.isDesktopSupported())
     {
       val neededToStart = Seq(
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-project-opt.js",
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-project-jsdeps.js",
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-project-launcher.js")
+        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-opt.js",
+        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-jsdeps.js",
+        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-launcher.js")
       if(neededToStart.exists { !new File(_).exists() }) {
         println("The ScalaJs part is not fully compiled. Proceed to compilation, please be patient.")
         val rt = Runtime.getRuntime();

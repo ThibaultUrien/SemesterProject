@@ -1,4 +1,7 @@
 enablePlugins(ScalaJSPlugin)
+
+jarName in assembly := "PerfNetwork.jar"
+
 name := "performance network root project"
 
 lazy val root = project.in(file(".")).

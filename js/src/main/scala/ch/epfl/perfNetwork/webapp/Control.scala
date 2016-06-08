@@ -1,6 +1,6 @@
 package ch.epfl.perfNetwork.webapp
 
-import ch.epfl.perfNetwork.drawn.Graph
+import ch.epfl.perfNetwork.drawn.Network
 import org.scalajs.jquery.JQueryEventObject
 import scala.scalajs.js
 import org.scalajs.dom
@@ -29,7 +29,7 @@ object Control{
   val viewSpeedCap = 100.0
   private val mouseState = new MouseState
   def apply(
-     graph : Graph,
+     graph : Network,
      drawer : GraphDrawer,
      barsStacks : Seq[PerfBarStack],
      perfDrawer : PerfsDrawer,
