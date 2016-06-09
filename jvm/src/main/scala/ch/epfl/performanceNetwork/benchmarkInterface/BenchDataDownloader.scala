@@ -13,7 +13,8 @@ import javax.net.ssl.SSLHandshakeException
 object BenchDataDownloader {
   def fetch(
     dataDomainUrl : String,
-    indexFileUrl : String,
+    mainFileUrl : String,
+    mainFileIsIndex : Boolean,
     indexFileLocalName : String,
     workingDir : String,
     prameters : String,
@@ -21,17 +22,24 @@ object BenchDataDownloader {
     testNamePattern : String,
     paramSeparator : String
   ) = {
-    val destination  = new File(workingDir+File.separator+"perf")
-    if(destination.exists() && destination.isDirectory() || destination.mkdir()) {
-      val indexFilePath = destination.getPath+File.separator+indexFileLocalName
-      download(indexFileUrl, indexFilePath)
-      val allFiles = filesToGet(indexFilePath,testNamePattern) 
-      val dsvReader = new TestDataReader(prameters,testSeparator, paramSeparator)
-      allFiles.par foreach(s=>fetchOneDSV(dataDomainUrl,s, dsvReader))
-      new BenchDataPrinter(dsvReader.getReadenData)
+    if(mainFileIsIndex) {
+      val destination  = new File(workingDir+File.separator+"perf")
+      if(destination.exists() && destination.isDirectory() || destination.mkdir()) {
+        val indexFilePath = destination.getPath+File.separator+indexFileLocalName
+        download(mainFileUrl, indexFilePath)
+        val allFiles = filesToGet(indexFilePath,testNamePattern) 
+        val dsvReader = new TestDataReader(prameters,testSeparator, paramSeparator)
+        allFiles.par foreach(s=>fetchOneDSV(dataDomainUrl,s, dsvReader))
+        new BenchDataPrinter(dsvReader.getReadenData)
+      }
+      else 
+        throw new Exception("Cannot create the directory for performance file")
+    } else {
+        val dsvReader = new TestDataReader(prameters,testSeparator, paramSeparator)
+        fetchOneDSV("",mainFileUrl, dsvReader)
+        new BenchDataPrinter(dsvReader.getReadenData)
     }
-    else 
-      throw new Exception("Cannot create the directory for performance file")
+    
     
   }
   
@@ -88,7 +96,6 @@ object BenchDataDownloader {
     catch {
       case reading : PerfReadingException => 
         throw new BenchDataDownloadingException("Failed to read dsv from "+url,reading)
-      case t : Throwable =>throw t
     }
     
   }

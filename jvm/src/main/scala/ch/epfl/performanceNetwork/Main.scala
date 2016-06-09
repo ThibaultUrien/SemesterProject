@@ -17,9 +17,9 @@ object Main
 {
   def main(args: Array[String]): Unit = {
     
-    
+    val workingDir = ""
     val params = 
-      Source.fromFile("setting.js")
+      Source.fromFile(workingDir+"setting.js")
       .getLines()
       .toSeq
       .dropWhile { s => !s.contains("SharedSetting") }
@@ -28,7 +28,7 @@ object Main
     
     
     def find(paramName:String) = {
-      val p = Pattern.compile("\""+paramName+"\"\\s:\\s[\"'](.*)[\"']\\s*(,|$)")
+      val p = Pattern.compile("\""+paramName+"\"\\s*:\\s*([^,]*[^\\s^,])\\s*(,|$)")
       params.map {
         s=>
           val matches = p.matcher(s)
@@ -37,18 +37,26 @@ object Main
           else
             None
       }.find { x => x != None } match {
-        case Some(Some(result))=> result
+        case Some(Some(result))=> 
+          if(result.startsWith("\"") && result.endsWith("\"") && result.size >1)
+            result.drop(1).dropRight(1)
+          else if(result.startsWith("'") && result.endsWith("'") && result.size >1)
+            result.drop(1).dropRight(1)
+          else
+            result
+          
         case _=>throw new MalformedSettingException("Unable to find "+paramName+" in the setting file")
       }
     }
-    val workingDir = ""
+    
     
     val repoDir = find("repoDir")
     val repoUrl = find("repoUrl")
     val dataUrlPrefix = find("dataUrlPrefix")
-    val indexFileUrl = find("indexFileUrl")
+    val mainFileUrl = find("mainFileUrl")
     val indexFileLocalName = find("indexFileLocalName")
 	  val fileNameRegex = find("fileNameRegex")
+	  val mainFileIsIndex = find("mainFileIsIndex").toBoolean
     
     
     val vertexesFile = find("vertexesFile")
@@ -72,7 +80,8 @@ object Main
     
     val testes= BenchDataDownloader.fetch(
         dataUrlPrefix,
-        indexFileUrl,
+        mainFileUrl,
+        mainFileIsIndex,
         indexFileLocalName,
         workingDir,
         prameters,
@@ -96,16 +105,7 @@ object Main
     
     if(Desktop.isDesktopSupported())
     {
-      val neededToStart = Seq(
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-opt.js",
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-jsdeps.js",
-        workingDir + "js"+File.separator+"target"+File.separator+"scala-2.11"+File.separator+"performance-network-launcher.js")
-      if(neededToStart.exists { !new File(_).exists() }) {
-        println("The ScalaJs part is not fully compiled. Proceed to compilation, please be patient.")
-        val rt = Runtime.getRuntime();
-        val pros = rt.exec("."+File.separator+"sbt.bat perfNetJS/fullOptJS");
-        pros.waitFor()
-      }
+     
       val page = new File(workingDir+"index.htm").getCanonicalFile.toURI()
       Desktop.getDesktop().browse(page);
     }

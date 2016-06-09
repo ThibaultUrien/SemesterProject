@@ -13,6 +13,7 @@ hs_err_pid*
 sbt.bat
 .setting
 target/
+project/
 js/target/
 jvm/target/
 repo/

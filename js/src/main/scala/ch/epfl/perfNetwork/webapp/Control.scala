@@ -204,13 +204,14 @@ object Control{
       }
       
     }
-    def onFilterChanged(evt : dom.KeyboardEvent) : js.Any = ???
     def gotoGithubCommit = {
       graph.highlightedPoint match {
         case None =>
         case Some(point)=>
+          val win = dom.window.open("", "_blank")
           updateHighligtedVertex(None)
-          var win = dom.window.open(repoUrl+"/commit/"+point.name, "_blank")
+          val url = repoUrl+"/commit/"+point.name
+          win.location.href = url
           win.focus();
       }
     }

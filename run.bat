@@ -1,3 +1,1 @@
-sbt perfNetJS/fullOptJS;
-sbt perfNetJVM/run
-1
+sbt ;perfNetJS/fullOptJS;perfNetJVM/run
