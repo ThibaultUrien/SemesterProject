@@ -4,7 +4,7 @@ import scala.scalajs.js
 @js.native
 trait JSBarchartSetting extends js.Object{
   def lineWidth : Int
-  def lineCountCeil : Int
+  def unitPerLine : Int
   def barSpacing : Int
   def barWidth : Int
   def bubbleMaxWidth : Int

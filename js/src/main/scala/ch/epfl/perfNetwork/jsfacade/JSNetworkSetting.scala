@@ -27,7 +27,4 @@ trait JSNetworkSetting extends js.Object{
 	  def scaleLineStyle: String
     def scaleLineWidth : Int
     def scaleLineLenght : Int
-		def dateOkButtonId : String
-    def datePickerId : String
-    def datePickerPopupId : String
 }

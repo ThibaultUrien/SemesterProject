@@ -27,7 +27,7 @@ object NetworkDownloader {
     }
   
   
-    val git = RepoData.loadRepo(repoUrl,repoDir)
+    val git = RepoData.loadRepo(repoUrl,workingDir+repoDir)
    
     
     

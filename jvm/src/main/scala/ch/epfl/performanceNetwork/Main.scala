@@ -23,9 +23,9 @@ object Main
       .getLines()
       .toSeq
       .dropWhile { s => !s.contains("SharedSetting") }
-      .takeWhile { s => !s.contains("}") }
+      .takeWhile { s => !s.trim().startsWith("}") }
       
-    
+    def parsPath(path:String) = path.split("/").mkString(File.separator)
     
     def find(paramName:String) = {
       val p = Pattern.compile("\""+paramName+"\"\\s*:\\s*([^,]*[^\\s^,])\\s*(,|$)")
@@ -50,23 +50,33 @@ object Main
     }
     
     
-    val repoDir = find("repoDir")
+    val repoDir = parsPath(find("repoDir"))
     val repoUrl = find("repoUrl")
-    val dataUrlPrefix = find("dataUrlPrefix")
+    val dataUrlDomain = find("dataUrlDomain")
     val mainFileUrl = find("mainFileUrl")
     val indexFileLocalName = find("indexFileLocalName")
 	  val fileNameRegex = find("fileNameRegex")
 	  val mainFileIsIndex = find("mainFileIsIndex").toBoolean
     
     
-    val vertexesFile = find("vertexesFile")
-    val edgesFile = find("edgesFile")
-    val branchesFile = find("branchesFile")
-    val testesFile = find("testesFile")
+    val vertexesFile = parsPath(find("vertexesFile"))
+    val edgesFile = parsPath(find("edgesFile"))
+    val branchesFile = parsPath(find("branchesFile"))
+    val testesFile = parsPath(find("testesFile"))
     
     val prameters = find("prameters")
     val testSeparator = find("testSeparator")
     val paramSeparator = find("paramSeparator")
+    
+    val groupBegin =  find("groupBegin") match {
+      case ""=> ""
+      case s => ""+s(0)
+    }
+    val completeResultSeparator = find("completeResultSeparator" )
+    val groupEnd = find("groupEnd" ) match {
+      case ""=> ""
+      case s => ""+s(0)
+    }
     
 
       
@@ -79,7 +89,7 @@ object Main
     }
     
     val testes= BenchDataDownloader.fetch(
-        dataUrlPrefix,
+        dataUrlDomain,
         mainFileUrl,
         mainFileIsIndex,
         indexFileLocalName,
@@ -87,7 +97,10 @@ object Main
         prameters,
         testSeparator,
         fileNameRegex,
-        paramSeparator 
+        paramSeparator,
+        groupBegin,
+        completeResultSeparator,
+        groupEnd
     )  
     
     

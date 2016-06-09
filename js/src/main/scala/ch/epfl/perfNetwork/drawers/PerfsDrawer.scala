@@ -119,12 +119,15 @@ class PerfsDrawer(
             else "")+
             " : "+bar.meanTime+"s\n"+
             "Confidence interval : [ "+bar.confidenceInterval._1+"s, "+bar.confidenceInterval._2+" ]\n\n"+
-            "Results in details :\n"+
-            bar.allTimes.mkString("s, ")+
             (if(!bar.misc.isEmpty)
               "\n\n"+bar.misc.mkString("\n")
             else
-              "")
+              "")+
+              (if(bar.allTimes.size > 1 )
+            "\nResults in details :\n"+
+            bar.allTimes.mkString("s, ")
+            else "")
+            
           drawDialogueBox((start.x + barWidth,start.y),barText , testInfoMaxWidth,bubbleFontSize,bubbleFontName,bubbleTextStyle)
       }
     }else {

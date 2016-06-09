@@ -11,13 +11,13 @@ import org.eclipse.jgit.api.errors.JGitInternalException
 import org.eclipse.jgit.errors.LockFailedException
 
 object RepoData {
-   val reposFolderName = "repo" 
+   
    def loadRepo(remoteURL : String, dataDir : String):Git = {
-    val gitDir = new File(dataDir+File.separator+reposFolderName+File.separator+".git")
+    val gitDir = new File(dataDir+File.separator+".git")
     def cloneRepo = {
       Git.cloneRepository()
           .setURI(remoteURL)
-          .setDirectory(new File(dataDir+File.separator+reposFolderName))
+          .setDirectory(new File(dataDir))
           .call()
     }
     def repoIsntBroken(repo : Repository) = 
@@ -29,7 +29,7 @@ object RepoData {
       case internal :  JGitInternalException =>
             internal.getCause match {
               case lock : LockFailedException =>
-                val lock = new File(dataDir+File.separator+reposFolderName+File.separator + ".git+"+File.separator+"index.lock")
+                val lock = new File(dataDir+File.separator+ ".git+"+File.separator+"index.lock")
                    if(lock.exists()) {
                      println("The file "+lock.getAbsolutePath+" forbid me to update the local repository.\n Try again when this file is gone.")
                      System.exit(-1)

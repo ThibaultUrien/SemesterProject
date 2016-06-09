@@ -56,36 +56,10 @@
  
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="./setting.js"></script>
-<div id="date_popup">
-    <div>
-        Go to this moment: <input type="text" id="datePicker" >
-        <input type="button" value="Ok" id="ok_date"/>
-    </div>
-</div>
 <div id=wrapper>
 	
 	<div id = div2>
-		<script type="text/javascript">
-
-			 document.write("<center><h1>"+SharedSetting.title+"</h1></center>")
-			 $("#date_popup").dialog({
-		        open: function() {
-		            $('#datePicker').removeAttr("disabled");
-	       		},
-		        close: function () {
-		            $('#datePicker').datepicker('hide');
-		        }
-    		});
-
-		    $("#datePicker").datepicker();
-			$("#date_popup").dialog("close");
-		    $("#pop_button").click(function() {
-		        $('#datePicker').attr("disabled", true);
-		        
-		        $("#date_popup").dialog("open");
-	   		});
-			
-		</script>
+		<center><h1>DOTTY</h1></center>
 		<div id= div3>
 			<canvas id="legend" height= "470px" width= "250px" style ="position:relative"></canvas>
 		  	 Filter<br>

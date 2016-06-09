@@ -61,7 +61,7 @@ object Main extends JSApp {
         barchartSetting.scaleFontName,
         barchartSetting.scaleTextStyle,
         barchartSetting.bubbleFontSize,
-        barchartSetting.lineCountCeil,
+        barchartSetting.unitPerLine-1,
         barchartSetting.bubbleFontName,
         barchartSetting.bubbleTextStyle,
         barchartSetting.barBoundLightOffset,
@@ -83,9 +83,6 @@ object Main extends JSApp {
     val edges = Edge(JSEdge.readData,unsortedVertexes)
     val testesResult = PerfBar(JSDSV.readData,vertexes)
     val filterTextField = g.document.getElementById(legendSetting.filterTextFieldId)
-    val datePicker = g.document.getElementById(networkSetting.datePickerId)
-    val datePickerPopup = g.document.getElementById(networkSetting.datePickerPopupId)
-    val dateOkButton = g.document.getElementById(networkSetting.dateOkButtonId)
     
     val legend = new Legends(
       legendSetting.canvasId,

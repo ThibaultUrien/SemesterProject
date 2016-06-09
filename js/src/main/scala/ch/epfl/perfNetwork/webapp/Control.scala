@@ -52,7 +52,7 @@ object Control{
     
     
     
-    legend.draw(barChart, legendScroll,filterString)
+    legend.draw(barChart, legendScroll,filterString,filterString)
     
     val targets = Seq(drawer.canvasOrig,perfDrawer.canvasOrig)
     
@@ -120,15 +120,23 @@ object Control{
       mouseState.mouse1down = true
     }
    
-    def onMouseDownLegend(evt:MouseEvent):js.Any = {
+    def onMouseDownLegend(evt:dom.MouseEvent):js.Any = {
       val pos:Vec = (evt.pageX.doubleValue(),evt.pageY.doubleValue())
       findPointedCheckBox(localCoord(pos, legend)) match {
         case None =>
           mouseState.mouse1down = true
         case Some(test) => 
-          barChart.swithInterest(test)
+          if(evt.shiftKey) {
+            val state = barChart.isIntresting(test)
+            barChart.setAll(state,filterString)
+            barChart.setInterest(test, !state)
+          }
+          else {
+            barChart.swithInterest(test)
+          }
+          
           perfDrawer.draw(barChart, view)
-          legend.draw(barChart, legendScroll,filterString)
+          legend.draw(barChart, legendScroll,filterString,filterString)
           drawer.draw(graph, barChart, view)
       }
     }
@@ -153,7 +161,7 @@ object Control{
       {
         val move =  mouseState.mouseLastPos - newPos
         legendScroll.topLeft += (0,move.y)
-        legend.draw(barChart, legendScroll,filterString)
+        legend.draw(barChart, legendScroll,filterString,filterString)
       }
       mouseState.mouseLastPos = newPos
       
@@ -175,8 +183,9 @@ object Control{
     }
     def onKeyRelease(evt : dom.KeyboardEvent) : js.Any = {
       if(Dynamic.global.document.activeElement == filter) {
+        val oldFilter = filterString
         filterString = filter.value.toString()
-        legend.draw(barChart, legendScroll, filterString)
+        legend.draw(barChart, legendScroll, filterString,oldFilter)
       }
     }
     def onKeyPress(evt : dom.KeyboardEvent) : js.Any = {
@@ -215,19 +224,21 @@ object Control{
           win.focus();
       }
     }
-    def findPointedCheckBox(pointer:Vec):Option[String] = 
+    def findPointedCheckBox(pointer:Vec):Option[String] = {
+      val lines = barChart.existingTestName.filter(_.contains(filterString))
       if(
+        !lines.isEmpty && 
         pointer >= (
             legend.checkBoxLeftOffset,
             legend.textPosition(0, legendScroll)-legend.checkBoxSide
         ) &&
         pointer <(
             legend.checkBoxLeftOffset+legend.checkBoxSide,
-            legend.textPosition(barChart.existingTestName.length-1, legendScroll)
+            legend.textPosition(lines.length-1, legendScroll)
         )
       ){
         
-        val poses = barChart.existingTestName
+        val poses = lines
         .zipWithIndex
         .map {
           t => (t._1,legend.textPosition(t._2, legendScroll))
@@ -242,6 +253,8 @@ object Control{
         }
         
       } else None
+    }
+      
     def findPointedBar(pointer : Vec) : Option[(PerfBar,Double)] = 
     if(pointer>=(0.0,0.0) && pointer<perfDrawer.dimensions){
       val possibleStacks = barChart.visbleBars

@@ -20,22 +20,32 @@ object BenchDataDownloader {
     prameters : String,
     testSeparator : String,
     testNamePattern : String,
-    paramSeparator : String
+    paramSeparator : String,
+    groupStart : String,
+    groupSeparator : String,
+    goupEnd : String
   ) = {
+    val dsvReader = new TestDataReader(
+      prameters,
+      testSeparator,
+      paramSeparator,
+      groupStart,
+      groupSeparator,
+      goupEnd
+    )
     if(mainFileIsIndex) {
       val destination  = new File(workingDir+File.separator+"perf")
       if(destination.exists() && destination.isDirectory() || destination.mkdir()) {
         val indexFilePath = destination.getPath+File.separator+indexFileLocalName
         download(mainFileUrl, indexFilePath)
         val allFiles = filesToGet(indexFilePath,testNamePattern) 
-        val dsvReader = new TestDataReader(prameters,testSeparator, paramSeparator)
+        
         allFiles.par foreach(s=>fetchOneDSV(dataDomainUrl,s, dsvReader))
         new BenchDataPrinter(dsvReader.getReadenData)
       }
       else 
         throw new Exception("Cannot create the directory for performance file")
     } else {
-        val dsvReader = new TestDataReader(prameters,testSeparator, paramSeparator)
         fetchOneDSV("",mainFileUrl, dsvReader)
         new BenchDataPrinter(dsvReader.getReadenData)
     }

@@ -32,7 +32,7 @@ class Legends(
   def textPosition(index:Int,v:View) = {
     v.inRefY((index+1)*lineWidth)
   }
-  def draw (chart : PerfBarChart, v : View, filter : String) = {
+  def draw (chart : PerfBarChart, v : View, filter : String,prevFilter : String) = {
     val tests = chart.existingTestName.filter(_.contains(filter))
     val minY = 0 
     val maxY = maximumY(tests)
@@ -69,13 +69,27 @@ class Legends(
       
       
     }
+    
+    
     newFrame
+    if(filter != prevFilter) {      
+      chart.existingTestName
+      .filter(_.contains(prevFilter))
+      .map(s=> tests.indexOf(s))
+      .find { i => i > -1 }
+      .headOption match {
+        case None =>
+        case Some(visbleLastFrame) =>
+          v.topLeft += (v.topLeft.x,textPosition(visbleLastFrame, v)-checkBoxSide)
+      }
+    }
     if(v.topLeft.y> maxY)
       v.topLeft = (v.topLeft.x,maxY)
     if(v.topLeft.y< minY)
       v.topLeft = (v.topLeft.x,minY)
+    
       
-    tests
+      tests
       .zipWithIndex
       .map(t=>(t._1,textPosition(t._2,v)))
       .dropWhile(_._2<0)

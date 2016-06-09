@@ -11,7 +11,6 @@ sealed class PerfBar (
   val allTimes : Seq[Double],
   val meanTime : Double,
   val confidenceInterval : (Double,Double),
-  val sucess : Boolean,
   val dateOfTest : Int,
   val misc : Seq[String] 
 )
@@ -41,7 +40,6 @@ object PerfBar {
                   dsv.allMesures.map(_.doubleValue),
                   dsv.representativeTime.doubleValue(),
                   (dsv.confidenceIntervalLo.doubleValue(),dsv.confidenceIntervalHi.doubleValue()),
-                  dsv.isSucces,
                   dsv.date.intValue(),
                   if(dsv.misc != null)dsv.misc else Nil
               ) 

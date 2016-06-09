@@ -1,25 +1,23 @@
 var SharedSetting = {
 	
 	"defaultTimeScale" : 0.00115740,
-	"title" : "DOTTY",
 	"repoUrl" : "https://github.com/lampepfl/dotty.git",
-    "dataUrlPrefix" : "https://d-d.me/tnc/dotty/report",
+    "dataUrlDomain" : "https://d-d.me/tnc/dotty/report",
     "mainFileUrl" : "https://d-d.me/tnc/dotty/report/js/ScalaMeter/data.js",
     "mainFileIsIndex" : true,
 	"indexFileLocalName" : "ScalaMeter.js",
 	"fileNameRegex" : '"file"\s*:\s*"([^"]+)"',
-	"repoDir" : "",
-	"vertexesFile" : "vertexes",
-    "edgesFile" : "edges",
-    "branchesFile" : "branches",
-    "testesFile" : "scalameter",
-    "paramSeparator" : '\s+(?=((\\[\\"]|[^\\"])*"(\\[\\"]|[^\\"])*")*(\\[\\"]|[^\\"])*$)',
+	"repoDir" : "repo",
 	"testSeparator" : "\n",
-	"prameters" : "date param-test value success cilo cihi units complete",
+    "paramSeparator" : "\s",
+	"prameters" : "date param-test value ignore cilo cihi units complete",
+    "groupBegin" : '"',
+    "completeResultSeparator" : " ",
+    "groupEnd" : '"',
+    "testesFile" : "scalameter",
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
-	"branchesFile" : "branches",
-	"testesFile" : "testesFile"
+	"branchesFile" : "branches"
 
 };
 var NetworkSetting = {
@@ -46,17 +44,14 @@ var NetworkSetting = {
     "linkColor" : "#B0E0E6",
     "scaleLineStyle" : "darkgrey",
     "scaleLineWidth" : 1,
-    "scaleLineLenght" : 10,
-    "dateOkButtonId" : "ok_date",
-    "datePickerId" : "datePicker",
-    "datePickerPopupId" : "date_popup"
+    "scaleLineLenght" : 10
 
 	
 };
 
 var BarchartSetting =  {	
 	"lineWidth" : 2,
-	"lineCountCeil" : 4,
+	"unitPerLine" : 5,
 	"barSpacing" : 4,
 	"barWidth" : 12,
 	"bubbleMaxWidth" : 200,
