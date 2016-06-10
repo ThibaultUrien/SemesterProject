@@ -4,13 +4,13 @@ import ch.epfl.perfNetwork.drawn.Network
 import org.scalajs.jquery.JQueryEventObject
 import scala.scalajs.js
 import org.scalajs.dom
-import ch.epfl.perfNetwork.drawers.Legends
+import ch.epfl.perfNetwork.drawers.LegendDrawer
 import scala.annotation.tailrec
 import scala.scalajs.js.Date
 import ch.epfl.perfNetwork.jsfacade.MouseEvent
 import ch.epfl.perfNetwork.jsfacade.DOMElement
 import ch.epfl.perfNetwork.drawers.PerfsDrawer
-import ch.epfl.perfNetwork.drawers.GraphDrawer
+import ch.epfl.perfNetwork.drawers.NetworkDrawer
 import ch.epfl.perfNetwork.drawers.Drawer
 import ch.epfl.perfNetwork.drawn.PerfBarStack
 import Algebra._
@@ -22,6 +22,7 @@ import ch.epfl.perfNetwork.drawers.StretchyTimeScaleDrawer
 import scala.scalajs.js.Any.fromFunction1
 import scala.scalajs.js.Any.fromString
 import scala.scalajs.js.Any.fromUnit
+import ch.epfl.perfNetwork.drawn.StretchyTimeScale
 
 object Control{
   val defaultViewSpeed = 20.0
@@ -30,18 +31,17 @@ object Control{
   private val mouseState = new MouseState
   def apply(
      graph : Network,
-     drawer : GraphDrawer,
+     drawer : NetworkDrawer,
      barsStacks : Seq[PerfBarStack],
      perfDrawer : PerfsDrawer,
-     timeAddaptator : ScaleAdaptator, 
+     spreadDays : StretchyTimeScale, 
      scale : Vec,
      time : StretchyTimeScaleDrawer,
-     legend : Legends,
+     legend : LegendDrawer,
      filter : Dynamic,
      repoUrl : String
    ) = {
     
-    val spreadDays = timeAddaptator.spreadCommits(graph.vertexes).toVector
     val view = new View
     var filterString = filter.value.toString()
     var datePopupOppen = false

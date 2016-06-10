@@ -10,10 +10,13 @@ trait JSBarchartSetting extends js.Object{
   def bubbleMaxWidth : Int
   def scaleFontSize : Int
   def bubbleFontSize : Int
+  def marginBottom : Int
+  def highlightStrokeWidth : Int
   def barBoundLightOffset : Double
   def bubbleFontName : String
   def scaleFontName : String
   def scaleTextStyle : String
   def bubbleTextStyle : String
   def canvasId : String
+  
 }

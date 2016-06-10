@@ -7,7 +7,6 @@ sealed trait JSVertex extends js.Object {
     def name : String
     def time:Number
     def y : Number
-    def branches : js.Array[Int]
     def comment : String
     def author : String
     def authoringDate : Number

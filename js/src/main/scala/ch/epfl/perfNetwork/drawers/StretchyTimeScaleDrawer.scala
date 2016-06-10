@@ -3,6 +3,7 @@ package ch.epfl.perfNetwork.drawers
 import ch.epfl.perfNetwork.webapp.View
 import ch.epfl.perfNetwork.webapp.Algebra._
 import scala.scalajs.js.Date
+import ch.epfl.perfNetwork.drawn.StretchyTimeScale
 
 class StretchyTimeScaleDrawer (
     val canvasName : String,
@@ -11,12 +12,12 @@ class StretchyTimeScaleDrawer (
     val textStyle : String,
     val lineStyle: String,
     val lineWidth: Int
-) extends ScaleDrawer[Vector[((Int,Int,Int),Double)]]  {
+) extends ScaleDrawer[StretchyTimeScale]  {
   def aDaySecond = 60*60*24
   def aDayPx(v:View) = (aDaySecond * v.scale.x).toInt
   def theOnlyY = 0
  
-  def findDate(year : Int,month : Int, day : Int, in : Vector[((Int,Int,Int),Double)]):Double = {
+  def findDate(year : Int,month : Int, day : Int, in : StretchyTimeScale):Double = {
     val utc = toUTC(day,month,year)
     if(utc<=toUTC(in(0)._1)) {
       in(0)._2
@@ -33,13 +34,13 @@ class StretchyTimeScaleDrawer (
     }
     
   }
-  def advance(from: Vec,indexFrom: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = {
+  def advance(from: Vec,indexFrom: Int, v :View, days : StretchyTimeScale): (Double, Double) = {
     if(indexFrom+1<days.length && indexFrom+1 >=0)
       (v.inRefX(days(indexFrom+1)._2),theOnlyY)
     else
       from + (v.scale.x * aDaySecond,0.0)
   }
-  def anotationAt(pos: (Double, Double),index: Int, v :View, days : Vector[((Int,Int,Int),Double)]): String = { 
+  def anotationAt(pos: (Double, Double),index: Int, v :View, days : StretchyTimeScale): String = { 
     def makeUpAnotation = {
       val dayFrom =  toUTC(days.head._1)*1000l
       val epoch = dayFrom + index*aDaySecond*1000l
@@ -62,9 +63,9 @@ class StretchyTimeScaleDrawer (
   }
   private def toUTC (d:(Int,Int,Int))= (Date.UTC(d._3,d._2,d._1)/1000.0)
   private def toPx (d:(Int,Int,Int),v:View)= toUTC(d)*v.scale.x
-  def lineEnd(lineStart: (Double, Double),index: Int,v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = lineStart + (0.0,lineLenght)
-  def posForAnotations(text: String,graduationPos:Vec, index: Int, v :View, days : Vector[((Int,Int,Int),Double)]): (Double, Double) = graduationPos + (10,20)
-  def start(v :View, days : Vector[((Int,Int,Int),Double)]): (Vec,Int) = {
+  def lineEnd(lineStart: (Double, Double),index: Int,v :View, days : StretchyTimeScale): (Double, Double) = lineStart + (0.0,lineLenght)
+  def posForAnotations(text: String,graduationPos:Vec, index: Int, v :View, days : StretchyTimeScale): (Double, Double) = graduationPos + (10,20)
+  def start(v :View, days : StretchyTimeScale): (Vec,Int) = {
     def makeOobStart(indexOfNearestDay : Int): (Vec,Int) = {
         val closestDay = days(indexOfNearestDay)._2
         val firstVisiblePx = v.topLeft.x
@@ -94,6 +95,6 @@ class StretchyTimeScaleDrawer (
     }
     
   }
-  override def isEnough(drawingPos:Vec, index:Int, days : Vector[((Int,Int,Int),Double)]):Boolean = !(drawingPos < (canvasElem.width,canvasElem.height)) 
+  override def isEnough(drawingPos:Vec, index:Int, days : StretchyTimeScale):Boolean = !(drawingPos < (canvasElem.width,canvasElem.height)) 
 
 }

@@ -19,9 +19,9 @@ class PerfsDrawer(
     val bubbleTextStyle : String,
     val darkeningCoef : Double,
     val highlightStroke : Int,
-    val testInfoMaxWidth : Int
+    val testInfoMaxWidth : Int,
+    val marginBottom : Int
 ) extends Drawer {
-  private val margin = 5
   def draw(perfChart : PerfBarChart, v : View) : Unit = {
     def oneMin = 60
     def someMins = oneMin * lineCountCeil
@@ -105,12 +105,12 @@ class PerfsDrawer(
         case None =>
         case Some((bar,barX))=>
           val barHeight = bar.meanTime*yScale
-          val start = (v.inRefX(barX) - barWidth/2,margin+canvasElem.height - barHeight)
+          val start = (v.inRefX(barX) - barWidth/2,marginBottom+canvasElem.height - barHeight)
           val color = hashStringInColor(bar.testName)
           ctx.strokeStyle = "#"+changeBrightness(color,darkeningCoef)
           ctx.lineWidth = 3
           ctx.lineWidth = highlightStroke
-          ctx.strokeRect(start.x-highlightStroke, start.y-highlightStroke, barWidth+highlightStroke*2, canvasElem.height+highlightStroke - margin)
+          ctx.strokeRect(start.x-highlightStroke, start.y-highlightStroke, barWidth+highlightStroke*2, canvasElem.height+highlightStroke - marginBottom)
           val barText = 
             bar.testName+"\n\n"+
             "Average time over "+bar.allTimes.size+" instance" + 
@@ -143,13 +143,13 @@ class PerfsDrawer(
  
   private def drawABar(bar : PerfBar,ofCommit : Vertex, barScale : Double, v : View) : Unit = {
     val barHeight = bar.meanTime*barScale
-    val start = (v.inRefX(ofCommit.x) - barWidth/2,margin+canvasElem.height - barHeight)
+    val start = (v.inRefX(ofCommit.x) - barWidth/2,marginBottom+canvasElem.height - barHeight)
     val color = hashStringInColor(bar.testName)
     ctx.fillStyle = "#"+color
-    ctx.fillRect(start.x, start.y, barWidth, canvasElem.height - margin)
+    ctx.fillRect(start.x, start.y, barWidth, canvasElem.height - marginBottom)
     ctx.strokeStyle = "#"+changeBrightness(color, darkeningCoef)
     ctx.lineWidth = 3
-    ctx.strokeRect(start.x, start.y, barWidth, canvasElem.height - margin)
+    ctx.strokeRect(start.x, start.y, barWidth, canvasElem.height - marginBottom)
   }
     
 }

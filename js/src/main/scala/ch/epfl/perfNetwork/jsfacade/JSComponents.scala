@@ -80,34 +80,8 @@ trait HTMLCanvasElement extends DOMElement {
   var width : Int
   var height : Int
 }
-@js.native
-trait Canvas2D extends js.Object {
-  val canvas: HTMLCanvasElement
 
-  var fillStyle: String
-  var lineWidth: Number
-  var strokeStyle: String
-  var font: String
 
-  def fillText(text: String, x: Number, y: Number)
-  def fillRect(x: Number, y: Number, w: Number, h: Number)
-  def clearRect(x: Number, y: Number, w: Number, h: Number)
-  def strokeRect(x: Number, y: Number, w: Number, h: Number)
-
-  def beginPath()
-  def closePath()
-  def fill()
-  def stroke()
-
-  def moveTo(x: Number, y: Number)
-  def lineTo(x: Number, y: Number)
-
-  def arc(x: Number, y: Number, radius: Number,
-      startAngle: Number, endAngle: Number)
-  def measureText(text:String):TextMetrics
-  def getBoundingClientRect : DOMRect
-  
-}
 @js.native
 trait DOMRect extends js.Object {
   def top : Float

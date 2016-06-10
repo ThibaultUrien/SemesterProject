@@ -14,10 +14,10 @@ var SharedSetting = {
     "groupBegin" : '"',
     "completeResultSeparator" : " ",
     "groupEnd" : '"',
-    "testesFile" : "scalameter",
+    "testesFile" : "benchmarkdata",
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
-	"branchesFile" : "branches"
+	"showResultWhenDone" : true
 
 };
 var NetworkSetting = {
@@ -57,6 +57,8 @@ var BarchartSetting =  {
 	"bubbleMaxWidth" : 200,
 	"scaleFontSize" : 12,
 	"bubbleFontSize" : 10,
+	"highlightStrokeWidth" :2,
+	"marginBottom" : 5,
 	"barBoundLightOffset" : -0.2,
 	"bubbleFontName" : "sans-serif",
 	"scaleFontName" : "sans-serif",

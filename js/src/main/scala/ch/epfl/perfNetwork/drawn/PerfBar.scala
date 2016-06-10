@@ -4,7 +4,8 @@ package ch.epfl.perfNetwork.drawn
 import scala.scalajs.js
 import scala.scalajs.js.Any.jsArrayOps
 import scala.scalajs.js.Any.wrapArray
-import ch.epfl.perfNetwork.jsfacade.JSDSV
+import ch.epfl.perfNetwork.jsfacade.JSBenchData
+import scala.scalajs.js.Date
 
 sealed class PerfBar (
   val testName : String,
@@ -25,13 +26,25 @@ sealed class PerfBarStack(val bars : Seq[PerfBar], val commit : Vertex) {
     assert(commit == that.commit)
     PerfBarStack((bars++that.bars).sortBy(-_.meanTime), commit)
   }
+  def + ( test : JSBenchData) = {
+    val b = new PerfBar(
+        test.testName,
+        test.allMesures.map(_.doubleValue),
+        test.representativeTime.doubleValue(),
+        (test.confidenceIntervalLo.doubleValue(),test.confidenceIntervalHi.doubleValue()),
+        test.date.intValue(),
+        if(test.misc != null)test.misc else Nil
+    ) 
+    PerfBarStack((bars:+b).sortBy(-_.meanTime), commit)
+           
+  }
   def filter(f:(PerfBar)=> Boolean) = new PerfBarStack(bars.filter(f),commit)
   
 }
 
-object PerfBar {
-  def apply(testResult : Seq[JSDSV],commits : Seq[Vertex]):Seq[PerfBarStack] = {
-    def perfBarStack(dsvs : Seq[JSDSV],commit:Vertex) = {
+object PerfBars {
+  def apply(testResult : Seq[JSBenchData],commits : Seq[Vertex]):Seq[PerfBarStack] = {
+    def perfBarStack(dsvs : Seq[JSBenchData],commit:Vertex) = {
       PerfBarStack.apply(
           dsvs.map { 
             dsv => 
@@ -47,7 +60,7 @@ object PerfBar {
           commit
       )
     }
-    def takeAllPerfOfCommit( bufperfs : (Seq[PerfBarStack],Seq[JSDSV]),commit : Vertex):(Seq[PerfBarStack],Seq[JSDSV]) = {
+    def guessAllPerfOfCommit( bufperfs : (Seq[PerfBarStack],Seq[JSBenchData]),commit : Vertex):(Seq[PerfBarStack],Seq[JSBenchData]) = {
       val perfs = bufperfs._2
       if(perfs.isEmpty){
         bufperfs
@@ -57,16 +70,42 @@ object PerfBar {
         bufperfs
       else {
         val perfOfThisCommit = perfs.takeWhile { dsv => dsv.date.intValue()> commit.date}
+       
         (bufperfs._1:+perfBarStack(perfOfThisCommit, commit),perfs.drop(perfOfThisCommit.size))
       }
           
     }
     val reversOrderCommit = commits.sortBy { c => c.authoringDate }.reverse
-    val reversOrderPerf = testResult.sortBy { dsv => -dsv.date.intValue() }
     
-    val matchedDSV = reversOrderCommit
-      .foldLeft((Seq[PerfBarStack](),reversOrderPerf))(takeAllPerfOfCommit)
-    assert(matchedDSV._2.isEmpty)
-    matchedDSV._1.sortBy(_.commit.date)
+    val emptyCommitMap = commits.map(c=>(c.name,new PerfBarStack(Nil,c))).toMap    
+    val undefinedLinkMap  = testResult.groupBy { _.hash == "?" }
+    
+    val guessedTest = undefinedLinkMap.get(true) match {
+      case None => (Nil,Nil)
+      case Some(undefinedLinks) => 
+        val reversUndefined = undefinedLinks.sortBy (_.date.intValue()).reverse
+        reversOrderCommit.foldLeft((Seq[PerfBarStack](),reversUndefined))(guessAllPerfOfCommit)
+    }
+    assert(guessedTest._2.isEmpty)
+    val guessedStackMap = guessedTest._1.foldLeft(emptyCommitMap){
+      case(map,bar) => map + (bar.commit.name -> (map(bar.commit.name) ++ bar))
+    }
+    val stackMap = undefinedLinkMap.get(false) match {
+      case None => guessedStackMap
+      case Some(definedLink) => 
+        definedLink.foldLeft(guessedStackMap){
+          case(map,test) => 
+            map.get(test.hash) match {
+              case None => 
+                println("Failed to link test. There is no commit with hash "+test.hash)
+                map
+              case Some(thing) => map + (test.hash -> (map(test.hash) + test))
+            }
+            
+        }
+    }
+    
+    stackMap.toSeq.map(_._2).filterNot(_.bars.isEmpty).sortBy(_.commit.date)
+      
   }
 }

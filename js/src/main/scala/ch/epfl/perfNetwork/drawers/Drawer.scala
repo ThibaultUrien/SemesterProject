@@ -8,8 +8,9 @@ import ch.epfl.perfNetwork.jsfacade.DOMElement
 import scala.scalajs.js
 import scala.scalajs.js.Any.fromString
 import scala.scalajs.js.Dynamic.{global => g}
+
 trait Drawer {
-  def canvasName : String
+  val canvasName : String
   def dimensions:Vec = (canvasElem.width, canvasElem.height)
   val canvasOrig = g.document.getElementById(canvasName)
   val canvasDom = canvasOrig.asInstanceOf[DOMElement]

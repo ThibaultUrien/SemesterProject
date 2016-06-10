@@ -27,27 +27,8 @@ object NetworkDownloader {
     }
   
   
-    val git = RepoData.loadRepo(repoUrl,workingDir+repoDir)
-   
+    val git = RepoData.loadRepo(repoUrl,workingDir+repoDir)    
     
-    
-    val branche = git.branchList().setListMode( ListMode.ALL ).call
-    val branchesComits = branche.asScala.map(ref=>(ref.getName,{
-          git.log()
-            .add(git.getRepository.resolve(ref.getName))
-            .call().asScala.toSeq;
-        }
-       )
-     ).toSeq
-          
-    val orderedBranches = branchesComits.map(_._1)
-    
-    
-    val branchMap  = branchesComits
-      .zipWithIndex
-      .flatMap(t=> t._1._2.zipAll(Seq[Int](), t._1._2(0), t._2))
-      .groupBy(t=>t._1)
-      .withDefault { c => Nil }
       
     val commits = git.log().call().asScala.toSeq
     
@@ -63,10 +44,9 @@ object NetworkDownloader {
     val yPoses = uncoilNetwork(commits)
     (
       new CommitPrinter(
-        (commits, (commits map branchMap).map(_ map(_._2)), yPoses).zipped.toList
+        (commits, yPoses).zipped.toList
       ),
-      new EdgePrinter(edgeList),
-      new BranchPrinter(orderedBranches)
+      new EdgePrinter(edgeList)
     )
     
   }

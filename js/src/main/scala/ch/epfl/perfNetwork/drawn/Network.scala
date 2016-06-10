@@ -7,8 +7,6 @@ sealed trait Network
 {
   def vertexes : Seq[Vertex]
   def edges : Seq[Edge]
-  def branchesColor : Seq[String]
-  def branchesName : Seq[String]
   var visiblePoints : Seq[Vertex]
   var firstVisblePointIndex = 0
   var lastVisiblePointIndex = 0
@@ -24,7 +22,7 @@ sealed trait Network
 }
 
 object Network {
-  def apply(vertx : Seq[Vertex], edgs : Seq[Edge], branches : Seq[String], seed: Long) = {
+  def apply(vertx : Seq[Vertex], edgs : Seq[Edge], seed: Long) = {
     def colorHash(s:String):String = {
       val hash = s.hashCode()
       hash.toHexString.padTo(6, '0').take(6)
@@ -33,8 +31,6 @@ object Network {
     new Network {
       val vertexes = vertx
       val edges = edgs
-      val branchesName = branches
-      val branchesColor = branchesName map colorHash 
       var visiblePoints : Seq[Vertex] = Nil
       var highlightedPoint : Option[Vertex] = None
       val randomSeed = seed

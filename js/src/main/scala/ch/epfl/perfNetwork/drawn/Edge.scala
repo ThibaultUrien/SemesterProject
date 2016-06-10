@@ -10,7 +10,7 @@ sealed trait Edge {
   override def toString = "[ from"+source+" to "+target+" ]"
 }
 
-object Edge {
+object Edges {
   def apply(jsedges : Seq[JSEdge], vertexes : Seq[Vertex]) = {
     jsedges.map {
       e => new Edge {

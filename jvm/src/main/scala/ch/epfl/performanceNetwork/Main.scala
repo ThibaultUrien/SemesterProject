@@ -61,12 +61,13 @@ object Main
     
     val vertexesFile = parsPath(find("vertexesFile"))
     val edgesFile = parsPath(find("edgesFile"))
-    val branchesFile = parsPath(find("branchesFile"))
     val testesFile = parsPath(find("testesFile"))
     
     val prameters = find("prameters")
     val testSeparator = find("testSeparator")
     val paramSeparator = find("paramSeparator")
+    
+    val showResultWhenDone = find("showResultWhenDone").toBoolean
     
     val groupBegin =  find("groupBegin") match {
       case ""=> ""
@@ -104,10 +105,8 @@ object Main
     )  
     
     
-    val (vertexes,edges,branches) = NetworkDownloader(repoUrl,workingDir,repoDir)
-    
-    printToFile(branches, branchesFile)
-    
+    val (vertexes,edges) = NetworkDownloader(repoUrl,workingDir,repoDir)
+      
     
     printToFile(vertexes, vertexesFile)
     
@@ -116,7 +115,7 @@ object Main
     
     printToFile(testes, testesFile)
     
-    if(Desktop.isDesktopSupported())
+    if(showResultWhenDone && Desktop.isDesktopSupported())
     {
      
       val page = new File(workingDir+"index.htm").getCanonicalFile.toURI()

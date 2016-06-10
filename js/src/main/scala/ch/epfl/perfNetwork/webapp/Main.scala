@@ -7,12 +7,11 @@ import org.singlespaced.d3js.Ops._
 import scala.collection.JavaConverters._
 import scala.scalajs.js.Dynamic.{ global => g }
 import scala.util.Random
-import ch.epfl.perfNetwork.drawers.Legends
+import ch.epfl.perfNetwork.drawers.LegendDrawer
 import ch.epfl.perfNetwork.jsfacade.JSEdge
-import ch.epfl.perfNetwork.jsfacade.JSDSV
-import ch.epfl.perfNetwork.jsfacade.JSBrancheName
+import ch.epfl.perfNetwork.jsfacade.JSBenchData
 import ch.epfl.perfNetwork.drawers.PerfsDrawer
-import ch.epfl.perfNetwork.drawers.GraphDrawer
+import ch.epfl.perfNetwork.drawers.NetworkDrawer
 import ch.epfl.perfNetwork.jsfacade.JSLegendSetting
 import ch.epfl.perfNetwork.jsfacade.JSBarchartSetting
 import ch.epfl.perfNetwork.drawn.Vertex
@@ -24,6 +23,10 @@ import ch.epfl.perfNetwork.drawers.StretchyTimeScaleDrawer
 import scala.scalajs.js.Any.fromString
 import scala.scalajs.js.Dynamic.{global => g}
 import ch.epfl.perfNetwork.jsfacade.JSNetworkSetting
+import ch.epfl.perfNetwork.drawn.Vertexes
+import ch.epfl.perfNetwork.drawn.Edges
+import ch.epfl.perfNetwork.drawn.PerfBars
+import ch.epfl.perfNetwork.drawn.StretchyTimeScale
 
 
 object Main extends JSApp {
@@ -39,7 +42,7 @@ object Main extends JSApp {
     val legendSetting = js.Dynamic.global.LegendSetting.asInstanceOf[JSLegendSetting]
     
     val scale = sharedSetting.defaultTimeScale.asInstanceOf[Number].doubleValue()
-    val drawer = new GraphDrawer(
+    val drawer = new NetworkDrawer(
         networkSetting.canvasId,
         networkSetting.pointRadius,
         networkSetting.lineWidth,
@@ -65,10 +68,10 @@ object Main extends JSApp {
         barchartSetting.bubbleFontName,
         barchartSetting.bubbleTextStyle,
         barchartSetting.barBoundLightOffset,
-        2,
-        barchartSetting.bubbleMaxWidth
+        barchartSetting.highlightStrokeWidth,
+        barchartSetting.bubbleMaxWidth,
+        barchartSetting.marginBottom
     )
-    val addapt = new ScaleAdaptator(scale,networkSetting.minPointSpace)
     val time  = new StretchyTimeScaleDrawer(
         networkSetting.scaleCanvasId,
         networkSetting.scaleLineLenght,
@@ -78,13 +81,15 @@ object Main extends JSApp {
         networkSetting.scaleLineWidth
       )
     
-    val unsortedVertexes = Vertex(JSVertex.readData)
+    val unsortedVertexes = Vertexes(JSVertex.readData)
     val vertexes = unsortedVertexes.reverse
-    val edges = Edge(JSEdge.readData,unsortedVertexes)
-    val testesResult = PerfBar(JSDSV.readData,vertexes)
+    val edges = Edges(JSEdge.readData,unsortedVertexes)
+    val testesResult = PerfBars(JSBenchData.readData,vertexes)
     val filterTextField = g.document.getElementById(legendSetting.filterTextFieldId)
     
-    val legend = new Legends(
+    val timeScale = StretchyTimeScale(scale,networkSetting.minPointSpace,vertexes)
+    
+    val legend = new LegendDrawer(
       legendSetting.canvasId,
       legendSetting.textSize,
       legendSetting.fontName,
@@ -98,11 +103,11 @@ object Main extends JSApp {
     )
     
     Control(
-        Network(vertexes,edges,JSBrancheName.readData map(_.name),networkSetting.colorSeed.longValue()),
+        Network(vertexes,edges,networkSetting.colorSeed.longValue()),
         drawer,
         testesResult,
         barDrawer,
-        addapt,
+        timeScale,
         (scale,1),
         time,
         legend,

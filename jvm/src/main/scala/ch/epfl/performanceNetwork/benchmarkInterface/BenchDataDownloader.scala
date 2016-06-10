@@ -25,7 +25,7 @@ object BenchDataDownloader {
     groupSeparator : String,
     goupEnd : String
   ) = {
-    val dsvReader = new TestDataReader(
+    val dsvReader = new BenchDataReader(
       prameters,
       testSeparator,
       paramSeparator,
@@ -77,7 +77,7 @@ object BenchDataDownloader {
         else throw e
     }
   }
-  private def download(urlFrom : String, to:TestDataReader)={
+  private def download(urlFrom : String, to:BenchDataReader)={
     handleHTTPSReject(urlFrom, s=>to.readData(Source.fromURL(s).mkString))   
   }
   private def download(urlFrom : String, fileTo : String)={
@@ -92,7 +92,7 @@ object BenchDataDownloader {
     )
     
   }
-  private def fetchOneDSV(dataDomainUrl : String, fileName : String, reader : TestDataReader):Unit = {
+  private def fetchOneDSV(dataDomainUrl : String, fileName : String, reader : BenchDataReader):Unit = {
     
     val protocol = dataDomainUrl.takeWhile { c => c!=':' }
     val splitedLocation = dataDomainUrl.drop(protocol.size).split("/")
@@ -109,11 +109,11 @@ object BenchDataDownloader {
     }
     
   }
-  sealed class BenchDataPrinter(val datas : Seq[CommitTestData]) extends DataPrinter {
+  sealed class BenchDataPrinter(val datas : Seq[BenchCommitData]) extends DataPrinter {
     def printData(writer : Writter):Unit = {
       datas foreach (d=> writer.appendEntry(d.toStringSeq :_*))
     }
-    def writtenFields:Seq[String] = CommitTestData.names
+    def writtenFields:Seq[String] = BenchCommitData.names
     
     
   }

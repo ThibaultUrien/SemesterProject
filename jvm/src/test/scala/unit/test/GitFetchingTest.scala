@@ -24,13 +24,11 @@ class GitFetchingTest extends TestCase{
   override def setUp() = {
     testRepoUrl = "https://github.com/lampepfl/dotty.git"
     
-    val (vertexes,edges,branches) = NetworkDownloader(testRepoUrl,"","")
+    val (vertexes,edges) = NetworkDownloader(testRepoUrl,"","")
     vertexResults = new FakeWritter(vertexes.writtenFields)
     edgesResults = new FakeWritter(edges.writtenFields)
-    branchResults = new FakeWritter(branches.writtenFields)
     vertexes.printData(vertexResults)
     edges.printData(edgesResults)
-    branches.printData(branchResults)
     val sourceTagetSeq = (0 to edgesResults.entriesCount-1) map {
           i => 
             val src = edgesResults.getEntryParameter(i,"source")
