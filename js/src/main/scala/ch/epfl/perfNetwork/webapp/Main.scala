@@ -1,32 +1,27 @@
 package ch.epfl.perfNetwork.webapp
 
-import scala.scalajs.js.JSApp
 import scala.scalajs.js
-import org.scalajs.jquery.jQuery
-import org.singlespaced.d3js.Ops._
-import scala.collection.JavaConverters._
-import scala.scalajs.js.Dynamic.{ global => g }
-import scala.util.Random
-import ch.epfl.perfNetwork.drawers.LegendDrawer
-import ch.epfl.perfNetwork.jsfacade.JSEdge
-import ch.epfl.perfNetwork.jsfacade.JSBenchData
-import ch.epfl.perfNetwork.drawers.PerfsDrawer
-import ch.epfl.perfNetwork.drawers.NetworkDrawer
-import ch.epfl.perfNetwork.jsfacade.JSLegendSetting
-import ch.epfl.perfNetwork.jsfacade.JSBarchartSetting
-import ch.epfl.perfNetwork.drawn.Vertex
-import ch.epfl.perfNetwork.jsfacade.JSVertex
-import ch.epfl.perfNetwork.drawn.Edge
-import ch.epfl.perfNetwork.drawn.PerfBar
-import ch.epfl.perfNetwork.drawn.Network
-import ch.epfl.perfNetwork.drawers.StretchyTimeScaleDrawer
 import scala.scalajs.js.Any.fromString
-import scala.scalajs.js.Dynamic.{global => g}
-import ch.epfl.perfNetwork.jsfacade.JSNetworkSetting
-import ch.epfl.perfNetwork.drawn.Vertexes
+import scala.scalajs.js.Dynamic.{ global => g }
+import scala.scalajs.js.JSApp
+
+import org.scalajs.jquery.jQuery
+
+import ch.epfl.perfNetwork.drawers.LegendDrawer
+import ch.epfl.perfNetwork.drawers.NetworkDrawer
+import ch.epfl.perfNetwork.drawers.PerfsDrawer
+import ch.epfl.perfNetwork.drawers.StretchyTimeScaleDrawer
 import ch.epfl.perfNetwork.drawn.Edges
+import ch.epfl.perfNetwork.drawn.Network
 import ch.epfl.perfNetwork.drawn.PerfBars
 import ch.epfl.perfNetwork.drawn.StretchyTimeScale
+import ch.epfl.perfNetwork.drawn.Vertexes
+import ch.epfl.perfNetwork.jsfacade.JSBarchartSetting
+import ch.epfl.perfNetwork.jsfacade.JSBenchData
+import ch.epfl.perfNetwork.jsfacade.JSEdge
+import ch.epfl.perfNetwork.jsfacade.JSLegendSetting
+import ch.epfl.perfNetwork.jsfacade.JSNetworkSetting
+import ch.epfl.perfNetwork.jsfacade.JSVertex
 
 
 object Main extends JSApp {

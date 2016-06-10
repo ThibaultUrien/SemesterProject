@@ -23,11 +23,4 @@ class CommitPrinter(val vertexes : TraversableOnce[(RevCommit,Int)]) extends Dat
     }
   }
   
-  private def escapeEnoyingChar(c:Char):String = c match {
-    case '\n' => "\\n"
-    case '\"' => "\\\""
-    case '\r' => "\\r"
-    case '\\'=> "\\\\"
-    case c => ""+c
-  }
 }

@@ -23,11 +23,6 @@ sealed trait Network
 
 object Network {
   def apply(vertx : Seq[Vertex], edgs : Seq[Edge], seed: Long) = {
-    def colorHash(s:String):String = {
-      val hash = s.hashCode()
-      hash.toHexString.padTo(6, '0').take(6)
-    }
-    
     new Network {
       val vertexes = vertx
       val edges = edgs

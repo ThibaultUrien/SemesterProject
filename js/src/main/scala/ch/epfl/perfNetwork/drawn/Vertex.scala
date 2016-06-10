@@ -37,4 +37,3 @@ object Vertexes {
   }
   
 }
-sealed class VertexBuildingException(message:String = "") extends Exception(message)

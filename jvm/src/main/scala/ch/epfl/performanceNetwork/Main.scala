@@ -88,32 +88,45 @@ object Main
       printer.printData(writer)
       writer.close
     }
+    val t1 = new Thread(new Runnable() {
+    		def run {
+    			val testes= BenchDataDownloader.fetch(
+          dataUrlDomain,
+          mainFileUrl,
+          mainFileIsIndex,
+          indexFileLocalName,
+          workingDir,
+          prameters,
+          testSeparator,
+          fileNameRegex,
+          paramSeparator,
+          groupBegin,
+          completeResultSeparator,
+          groupEnd
+          ) 
+          printToFile(testes, testesFile)
+    		}
+    	})
     
-    val testes= BenchDataDownloader.fetch(
-        dataUrlDomain,
-        mainFileUrl,
-        mainFileIsIndex,
-        indexFileLocalName,
-        workingDir,
-        prameters,
-        testSeparator,
-        fileNameRegex,
-        paramSeparator,
-        groupBegin,
-        completeResultSeparator,
-        groupEnd
-    )  
     
-    
-    val (vertexes,edges) = NetworkDownloader(repoUrl,workingDir,repoDir)
+    val t2 = new Thread(new Runnable() {
+		def run {
+  			val (vertexes,edges) = NetworkDownloader(repoUrl,workingDir,repoDir)
       
     
-    printToFile(vertexes, vertexesFile)
+        printToFile(vertexes, vertexesFile)
     
     
-    printToFile(edges, edgesFile)
+        printToFile(edges, edgesFile)
+  		}
+  	})
     
-    printToFile(testes, testesFile)
+    
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    
     
     if(showResultWhenDone && Desktop.isDesktopSupported())
     {

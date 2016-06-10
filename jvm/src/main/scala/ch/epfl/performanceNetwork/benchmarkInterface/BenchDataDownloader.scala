@@ -9,6 +9,7 @@ import scala.io.Source
 import ch.epfl.performanceNetwork.printers.DataPrinter
 import ch.epfl.performanceNetwork.printers.Writter
 import javax.net.ssl.SSLHandshakeException
+import java.net.MalformedURLException
 
 object BenchDataDownloader {
   def fetch(
@@ -67,18 +68,25 @@ object BenchDataDownloader {
       f(urlFrom)
     }
     catch {
-      case e : SSLHandshakeException =>
+      case sse : SSLHandshakeException =>
         if(urlFrom.startsWith("https")) {
-          println("Can't reach "+urlFrom+" because "+e.getMessage)
+          println("Can't reach "+urlFrom+" because "+sse.getMessage)
           val newUrl = "http"+urlFrom.drop("https".size)
           println("New attempt with the modified url "+newUrl)
           f(newUrl)
         }
-        else throw e
+        else throw sse
+      
     }
   }
   private def download(urlFrom : String, to:BenchDataReader)={
-    handleHTTPSReject(urlFrom, s=>to.readData(Source.fromURL(s).mkString))   
+    try {
+    handleHTTPSReject(urlFrom, s=>to.readData(Source.fromURL(s).mkString))  }
+    catch {
+      case malformed : MalformedURLException =>
+        println(urlFrom+" is not a valid url. Skiping it.")
+    }
+    
   }
   private def download(urlFrom : String, fileTo : String)={
     handleHTTPSReject(urlFrom, 
@@ -109,13 +117,6 @@ object BenchDataDownloader {
     }
     
   }
-  sealed class BenchDataPrinter(val datas : Seq[BenchCommitData]) extends DataPrinter {
-    def printData(writer : Writter):Unit = {
-      datas foreach (d=> writer.appendEntry(d.toStringSeq :_*))
-    }
-    def writtenFields:Seq[String] = BenchCommitData.names
-    
-    
-  }
+ 
   sealed class BenchDataDownloadingException(message : String, cause : Exception) extends Exception(message,cause)
 }
