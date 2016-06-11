@@ -21,8 +21,8 @@
 	- [prameters](#prameters)
 	- [groupBegin/ groupEnd](#groupbegin/-groupend)
 	- [completeResultSeparator](#completeresultseparator)
-	- [vertexesFile, edgesFile, branchesFile and testsFile:](#vertexesfile,-edgesfile,-branchesfile-and-testsfile:)
-- [The code:](#the-code:)
+	- [vertexesFile, edgesFile, branchesFile and testsFile](#vertexesfile,-edgesfile,-branchesfile-and-testsfile)
+- [The code](#the-code)
 	- [About he JS part](#about-he-js-part)
 		- [The class that extends Drawer](#the-class-that-extends-drawer)
 		- [The class used as parameter of drawers](#the-class-used-as-parameter-of-drawers)
@@ -121,7 +121,7 @@ If your main file is an index, for every matches of this regexp, the first captu
 The JVM part use it.
 This application need a local copy of the repository it work with. The repository will be cloned in the directory repoDir. If repoDir already contain at .git file, the application will attempt to use it as a local clone of the repository at dataUrlDomain. The JVM part will call pull on this repository.
 
-####testSeparator:
+####testSeparator
 The JVM part use it.
 It *is a regexp*.
 This regexp is used to separate distinct tests inside a test file. The file will be split on this regexp. That's why regexp must not match for a part of the string describing you test. Those part would be lost after the splitting. Note that if the split result in some strings that are not test results (like if your file have some-header), those string will be verbosely ignored. 
@@ -149,7 +149,7 @@ It *is a regexp*. It's used to split the times contained in the parameter comple
 
 
 ####vertexesFile, edgesFile, branchesFile and testsFile
-The JVM part use it.
+The JVM part use it
 The information that will be displayed latter by the javaScript application are copied javaSrcipt array contained in these file. Note that the JS part doesn't read this fields. These files must be imported by the html file calling the JS part.
 
 
