@@ -26,7 +26,7 @@
 	- [About he JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-he-js-part)
 		- [The class that extends Drawer](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-that-extends-drawer)
 		- [The class used as parameter of drawers](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-used-as-parameter-of-drawers)
-		- [The classes used to import data from javascript](https://github.com(/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-to-import-data-from-javascript)
+		- [The classes to import data from javascript](https://github.com(/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-to-import-data-from-javascript)
 		- [The others classes](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-others-classes)
 		- [The files needed by the JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-files-needed-by-the-js-part)
 	- [About JVM part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-jvm-part)
