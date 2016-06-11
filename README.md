@@ -3,8 +3,8 @@
 
 ###README v0.15 / 11 JUNE 2016
 
-- [Introduction](#Introduction)
-- [How to use](#)
+- [Introduction](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#Introduction)
+- [How to use](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#)
 	- [Building and starting it](#)
 	- [Once the application is started](#)
 - [Requirement](#)
