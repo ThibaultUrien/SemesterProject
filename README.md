@@ -19,7 +19,7 @@
 	- [testSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#testseparator)
 	- [paramSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#paramseparator)
 	- [prameters](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#prameters)
-	- [groupBegin/ groupEnd](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#groupbegin/-groupend)
+	- [groupBegin/ groupEnd](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#groupbegin-groupend)
 	- [completeResultSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#completeresultseparator)
 	- [vertexesFile, edgesFile, branchesFile and testsFile:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#vertexesfile,-edgesfile,-branchesfile-and-testsfile:)
 - [The code:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-code:)
