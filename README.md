@@ -3,7 +3,37 @@
 
 ###README v0.15 / 11 JUNE 2016
 
-
+- [Introduction](#)
+- [How to use](#)
+	- [Building and starting it](#)
+	- [Once the application is started](#)
+- [Requirement](#)
+- [Configuration](#)
+	- [repoUrl](#)
+	- [mainFileUrl](#)
+	- [dataUrlDomain](#)
+	- [mainFileIsIndex](#)
+	- [indexFileLocalName](#)
+	- [fileNameRegex](#)
+	- [repoDir](#)
+	- [testSeparator](#)
+	- [paramSeparator](#)
+	- [prameters](#)
+	- [groupBegin/ groupEnd](#)
+	- [completeResultSeparator](#)
+	- [vertexesFile, edgesFile, branchesFile and testsFile:](#)
+- [The code:](#)
+	- [About he JS part](#)
+		- [The class that extends Drawer](#)
+		- [The class used as parameter of drawers](#)
+		- [The classes used to import data from javascript](#)
+		- [The others classes](#)
+		- [The files needed by the JS part](#)
+	- [About JVM part](#)
+		- [The interface with git](#)
+		- [The interface with the test server](#)
+- [Licence](#)
+- [This project used](#)
 
 
 ##Introduction
@@ -14,11 +44,11 @@ This project was originally developed to follow the Dotty's git repository, yet 
 
 ##How to use
 
-###Building and starting it:
+###Building and starting it
 
 Launch sbtrun.bat, sbtrun.sh or open index.htm in a web browser to start the application. Both sbtrun build the application if needed then start it. Started this way, the application will refresh data about the repository and the benchmark before displaying anything. If you start the application with index.htm, the application is going to use datas it have locally, which mean nothing at all if it's the first time you use this application. In this case you have to start it by using one of the sbtrun script. 
 
-###Once the application is started:
+###Once the application is started
 
 You can drag the git network or the performance bar chart to navigate. You can also use the arrow key to move left and right. Using shift with an arrow key move you to the beginning or to the end of the graph.
 
@@ -34,7 +64,7 @@ Click on the time line below the commit network to input a date that you would l
 
 
 
-##Requirement: 
+##Requirement
 
 Before the installation be sure that you have java's JDK installed and that your path variable contain it's location. 
 You will also need sbt installed on your computer. Get it at http://www.scala-sbt.org/.
@@ -42,7 +72,7 @@ You will also need sbt installed on your computer. Get it at http://www.scala-sb
 When you have the jdk and sbt installed, start either sbtrun.bat or sbtrun.sh. This script ask sbt to run the program. As provided on git the program is not yet built so sbt take care of doing it. When sbt is done, the application start and you can use it. For further utilization, it's recommended to keep using sbtrun to start the application to be sure that what is displayed is up to date. The second time sbt will see that everything is already built and wont do it again.
 
 
-##Configuration:
+##Configuration
 
 The application work well the way it is confirurated, you don't need to read this part if you just want to see what it does.
 
@@ -60,33 +90,33 @@ The JS part use only "defaultTimeScale", "title", "repoUrl", the JVM use all the
 
 You can find information about certain field of SharedSetting bellow. To avoid some unpleasant surprise, you will also find on string parameter if they are used as regexp or not. 
 
-####repoUrl : 
+####repoUrl
 The JS and JVM part use it.
 It's the url of the git repository. 
 The JVM part can use any valid git repository but the JS send the user to repoUrl/commitHash when a commit node is clicked. The second behavior will product odd results if your git sever doesn't provide commit pages as github does.
 
-####mainFileUrl:
+####mainFileUrl
 The JVM part use it.
 This file either contain all the result of your benchmarking or is an index of the files that contain those results.
 
-####dataUrlDomain:
+####dataUrlDomain
 The JVM part part use it.
 If the main file is used as an index and the addresses of the indexed file are given with a relative path, those files will be requested relatively to this domain. Leave it empty if the file path are absolute.
 
-####mainFileIsIndex:
+####mainFileIsIndex
 The JVM part use it.
 Put it to true if the main file is an index of the existing test files. Put it to false if the main file contain the data about your tests.
 
-####indexFileLocalName: 
+####indexFileLocalName
 The JVM part use it.
 The main file is locally copied as ./perf/ContentOfIndexFileLocalName
 
-####fileNameRegex: 
+####fileNameRegex
 The JVM part use it.
 It *is a regex*.
 If your main file is an index, for every matches of this regexp, the first capturing group is assumed to contain the url pointing to data about some of your tests. If your main file is not an index this regexp is not used. You can change this regexp to be compatible with other index file formats. This pattern is applied on the whole index file as a single string. The application will send an http request to everything that is captured by this regexp. If it's not a valid url it will be ignored and a message containing the captured string will be generated.
 
-####repoDir: 
+####repoDir
 The JVM part use it.
 This application need a local copy of the repository it work with. The repository will be cloned in the directory repoDir. If repoDir already contain at .git file, the application will attempt to use it as a local clone of the repository at dataUrlDomain. The JVM part will call pull on this repository.
 
@@ -95,12 +125,12 @@ The JVM part use it.
 It *is a regexp*.
 This regexp is used to separate distinct tests inside a test file. The file will be split on this regexp. That's why regexp must not match for a part of the string describing you test. Those part would be lost after the splitting. Note that if the split result in some strings that are not test results (like if your file have some header), those string will be verbosely ignored. 
 
-####paramSeparator:
+####paramSeparator
 The JVM part use it.
 It *is a regexp*.
 This regexp is used to separate distinct parameter inside a single. The string will be split on this regexp, which mean that regexp must not match for a part of the string describing you test as those part would be lost after the splitting.
 
-####prameters: 
+####prameters
 The JVM part use it.
 It is *not a regexp*.
 Once the string representing a single test is cut, the meaning of each segment will be given by the keyword at the same position in parameters. The string parameter must contain: date, param-test, value, cilo, cihi, units. Distinct keyword in this string can be seprarated with a space of a tabulation. "param-test" is the displayed name of the test, value the displayed value,  cilo and cihi are the bound of the confidence interval and complete is the list all the result the iteration this test. You are free to add more parameters. Additional parameter will appear in the dialogue that pop when you put your mouse over a bar. 
@@ -108,16 +138,16 @@ Name of each parameter must be unique. The application will skip the full test i
 "ignore" is a special parameter name, all the segments of the test string named ignore will be dumped at parsing.
 "hash" is also a special parameter name. If a test have a defined hash parameter, the application will use it to match the test with the git commit that have the same hash. If no hash parameter is provided, as it the case for the test server I have at the date of 11/06/16, the test will be matched with the nearest anterior git commit.
 
-####groupBegin/ groupEnd:
+####groupBegin/ groupEnd
 The JVM part use them.
 They *are not regexps*. They are readen as single characters. If they are longer than one character, only the first character is readen. They can be empty strings. The testSeparators between one groupBegin and one groupEnd will be ignored for splitting a test attributes. Note that it's possible to escape groupBegin and groupEnd with a \ before.  The parameter  complete is supposed to be a group as it have often more than one times.
 
-####completeResultSeparator:
+####completeResultSeparator
 The JVM part use them.
 It *is a regexp*. It's used to split the times contained in the parameter complete.
 
 
-####vertexesFile, edgesFile, branchesFile and testsFile:
+####vertexesFile, edgesFile, branchesFile and testsFile
 The JVM part use it.
 The information that will be displayed latter by the javaScript application are copied javaSrcipt array contained in these file. Note that the JS part doesn't read this fields. These files must be imported by the html file calling the JS part.
 
@@ -125,7 +155,7 @@ The information that will be displayed latter by the javaScript application are 
 
 
 
-##The code:
+##The code
 
 This application is divided in two independent parts: the JVM part and the JS part.
 The role JVM aggregate the data from git and from a benchmarking server and put those data in three javaScript file.
@@ -133,7 +163,7 @@ The role JVM aggregate the data from git and from a benchmarking server and put 
 
 
 
-###About he JS part:
+###About he JS part
 
 In build.sbt this part is referenced as perfNetJS.
 
@@ -142,7 +172,7 @@ The classes that draw something, all found package ch.epfl.perfNetwork.drawers a
 There is also some class that have a specific role and don't fall in any of those three categories.
 
 
-####The class that extends Drawer.
+####The class that extends Drawer
 If you exclude the field inherited from Drawer that contains mutable objects, the subclass of drawer are immutable and all their fields are directly set by the constructor. The purpose of those objects is to draw something in on canvas. The name of the target canvas stored in the value canvasName. The parameters of the drawers are only the settings provided in the file setting.js, which mean a drawer doesn't wrap anything more complex than a string. 
 Those fields does not give any information about what to draw but only about how to draw them (color, size, font, offset …).
 
@@ -152,19 +182,19 @@ Except for the view, a drawer can mutate object given in parameter. As example t
 The drawer classes could have been singletons as in this implementation only one instance of each is created. Yet there is absolutely not problem in created multiple instance of any drawer.
 
 
-####The class used as parameter of drawers.
+####The class used as parameter of drawers
 
 All these class are in the package ch.epfl.perfNetwork.drawers. In this same package you will find class that are not directly drawn but are component of drawn objects. The classes of this package are mostly mutable. Those class aren't mean to do many things. Their goal is to product object that will be used to keep track of the state of the application. In addition with field definitions you will find one methode that create on or many instance of the object and is only called once at the start of the application and always from the class Main (except for PerfBarStack.apply), or some filed accessor that enforce consistency.
 
 
-####The classes used to import data from javascript.
+####The classes used to import data from javascript
 
 All the class contained in ch.epfl.perfNetwork.jsfacade excepting for JSComponents, there is a good number of those. Yet they are only have a convenience purpose. They are simple wrapper and there isn't much to tell about them. Each class corespound to one kind of structure you can see either in vertexes.js, edges.js, benchmarkdata.js or setting.js.
 
 Those classes are only used as a mean of reading datas stored in javascript file and arn't used anymore once the application is fully initialized. 
 
 
-####The others classes.
+####The others classes
 
 You will find them directly in ch.epfl.perfNetwork.webapp.  The two most noticeable class are Main and Control. 
 Main is the only class that read the settings of the application, the class defined in ch.epfl.perfNetwork.jsfacade are almost only used in Main. Main effectively handle the initialization process of the application.
@@ -172,7 +202,7 @@ The last thing main do is calling Control.apply. This method take care of receiv
  Algebra is a convenience class that allow you to use any Tuple2 of double as a mathematical vector of dimension 2. To use it fully, import it this way : import ….webapp.Algebra._ . It include a type alias for (Double,Double) named Vec frequently used in the JS part.
 
 
-####The files needed by the JS part.
+####The files needed by the JS part
 
 You can use the JS part alone if you provide it the arrays and structure it need to work.
 What the js part need is : 
@@ -195,7 +225,7 @@ var benchmarkdata = [{"date" : Number, "testName" : String, "hash" : String, "re
 You also have to provide the four structures of the setting.js part. 
 
 
-###About JVM part.
+###About JVM part
 
 In build.sbt this part is referenced as perfNetJVM.
 
@@ -207,14 +237,14 @@ The JM have three noticeable component: the Main class, the part that get data f
 The Main part take care of reading the file named setting.js and get from it all the parameter needed for the application to run. Then it ask to the two other parts to download data.
 
 
-####The interface with git:
+####The interface with git
 
 As jGit already provide lot of functionality, the class here remain simple. The two printer class are used to provide an adequate formatting to put the data in a JavaScript array. The two other class are the one that call the jgit function and extract the data about the repository.
 
 The attribution of the Y index is done on this part. The reason is that is require to explore the commit tree, so it can end up being quite heavy. The horizontal spreading is also heavy but moving it to the JVM part would force the JS part to have a constant time scale as the notion of "two commit being visually too close" depend on it.
 
 
-####The interface with the test server:
+####The interface with the test server
 
 This part is a bit more complex as it handle itself the parsing of the data. The class BenchDataDownloader download the main file and make a copy of it locally. The local copy is not needed but help debugging. Yet as it's implemented, BenchDataDownloader read this local copy. So the dowloading will fail if the local main file cannot be created. If the main file is an index,  BenchDataDownloader will get each file referenced and send them all to a single BenchDataReader that will take care of parsing them. 
 The parsing of each file is done in parallel, using a foreach on a parallelized collection.
@@ -227,13 +257,14 @@ Example: in the test file this application parse as of the 11 June 2016, there i
 
 
 
-###Licence:
+###Licence
+
 This project is distributed under the [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
 
 
 
 
-###This project used: 
+###This project used
 
 Eclipse as an ide and Scala as main programing language.
 sbt  : www.scala-sbt.org
