@@ -4,36 +4,36 @@
 ###README v0.15 / 11 JUNE 2016
 
 - [Introduction](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#introduction)
-- [How to use](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#)
-	- [Building and starting it](#)
-	- [Once the application is started](#)
-- [Requirement](#)
-- [Configuration](#)
-	- [repoUrl](#)
-	- [mainFileUrl](#)
-	- [dataUrlDomain](#)
-	- [mainFileIsIndex](#)
-	- [indexFileLocalName](#)
-	- [fileNameRegex](#)
-	- [repoDir](#)
-	- [testSeparator](#)
-	- [paramSeparator](#)
-	- [prameters](#)
-	- [groupBegin/ groupEnd](#)
-	- [completeResultSeparator](#)
-	- [vertexesFile, edgesFile, branchesFile and testsFile:](#)
-- [The code:](#)
-	- [About he JS part](#)
-		- [The class that extends Drawer](#)
-		- [The class used as parameter of drawers](#)
-		- [The classes used to import data from javascript](#)
-		- [The others classes](#)
-		- [The files needed by the JS part](#)
-	- [About JVM part](#)
-		- [The interface with git](#)
-		- [The interface with the test server](#)
-- [Licence](#)
-- [This project used](#)
+- [How to use](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#How-to-use)
+	- [Building and starting it](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#building-and-starting-it)
+	- [Once the application is started](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#once-the-application-is-started)
+- [Requirement](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#requirement)
+- [Configuration](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#configuration)
+	- [repoUrl](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#repoUrl)
+	- [mainFileUrl](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#mainFileUrl)
+	- [dataUrlDomain](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#dataUrlDomain)
+	- [mainFileIsIndex](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#mainFileIsIndex)
+	- [indexFileLocalName](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#indexFileLocalName)
+	- [fileNameRegex](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#fileNameRegex)
+	- [repoDir](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#repoDir)
+	- [testSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#testSeparator)
+	- [paramSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#paramSeparator)
+	- [prameters](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#prameters)
+	- [groupBegin/ groupEnd](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#groupBegin/-groupEnd)
+	- [completeResultSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#completeResultSeparator)
+	- [vertexesFile, edgesFile, branchesFile and testsFile:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#vertexesFile,-edgesFile,-branchesFile-and-testsFile:)
+- [The code:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-code:)
+	- [About he JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-he-JS-part)
+		- [The class that extends Drawer](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-that-extends-Drawer)
+		- [The class used as parameter of drawers](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-used-as-parameter-of-drawers)
+		- [The classes used to import data from javascript](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-to-import-data-from-javascript)
+		- [The others classes](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-others-classes)
+		- [The files needed by the JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-files-needed-by-the-JS-part)
+	- [About JVM part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-JVM-part)
+		- [The interface with git](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-interface-with-git)
+		- [The interface with the test server](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-interface-with-the-test-server)
+- [Licence](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#licence)
+- [This project used ...](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#this-project-used)
 
 
 ##Introduction
@@ -56,7 +56,7 @@ If you put your mouse over a commit vertex in the network or over a bar in the b
 
 Some tests can be invisible or barely visible. The reason is the scale of the bar chart is automatically determined by the highest displayed test. Use the component on the left to only display the test that interest you.
 
-On the left you should see the list of the test done on this repository. Drag with the mouse to browse it. The square before the test name have the same color as the bar representing the test on the chart. Those square are also check box you can click to show or hide some tests. Pressing shift while clicking a check box commute the clicked component then switch every other check-boxes to the opposite state (ie. if the check box you clicked was checked, it turn unchecked and all the other check-boxes turn checked independently of their state before you click).
+On the left you should see the list of the test done on this repository. Drag with the mouse to browse it. The square before the test name have the same color as the bar representing the test on the chart. Those square are also check box you can click to show or hide some tests. Pressing shift while clicking a check box commute the clicked component then switch every other check-boxes to the opposite state (ie. if the check box you clicked was checked, it turn unchecked and all the other check-boxes turn checked independently of their state before you-click).
 At the bottom of the list you can see a text field named “Filter”. If a string is specified, only the test with a name that contain the specified string will be displayed in this list. This filter does not affect what is displayed in the chart on the right. Note that the shift click will only affect the displayed check box, the check-box hidden by a filter will remain unchanged. 
 
 
@@ -123,7 +123,7 @@ This application need a local copy of the repository it work with. The repositor
 ####testSeparator:
 The JVM part use it.
 It *is a regexp*.
-This regexp is used to separate distinct tests inside a test file. The file will be split on this regexp. That's why regexp must not match for a part of the string describing you test. Those part would be lost after the splitting. Note that if the split result in some strings that are not test results (like if your file have some header), those string will be verbosely ignored. 
+This regexp is used to separate distinct tests inside a test file. The file will be split on this regexp. That's why regexp must not match for a part of the string describing you test. Those part would be lost after the splitting. Note that if the split result in some strings that are not test results (like if your file have some-header), those string will be verbosely ignored. 
 
 ####paramSeparator
 The JVM part use it.
@@ -174,7 +174,7 @@ There is also some class that have a specific role and don't fall in any of thos
 
 ####The class that extends Drawer
 If you exclude the field inherited from Drawer that contains mutable objects, the subclass of drawer are immutable and all their fields are directly set by the constructor. The purpose of those objects is to draw something in on canvas. The name of the target canvas stored in the value canvasName. The parameters of the drawers are only the settings provided in the file setting.js, which mean a drawer doesn't wrap anything more complex than a string. 
-Those fields does not give any information about what to draw but only about how to draw them (color, size, font, offset …).
+Those fields does not give any information about what to draw but only about how to draw them (color, size, font, offset-…).
 
 All the drawer have a method called draw. The firsts parameters of the method draw are the thing that the drawer have to display. The last parameter is a view object, used by the drawer to convert the absolute coordinate of the object they have to represent in screen coordinate. This allow to easily synchronize what display multiple controler by calling draw on all of them with the same view object. 
 Note that even if the View contain a scale, in the current implementation, all the drawer assume the coordinate they use already at the right scale.
@@ -184,7 +184,7 @@ The drawer classes could have been singletons as in this implementation only one
 
 ####The class used as parameter of drawers
 
-All these class are in the package ch.epfl.perfNetwork.drawers. In this same package you will find class that are not directly drawn but are component of drawn objects. The classes of this package are mostly mutable. Those class aren't mean to do many things. Their goal is to product object that will be used to keep track of the state of the application. In addition with field definitions you will find one methode that create on or many instance of the object and is only called once at the start of the application and always from the class Main (except for PerfBarStack.apply), or some filed accessor that enforce consistency.
+All these class are in the package ch.epfl.perfNetwork.drawers. In this same package you will find class that are not directly drawn but are component of drawn objects. The classes of this package are mostly mutable. Those class aren't mean to do many things. Their goal is to product object that will be used to keep track of the state of the application. In addition with field definitions you will find one methode that create on or many instance of the object and is only called once at the start of the application and always from the class Main (except for-PerfBarStack.apply), or some filed accessor that enforce consistency.
 
 
 ####The classes used to import data from javascript
