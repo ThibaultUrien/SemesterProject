@@ -19,7 +19,7 @@
 	- [testSeparator](#testseparator)
 	- [paramSeparator](#paramseparator)
 	- [prameters](#prameters)
-	- [groupBegin/groupEnd](#groupbegin-groupend)
+	- [groupBegin/groupEnd](#groupbegingroupend)
 	- [completeResultSeparator](#completeresultseparator)
 	- [vertexesFile, edgesFile, branchesFile and testsFile](#vertexesfile-edgesfile-branchesfile-and-testsfile)
 - [The code](#the-code)
