@@ -19,9 +19,9 @@
 	- [testSeparator](#testseparator)
 	- [paramSeparator](#paramseparator)
 	- [prameters](#prameters)
-	- [groupBegin/ groupEnd](#groupbegin/-groupend)
+	- [groupBegin/groupEnd](#groupbegin-groupend)
 	- [completeResultSeparator](#completeresultseparator)
-	- [vertexesFile, edgesFile, branchesFile and testsFile](#vertexesfile,-edgesfile,-branchesfile-and-testsfile)
+	- [vertexesFile, edgesFile, branchesFile and testsFile](#vertexesfile-edgesfile-branchesfile-and-testsfile)
 - [The code](#the-code)
 	- [About he JS part](#about-he-js-part)
 		- [The class that extends Drawer](#the-class-that-extends-drawer)
@@ -139,7 +139,7 @@ Name of each parameter must be unique. The application will skip the full test i
 "ignore" is a special parameter name, all the segments of the test string named ignore will be dumped at parsing.
 "hash" is also a special parameter name. If a test have a defined hash parameter, the application will use it to match the test with the git commit that have the same hash. If no hash parameter is provided, as it the case for the test server I have at the date of 11/06/16, the test will be matched with the nearest anterior git commit.
 
-####groupBegin/ groupEnd
+####groupBegin/groupEnd
 The JVM part use them.
 They *are not regexps*. They are readen as single characters. If they are longer than one character, only the first character is readen. They can be empty strings. The testSeparators between one groupBegin and one groupEnd will be ignored for splitting a test attributes. Note that it's possible to escape groupBegin and groupEnd with a \ before.  The parameter  complete is supposed to be a group as it have often more than one times.
 
@@ -148,7 +148,7 @@ The JVM part use them.
 It *is a regexp*. It's used to split the times contained in the parameter complete.
 
 
-####vertexesFile, edgesFile, branchesFile and testsFile
+####vertexesFile edgesFile branchesFile and testsFile
 The JVM part use it
 The information that will be displayed latter by the javaScript application are copied javaSrcipt array contained in these file. Note that the JS part doesn't read this fields. These files must be imported by the html file calling the JS part.
 
