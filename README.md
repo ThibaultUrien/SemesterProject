@@ -24,9 +24,9 @@
 	- [vertexesFile, edgesFile, branchesFile and testsFile:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#vertexesfile,-edgesfile,-branchesfile-and-testsfile:)
 - [The code:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-code:)
 	- [About he JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-he-js-part)
-		- [The class that extends Drawer](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-that-extends-drawer)
-		- [The class used as parameter of drawers](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-used-as-parameter-of-drawers)
-		- [The classes to import data from javascript](https://github.com(/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-to-import-data-from-javascript)
+		- [The classes that extends Drawer](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-that-extends-drawer)
+		- [The classes used as parameter of drawers](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-as-parameter-of-drawers)
+		- [The classes to import data from javascript](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-to-import-data-from-javascript)
 		- [The others classes](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-others-classes)
 		- [The files needed by the JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-files-needed-by-the-js-part)
 	- [About JVM part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-jvm-part)
@@ -172,7 +172,7 @@ The classes that draw something, all found package ch.epfl.perfNetwork.drawers a
 There is also some class that have a specific role and don't fall in any of those three categories.
 
 
-####The class that extends Drawer
+####The classes that extends Drawer
 If you exclude the field inherited from Drawer that contains mutable objects, the subclass of drawer are immutable and all their fields are directly set by the constructor. The purpose of those objects is to draw something in on canvas. The name of the target canvas stored in the value canvasName. The parameters of the drawers are only the settings provided in the file setting.js, which mean a drawer doesn't wrap anything more complex than a string. 
 Those fields does not give any information about what to draw but only about how to draw them (color, size, font, offset-…).
 
@@ -182,12 +182,12 @@ Except for the view, a drawer can mutate object given in parameter. As example t
 The drawer classes could have been singletons as in this implementation only one instance of each is created. Yet there is absolutely not problem in created multiple instance of any drawer.
 
 
-####The class used as parameter of drawers
+####The classes used as parameter of drawers
 
 All these class are in the package ch.epfl.perfNetwork.drawers. In this same package you will find class that are not directly drawn but are component of drawn objects. The classes of this package are mostly mutable. Those class aren't mean to do many things. Their goal is to product object that will be used to keep track of the state of the application. In addition with field definitions you will find one methode that create on or many instance of the object and is only called once at the start of the application and always from the class Main (except for-PerfBarStack.apply), or some filed accessor that enforce consistency.
 
 
-####The classes used to import data from javascript
+####The classes to import data from javascript
 
 All the class contained in ch.epfl.perfNetwork.jsfacade excepting for JSComponents, there is a good number of those. Yet they are only have a convenience purpose. They are simple wrapper and there isn't much to tell about them. Each class corespound to one kind of structure you can see either in vertexes.js, edges.js, benchmarkdata.js or setting.js.
 
