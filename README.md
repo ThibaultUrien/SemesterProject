@@ -26,7 +26,7 @@
 	- [About he JS part](#about-he-js-part)
 		- [The class that extends Drawer](#the-class-that-extends-drawer)
 		- [The class used as parameter of drawers](#the-class-used-as-parameter-of-drawers)
-		- [The classes used to import data from javascript](#the-classes-used-to-import-data-from-javascript)
+		- [The classes to import data from javascript](#the-classes-to-import-data-from-javascript)
 		- [The others classes](#the-others-classes)
 		- [The files needed by the JS part](#the-files-needed-by-the-js-part)
 	- [About JVM part](#about-jvm-part)
