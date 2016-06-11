@@ -26,6 +26,7 @@ class SingleFileWritter(val fieldNames: Seq[String], filename: String, fileDir: 
 
   def close: Unit = {
     writter.append("];")
+    
     writter.close()
   }
 

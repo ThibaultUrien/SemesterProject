@@ -67,7 +67,7 @@ object Main {
 
     val vertexesFile = parsPath(find("vertexesFile"))
     val edgesFile = parsPath(find("edgesFile"))
-    val testesFile = parsPath(find("testesFile"))
+    val testsFile = parsPath(find("testsFile"))
 
     val prameters = find("prameters")
     val testSeparator = find("testSeparator")
@@ -90,10 +90,13 @@ object Main {
         val writer = new SingleFileWritter(printer.writtenFields, file, workingDir, ".js")
         printer.printData(writer)
         writer.close
+        println("Succesfully wrote " + workingDir + file + ".js")
+        
       }
+        
     val t1 = new Thread(new Runnable() {
       def run {
-        val testes = BenchDataDownloader.fetch(
+        val tests = BenchDataDownloader.fetch(
           dataUrlDomain,
           mainFileUrl,
           mainFileIsIndex,
@@ -106,16 +109,15 @@ object Main {
           groupBegin,
           completeResultSeparator,
           groupEnd)
-        printToFile(testes, testesFile)
+        printToFile(tests, testsFile)
       }
     })
-
+    
     val t2 = new Thread(new Runnable() {
       def run {
         val (vertexes, edges) = NetworkDownloader(repoUrl, workingDir, repoDir)
 
         printToFile(vertexes, vertexesFile)
-
         printToFile(edges, edgesFile)
       }
     })

@@ -83,7 +83,7 @@ object Main extends JSApp {
     val unsortedVertexes = Vertexes(JSVertex.readData)
     val vertexes = unsortedVertexes.reverse
     val edges = Edges(JSEdge.readData, unsortedVertexes)
-    val testesResult = PerfBars(JSBenchData.readData, vertexes)
+    val testsResult = PerfBars(JSBenchData.readData, vertexes)
     val filterTextField = g.document.getElementById(legendSetting.filterTextFieldId)
 
     val timeScale = StretchyTimeScale(scale, networkSetting.minPointSpace, vertexes)
@@ -103,7 +103,7 @@ object Main extends JSApp {
     Control(
       Network(vertexes, edges, networkSetting.colorSeed.longValue()),
       drawer,
-      testesResult,
+      testsResult,
       barDrawer,
       timeScale,
       (scale, 1),

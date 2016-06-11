@@ -1,7 +1,8 @@
 package ch.epfl.perfNetwork.jsfacade
 import scala.scalajs.js
 
-@js.native /**
+@js.native 
+/**
  * @author Thibault Urien
  *
  */

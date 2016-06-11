@@ -14,7 +14,7 @@ var SharedSetting = {
     "groupBegin" : '"',
     "completeResultSeparator" : " ",
     "groupEnd" : '"',
-    "testesFile" : "benchmarkdata",
+    "testsFile" : "benchmarkdata",
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
 	"showResultWhenDone" : true
