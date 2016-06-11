@@ -3,37 +3,38 @@
 
 ###README v0.15 / 11 JUNE 2016
 
-- [Introduction](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#introduction)
-- [How to use](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#how-to-use)
-	- [Building and starting it](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#building-and-starting-it)
-	- [Once the application is started](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#once-the-application-is-started)
-- [Requirement](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#requirement)
-- [Configuration](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#configuration)
-	- [repoUrl](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#repourl)
-	- [mainFileUrl](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#mainfileurl)
-	- [dataUrlDomain](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#dataurldomain)
-	- [mainFileIsIndex](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#mainfileisindex)
-	- [indexFileLocalName](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#indexfilelocalname)
-	- [fileNameRegex](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#filenameregex)
-	- [repoDir](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#repodir)
-	- [testSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#testseparator)
-	- [paramSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#paramseparator)
-	- [prameters](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#prameters)
-	- [groupBegin/ groupEnd](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#groupbegin/-groupend)
-	- [completeResultSeparator](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#completeresultseparator)
-	- [vertexesFile, edgesFile, branchesFile and testsFile:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#vertexesfile,-edgesfile,-branchesfile-and-testsfile:)
-- [The code:](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-code:)
-	- [About he JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-he-js-part)
-		- [The class that extends Drawer](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-that-extends-drawer)
-		- [The class used as parameter of drawers](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-class-used-as-parameter-of-drawers)
-		- [The classes used to import data from javascript](https://github.com(/ThibaultUrien/SemesterProject/blob/master/README.md#the-classes-used-to-import-data-from-javascript)
-		- [The others classes](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-others-classes)
-		- [The files needed by the JS part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-files-needed-by-the-js-part)
-	- [About JVM part](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#about-jvm-part)
-		- [The interface with git](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-interface-with-git)
-		- [The interface with the test server](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#the-interface-with-the-test-server)
-- [Licence](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#licence)
-- [This project used ...](https://github.com/ThibaultUrien/SemesterProject/blob/master/README.md#this-project-used)
+- [Introduction](#introduction)
+- [How to use](#how-to-use)
+	- [Building and starting it](#building-and-starting-it)
+	- [Once the application is started](#once-the-application-is-started)
+- [Requirement](#requirement)
+- [Configuration](#configuration)
+	- [repoUrl](#repourl)
+	- [mainFileUrl](#mainfileurl)
+	- [dataUrlDomain](#dataurldomain)
+	- [mainFileIsIndex](#mainfileisindex)
+	- [indexFileLocalName](#indexfilelocalname)
+	- [fileNameRegex](#filenameregex)
+	- [repoDir](#repodir)
+	- [testSeparator](#testseparator)
+	- [paramSeparator](#paramseparator)
+	- [prameters](#prameters)
+	- [groupBegin/groupEnd](#groupbegingroupend)
+	- [completeResultSeparator](#completeresultseparator)
+	- [vertexesFile, edgesFile, branchesFile and testsFile](#vertexesfile-edgesfile-branchesfile-and-testsfile)
+- [The code](#the-code)
+	- [About he JS part](#about-he-js-part)
+		- [The class that extends Drawer](#the-class-that-extends-drawer)
+		- [The class used as parameter of drawers](#the-class-used-as-parameter-of-drawers)
+		- [The classes to import data from javascript](#the-classes-to-import-data-from-javascript)
+		- [The others classes](#the-others-classes)
+		- [The files needed by the JS part](#the-files-needed-by-the-js-part)
+	- [About JVM part](#about-jvm-part)
+		- [The interface with git](#the-interface-with-git)
+		- [The interface with the test server](#the-interface-with-the-test-server)
+- [Licence](#licence)
+- [This project used](#this-project-used)
+
 
 
 ##Introduction
@@ -120,7 +121,7 @@ If your main file is an index, for every matches of this regexp, the first captu
 The JVM part use it.
 This application need a local copy of the repository it work with. The repository will be cloned in the directory repoDir. If repoDir already contain at .git file, the application will attempt to use it as a local clone of the repository at dataUrlDomain. The JVM part will call pull on this repository.
 
-####testSeparator:
+####testSeparator
 The JVM part use it.
 It *is a regexp*.
 This regexp is used to separate distinct tests inside a test file. The file will be split on this regexp. That's why regexp must not match for a part of the string describing you test. Those part would be lost after the splitting. Note that if the split result in some strings that are not test results (like if your file have some-header), those string will be verbosely ignored. 
@@ -138,7 +139,7 @@ Name of each parameter must be unique. The application will skip the full test i
 "ignore" is a special parameter name, all the segments of the test string named ignore will be dumped at parsing.
 "hash" is also a special parameter name. If a test have a defined hash parameter, the application will use it to match the test with the git commit that have the same hash. If no hash parameter is provided, as it the case for the test server I have at the date of 11/06/16, the test will be matched with the nearest anterior git commit.
 
-####groupBegin/ groupEnd
+####groupBegin/groupEnd
 The JVM part use them.
 They *are not regexps*. They are readen as single characters. If they are longer than one character, only the first character is readen. They can be empty strings. The testSeparators between one groupBegin and one groupEnd will be ignored for splitting a test attributes. Note that it's possible to escape groupBegin and groupEnd with a \ before.  The parameter  complete is supposed to be a group as it have often more than one times.
 
@@ -147,8 +148,8 @@ The JVM part use them.
 It *is a regexp*. It's used to split the times contained in the parameter complete.
 
 
-####vertexesFile, edgesFile, branchesFile and testsFile
-The JVM part use it.
+####vertexesFile edgesFile branchesFile and testsFile
+The JVM part use it
 The information that will be displayed latter by the javaScript application are copied javaSrcipt array contained in these file. Note that the JS part doesn't read this fields. These files must be imported by the html file calling the JS part.
 
 
@@ -172,7 +173,7 @@ The classes that draw something, all found package ch.epfl.perfNetwork.drawers a
 There is also some class that have a specific role and don't fall in any of those three categories.
 
 
-####The class that extends Drawer
+####The classes that extends Drawer
 If you exclude the field inherited from Drawer that contains mutable objects, the subclass of drawer are immutable and all their fields are directly set by the constructor. The purpose of those objects is to draw something in on canvas. The name of the target canvas stored in the value canvasName. The parameters of the drawers are only the settings provided in the file setting.js, which mean a drawer doesn't wrap anything more complex than a string. 
 Those fields does not give any information about what to draw but only about how to draw them (color, size, font, offset-…).
 
@@ -182,12 +183,12 @@ Except for the view, a drawer can mutate object given in parameter. As example t
 The drawer classes could have been singletons as in this implementation only one instance of each is created. Yet there is absolutely not problem in created multiple instance of any drawer.
 
 
-####The class used as parameter of drawers
+####The classes used as parameter of drawers
 
 All these class are in the package ch.epfl.perfNetwork.drawers. In this same package you will find class that are not directly drawn but are component of drawn objects. The classes of this package are mostly mutable. Those class aren't mean to do many things. Their goal is to product object that will be used to keep track of the state of the application. In addition with field definitions you will find one methode that create on or many instance of the object and is only called once at the start of the application and always from the class Main (except for-PerfBarStack.apply), or some filed accessor that enforce consistency.
 
 
-####The classes used to import data from javascript
+####The classes to import data from javascript
 
 All the class contained in ch.epfl.perfNetwork.jsfacade excepting for JSComponents, there is a good number of those. Yet they are only have a convenience purpose. They are simple wrapper and there isn't much to tell about them. Each class corespound to one kind of structure you can see either in vertexes.js, edges.js, benchmarkdata.js or setting.js.
 
