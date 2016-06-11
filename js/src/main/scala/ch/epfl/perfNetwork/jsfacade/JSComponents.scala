@@ -3,7 +3,6 @@ package ch.epfl.perfNetwork.jsfacade
 import scala.scalajs.js
 import org.scalajs.dom.raw.TextMetrics
 
-
 @js.native
 trait Window extends js.Object {
   val document: DOMDocument
@@ -27,11 +26,11 @@ trait DOMElement extends js.Object {
 
   def pageXOffset: Number
   def pageYOffset: Number
-  def getBoundingClientRect() : js.Object
-  def offsetParent : DOMElement
-  
-  var offsetLeft : Int
-  var offsetTop : Int
+  def getBoundingClientRect(): js.Object
+  def offsetParent: DOMElement
+
+  var offsetLeft: Int
+  var offsetTop: Int
 }
 @js.native
 trait JQueryStatic extends js.Object {
@@ -77,17 +76,16 @@ trait JQueryEvent extends js.Object {
 @js.native
 trait HTMLCanvasElement extends DOMElement {
   def getContext(kind: String): js.Any // depends on the kind
-  var width : Int
-  var height : Int
+  var width: Int
+  var height: Int
 }
-
 
 @js.native
 trait DOMRect extends js.Object {
-  def top : Float
-  def bottom : Float
-  def left : Float
-  def right : Float
+  def top: Float
+  def bottom: Float
+  def left: Float
+  def right: Float
 }
 @js.native
 trait MouseEvent extends js.Object {
@@ -98,6 +96,6 @@ trait MouseEvent extends js.Object {
   val clientX: Number
   val clientY: Number
   val ctrlKey: Boolean
-  val button:Number
+  val button: Number
   def preventDefault(): Unit
 }

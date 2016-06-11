@@ -20,7 +20,7 @@ import java.util.Calendar
 import java.time.Instant
 import java.time.ZonedDateTime
 
-class PerfFetchingTest extends TestCase{
+class PerfFetchingTest extends TestCase {
   val date = 0
   val testName = 1
   val mean = 2
@@ -29,42 +29,42 @@ class PerfFetchingTest extends TestCase{
   val cihi = 5
   val unit = 6
   val complete = 7
-  var rawEntries :Vector[Seq[String]] = _
-  var producedEntries : FakeWritter = _
+  var rawEntries: Vector[Seq[String]] = _
+  var producedEntries: FakeWritter = _
   override def setUp() = {
     // cut on space that are note between two quote and allow toescape quote
     val regex = "\\s+(?=((\\\\[\\\\\"]|[^\\\\\"])*\"(\\\\[\\\\\"]|[^\\\\\"])*\")*(\\\\[\\\\\"]|[^\\\\\"])*$)"
     val testUrl = "https://d-d.me/tnc/dotty/report"
     val perfFile = "/js/ScalaMeter/data.js"
-    val perfFrolder = ".."+File.separator+"perf"
-    
-    val data = BenchDataDownloader.fetch(testUrl, testUrl+perfFile,true,"ScalaMeter.js","..\\", "date param-test value success cilo cihi units complete", "\n","\"file\"\\s*:\\s*\"([^\"]+)\"", regex,"\""," ","\"" )  
-    val indexFilePath = perfFrolder+File.separator+"ScalaMeter.js"
-    val filesToGet = BenchDataDownloader.filesToGet(indexFilePath,"\"file\"\\s*:\\s*\"([^\"]+)\"")
+    val perfFrolder = ".." + File.separator + "perf"
+
+    val data = BenchDataDownloader.fetch(testUrl, testUrl + perfFile, true, "ScalaMeter.js", "..\\", "date param-test value success cilo cihi units complete", "\n", "\"file\"\\s*:\\s*\"([^\"]+)\"", regex, "\"", " ", "\"")
+    val indexFilePath = perfFrolder + File.separator + "ScalaMeter.js"
+    val filesToGet = BenchDataDownloader.filesToGet(indexFilePath, "\"file\"\\s*:\\s*\"([^\"]+)\"")
     producedEntries = new FakeWritter(data.writtenFields)
     data.printData(producedEntries)
-    
-    rawEntries = 
+
+    rawEntries =
       filesToGet
         .map(fetchOneRawDSV(testUrl, _))
         .flatMap(_.split("\n").drop(1))
         .map(_.split(regex).toSeq)
         .toVector
-      
+
   }
-  private def fetchOneRawDSV(dataDomainUrl : String, fileName : String):String = {
-    
-    val protocol = dataDomainUrl.takeWhile { c => c!=':' }
+  private def fetchOneRawDSV(dataDomainUrl: String, fileName: String): String = {
+
+    val protocol = dataDomainUrl.takeWhile { c => c != ':' }
     val splitedLocation = dataDomainUrl.drop(protocol.size).split("/")
-    
+
     val splitedAdress = fileName.split("/")
     val dropedDotDot = splitedAdress.dropWhile { s => s.startsWith("..") }
     val dotDotCount = splitedAdress.size - dropedDotDot.size
-    val url = protocol+(splitedLocation.dropRight(dotDotCount) ++ dropedDotDot).mkString("/")
+    val url = protocol + (splitedLocation.dropRight(dotDotCount) ++ dropedDotDot).mkString("/")
     Source.fromURL(url).mkString
-    
+
   }
-  
+
   @Test
   def testSameNumberOfEntry = {
     assertEquals(producedEntries.entriesCount, rawEntries.size)

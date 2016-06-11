@@ -4,23 +4,25 @@ import org.eclipse.jgit.revwalk.RevCommit
 import ch.epfl.performanceNetwork.printers.Writter
 import ch.epfl.performanceNetwork.printers.DataPrinter
 
-class CommitPrinter(val vertexes : TraversableOnce[(RevCommit,Int)]) extends DataPrinter{
-  def writtenFields:Seq[String] = Seq("name","time","y","comment","author","authoringDate")
-  def printData(writer : Writter) =
-  {
-    vertexes foreach{
-        case(p,y)=>{
+/**
+ * @author Thibault Urien
+ *
+ */
+class CommitPrinter(val vertexes: TraversableOnce[(RevCommit, Int)]) extends DataPrinter {
+  def writtenFields: Seq[String] = Seq("name", "time", "y", "comment", "author", "authoringDate")
+  def printData(writer: Writter) =
+    {
+      vertexes foreach {
+        case (p, y) => {
           writer.appendEntry(
-            "\""+p.getName+"\"",
+            "\"" + p.getName + "\"",
             p.getCommitTime,
             y,
-            "\""+p.getFullMessage.flatMap(escapeEnoyingChar)+"\"",
-            "\""+p.getCommitterIdent.getName+"\"",
-            (p.getCommitterIdent.getWhen.getTime/1000)
-            
-          )
-        }  
+            "\"" + p.getFullMessage.flatMap(escapeEnoyingChar) + "\"",
+            "\"" + p.getCommitterIdent.getName + "\"",
+            (p.getCommitterIdent.getWhen.getTime / 1000))
+        }
+      }
     }
-  }
-  
+
 }

@@ -12,65 +12,64 @@ import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.revwalk.RevCommit
 import scala.Vector
 
-class GitFetchingTest extends TestCase{
-  var testRepoUrl : String = _
-  var vertexResults :FakeWritter = _
-  var edgesResults:FakeWritter = _
-  var branchResults:FakeWritter = _
-  var parentMap :Map[String,Seq[(Int,Int)]]=  _
-  var git :Git = _
-  var allCommits :Vector[RevCommit] = _
-  
+class GitFetchingTest extends TestCase {
+  var testRepoUrl: String = _
+  var vertexResults: FakeWritter = _
+  var edgesResults: FakeWritter = _
+  var branchResults: FakeWritter = _
+  var parentMap: Map[String, Seq[(Int, Int)]] = _
+  var git: Git = _
+  var allCommits: Vector[RevCommit] = _
+
   override def setUp() = {
     testRepoUrl = "https://github.com/lampepfl/dotty.git"
-    
-    val (vertexes,edges) = NetworkDownloader(testRepoUrl,"","")
+
+    val (vertexes, edges) = NetworkDownloader(testRepoUrl, "", "")
     vertexResults = new FakeWritter(vertexes.writtenFields)
     edgesResults = new FakeWritter(edges.writtenFields)
     vertexes.printData(vertexResults)
     edges.printData(edgesResults)
-    val sourceTagetSeq = (0 to edgesResults.entriesCount-1) map {
-          i => 
-            val src = edgesResults.getEntryParameter(i,"source")
-            val trgt = edgesResults.getEntryParameter(i,"target")
-            assert(src != trgt)
-            (src.toInt, trgt.toInt)
-      }
-    parentMap =  sourceTagetSeq
-        .groupBy(t=>vertexResults.getEntryParameter(t._2, "name"))
-        .withDefault { x => Nil }
-    
-    git = RepoData.loadRepo(testRepoUrl,"") 
+    val sourceTagetSeq = (0 to edgesResults.entriesCount - 1) map {
+      i =>
+        val src = edgesResults.getEntryParameter(i, "source")
+        val trgt = edgesResults.getEntryParameter(i, "target")
+        assert(src != trgt)
+        (src.toInt, trgt.toInt)
+    }
+    parentMap = sourceTagetSeq
+      .groupBy(t => vertexResults.getEntryParameter(t._2, "name"))
+      .withDefault { x => Nil }
+
+    git = RepoData.loadRepo(testRepoUrl, "")
     allCommits = git.log().call().asScala.toVector
   }
-  
-  @Test 
+
+  @Test
   def testNoCommitMissing = {
-    val writtenCommitsName = ((0 to vertexResults.entriesCount-1) map (i=>vertexResults.getEntryParameter(i, "name"))).toSet
-    val commitsName = allCommits.map("\""+_.getName+"\"").toSet
-    assertEquals(Set(), commitsName--writtenCommitsName)
+    val writtenCommitsName = ((0 to vertexResults.entriesCount - 1) map (i => vertexResults.getEntryParameter(i, "name"))).toSet
+    val commitsName = allCommits.map("\"" + _.getName + "\"").toSet
+    assertEquals(Set(), commitsName -- writtenCommitsName)
   }
-  @Test 
+  @Test
   def testNoMissingLinks = {
-    
+
     allCommits foreach {
-      c => 
+      c =>
         val revComitParents = c.getParents
         val cName = c.getName
-        val writtenParent = parentMap("\""+cName+"\"")
+        val writtenParent = parentMap("\"" + cName + "\"")
         assertEquals(
-            revComitParents.map ("\""+_.getName+"\"").toSet,
-            writtenParent.map{
-              index => vertexResults.getEntryParameter(index._1, "name")
-            }.toSet 
-        )
+          revComitParents.map("\"" + _.getName + "\"").toSet,
+          writtenParent.map {
+            index => vertexResults.getEntryParameter(index._1, "name")
+          }.toSet)
     }
   }
-  @Test 
+  @Test
   def testLinkOrderAreRight = {
-    
-    (0 to edgesResults.entriesCount -1) foreach {
-      i=>
+
+    (0 to edgesResults.entriesCount - 1) foreach {
+      i =>
         val sourceIndex = edgesResults.getEntryParameter(i, "source").toInt
         val timeSource = vertexResults
           .getEntryParameter(sourceIndex, "time")
@@ -79,11 +78,8 @@ class GitFetchingTest extends TestCase{
         val timeTarget = vertexResults
           .getEntryParameter(targetIndex, "time")
           .toLong
-        assertTrue("source : "+sourceIndex+" with time : "+timeSource+" is youger than "+targetIndex+" with time "+timeTarget,timeSource<=timeTarget)
+        assertTrue("source : " + sourceIndex + " with time : " + timeSource + " is youger than " + targetIndex + " with time " + timeTarget, timeSource <= timeTarget)
     }
   }
-  
-  
-  
- 
+
 }
