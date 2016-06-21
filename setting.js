@@ -18,7 +18,7 @@ var SharedSetting = {
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
 	"showResultWhenDone" : true,
-	"createFakeTests" : false
+	"createFakeTests" : true
 
 };
 var NetworkSetting = {
