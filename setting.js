@@ -17,7 +17,8 @@ var SharedSetting = {
     "testsFile" : "benchmarkdata",
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
-	"showResultWhenDone" : true
+	"showResultWhenDone" : true,
+	"createFakeTests" : true
 
 };
 var NetworkSetting = {
@@ -51,7 +52,7 @@ var NetworkSetting = {
 
 var BarchartSetting =  {	
 	"lineWidth" : 2,
-	"unitPerLine" : 5,
+	"unitPerLine" : 3,
 	"barSpacing" : 4,
 	"barWidth" : 12,
 	"bubbleMaxWidth" : 200,

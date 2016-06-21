@@ -73,39 +73,31 @@ class NetworkDrawer(
       targetStyle: String,
       lineWidth: Int = 1) = {
 
-      val style = targetStyle
       if (source.y == target.y)
-        drawLine(source, target, style, lineWidth)
-      else if ((source.y - target.y).abs < verticalLineDistance) {
-        val dx = target.x - source.x
-        val dir = if (source.y < target.y) (0.0, 1.0) else (0.0, -1.0)
-        val knee = source + (dx, dx * dir.x)
-        drawLine(source, knee, style, lineWidth)
-        drawLine(knee, target - (dir * (arrowHeadLength + pointRadius)), style, lineWidth)
-        drawArrowHead(target - (dir * (arrowHeadLength + pointRadius)), dir, style)
-      } else {
-        val offest = verticalLineDistance / 3
+        drawLine(source, target, targetStyle, lineWidth)
+      else {
+        val spaceForArrowHead = arrowHeadLength + pointRadius
+        val offest = ((verticalLineDistance).abs.min((target.x - source.x).toInt) - spaceForArrowHead) / 2.0
         val dy = if (source.y < target.y) 1.0 else -1.0
         val dir = (1.0, dy)
         val knee1 = source + (offest, offest * dy)
-        val knee2 = (target.x - verticalLineDistance, knee1.y)
-        val knee3 = (knee2.x, target.y - verticalLineDistance * dy)
+        val knee3 = target - dir * (offest + spaceForArrowHead)
+        val arrowStart = target - dir * (spaceForArrowHead)
+        val (knee2, style) = if (source.y > target.y)
+          ((knee3.x, knee1.y), sourceStyle)
+        else
+          ((knee1.x, knee3.y), targetStyle)
 
-        if (knee2.x < knee1.x)
-          drawLine(source, knee2, style, lineWidth)
-        else {
-          drawLine(source, knee1, style, lineWidth)
-          drawLine(knee1, knee2, style, lineWidth)
-        }
-        if (((knee3 - knee2) dot dir) < 0) {
-          val arrowDir = (target - knee2).direction
-          drawLine(knee2, target - arrowDir * (arrowHeadLength + pointRadius), style, lineWidth)
-          drawArrowHead(target - arrowDir * (arrowHeadLength + pointRadius), arrowDir, style)
+        drawLine(source, knee1, style, lineWidth)
+        drawLine(knee3, arrowStart, style, lineWidth)
+        if ((knee3.x - knee1.x) < 1 || (knee3.y - knee1.y).abs < 1) {
+          drawLine(knee1, knee3, style, lineWidth)
         } else {
+          drawLine(knee1, knee2, style, lineWidth)
           drawLine(knee2, knee3, style, lineWidth)
-          drawLine(knee3, target - dir * (arrowHeadLength + pointRadius), style, lineWidth)
-          drawArrowHead(target - (dir * (arrowHeadLength + pointRadius)), dir, style)
+
         }
+        drawArrowHead(arrowStart, dir, style)
 
       }
     }

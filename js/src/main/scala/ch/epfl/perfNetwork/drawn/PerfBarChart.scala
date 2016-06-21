@@ -15,6 +15,11 @@ class PerfBarChart(unsortedBarStacks: Seq[PerfBarStack]) {
    */
   val existingTestName = barStacks.flatMap(_.bars).map(_.testName).toSet.toSeq
   private var interestMap = existingTestName.zip(Iterator.continually(true).toIterable).toMap
+  
+ /**
+ * @return the current interest map.
+ */
+ def getInterestMap = interestMap
   /**
    * @param the name of a test
    * @return true if the test should be displayed by the BarChartDrawer

@@ -52,7 +52,7 @@ object NetworkDownloader {
     val yPoses = uncoilNetwork(commits)
     (
       new CommitPrinter(
-        (commits, yPoses).zipped.toList),
+        (commits, yPoses).zipped.toSeq),
       new EdgePrinter(edgeList))
 
   }

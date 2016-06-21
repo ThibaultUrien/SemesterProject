@@ -93,11 +93,9 @@ object Control {
     time.canvasOrig.addEventListener("mousedown", onTimeClick _)
 
     def onMouseDown(evt: MouseEvent): js.Any = {
-      if (graph.highlightedPoint == None)
-        mouseState.mouse1down = true
-      else {
-        gotoGithubCommit
-      }
+      mouseState.mouse1down = true
+      gotoGithubCommit
+      setInterestFromBarClick
 
     }
     def onMouseUp(evt: MouseEvent): js.Any = {
@@ -223,6 +221,23 @@ object Control {
         }
       }
 
+    }
+    def setInterestFromBarClick = {
+      barChart.pointedBar match {
+        case None =>
+        case Some(bar) =>
+          if(barChart.getInterestMap.count(_._2 == true) == 1)
+            barChart.setAll(true, "")
+           else {
+             barChart.setAll(false, "")
+             barChart.setInterest(bar._1.testName, true)
+           }
+          
+          perfDrawer.draw(barChart, view)
+          legend.draw(barChart, legendScroll, filterString, filterString)
+          drawer.draw(graph, barChart, view)
+             
+      }
     }
     def gotoGithubCommit = {
       graph.highlightedPoint match {

@@ -8,7 +8,7 @@ import ch.epfl.performanceNetwork.printers.DataPrinter
  * @author Thibault Urien
  *
  */
-class CommitPrinter(val vertexes: TraversableOnce[(RevCommit, Int)]) extends DataPrinter {
+class CommitPrinter(val vertexes: Seq[(RevCommit, Int)]) extends DataPrinter {
   def writtenFields: Seq[String] = Seq("name", "time", "y", "comment", "author", "authoringDate")
   def printData(writer: Writter) =
     {

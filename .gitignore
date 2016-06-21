@@ -13,7 +13,8 @@ hs_err_pid*
 sbt.bat
 .setting
 target/
-project/
+project/project/
+project/target/
 js/target/
 jvm/target/
 repo/
@@ -24,3 +25,4 @@ scalameter.js
 .metadata
 *.odt
 *.odt#
+*.odp

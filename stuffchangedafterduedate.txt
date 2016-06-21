@@ -1,0 +1,5 @@
+date format
+add random test generation
+can click on tests bars
+better perf lines
+better checkout/merge links

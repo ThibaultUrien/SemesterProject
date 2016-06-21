@@ -49,7 +49,11 @@ class BarChartDrawer(
         val stringRange = readableRange.toString()
         val exponent = stringRange.size - 2 max 0
 
-        math.pow(10, exponent) * (lineCountCeil + 1)
+        val res = math.pow(10, exponent) * (lineCountCeil + 1)
+        if(range*shift/res >15)
+          res * 5
+        else
+          res
       }
       if (range < lineCountCeil * 1e-6) {
         ("ns", powTenShift(1e9), 1e-9)
@@ -68,10 +72,10 @@ class BarChartDrawer(
       }
     }
     def drawTimeLines(graduationsUnit: (String, Double, Double), yScale: Double) = {
-      (0 to 11) map (_ * graduationsUnit._2) foreach {
+      (0 to (canvasElem.height / yScale / graduationsUnit._3).toInt) map (_ * graduationsUnit._2) foreach {
         d =>
-          val graduationInms = d * graduationsUnit._3
-          val scaledD = canvasElem.height - graduationInms * yScale
+          val graduationIns = d * graduationsUnit._3
+          val scaledD = canvasElem.height - graduationIns * yScale
           drawLine((0, scaledD), (canvasElem.width, scaledD), "lightgray")
           ctx.beginPath()
           ctx.font = fontSize + "px " + fontName

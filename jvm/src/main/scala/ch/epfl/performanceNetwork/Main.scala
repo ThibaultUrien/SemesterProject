@@ -12,6 +12,7 @@ import java.util.regex.Pattern
 import java.awt.Desktop
 import java.io.File
 import java.lang.ProcessBuilder.Redirect
+import ch.epfl.performanceNetwork.benchmarkInterface.BenchDataCreator
 
 /**
  * @author Thibault Urien
@@ -64,6 +65,7 @@ object Main {
     val indexFileLocalName = find("indexFileLocalName")
     val fileNameRegex = find("fileNameRegex")
     val mainFileIsIndex = find("mainFileIsIndex").toBoolean
+    val createFakeTests = find("createFakeTests").toBoolean
 
     val vertexesFile = parsPath(find("vertexesFile"))
     val edgesFile = parsPath(find("edgesFile"))
@@ -93,10 +95,10 @@ object Main {
         println("Succesfully wrote " + workingDir + file + ".js")
         
       }
-        
-    val t1 = new Thread(new Runnable() {
-      def run {
-        val tests = BenchDataDownloader.fetch(
+    def gitData = NetworkDownloader(repoUrl, workingDir, repoDir)
+    
+    def testData = {
+       BenchDataDownloader.fetch(
           dataUrlDomain,
           mainFileUrl,
           mainFileIsIndex,
@@ -109,23 +111,38 @@ object Main {
           groupBegin,
           completeResultSeparator,
           groupEnd)
-        printToFile(tests, testsFile)
-      }
-    })
+    }
+    if(!createFakeTests) {
+      val t1 = new Thread(new Runnable() {
+          def run = {
+            val tests = testData
+            printToFile(tests, testsFile)
+          }
+        }
+      )
     
-    val t2 = new Thread(new Runnable() {
-      def run {
-        val (vertexes, edges) = NetworkDownloader(repoUrl, workingDir, repoDir)
+      val t2 = new Thread(new Runnable() {
+          def run  = {
+            val (vertexes, edges) = gitData
 
-        printToFile(vertexes, vertexesFile)
-        printToFile(edges, edgesFile)
-      }
-    })
-
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
+            printToFile(vertexes, vertexesFile)
+            printToFile(edges, edgesFile)
+          }
+        }
+      )
+  
+      t1.start()
+      t2.start()
+      t1.join()
+      t2.join()
+    } else {
+      val (vertexes, edges) = gitData;
+      val tests = BenchDataCreator(100,.8f,5000,10,2,vertexes.vertexes.map(_._1),1e-4f)
+      printToFile(vertexes, vertexesFile)
+      printToFile(edges, edgesFile)
+      printToFile(tests, testsFile)
+    }
+    
 
     if (showResultWhenDone && Desktop.isDesktopSupported()) {
 
@@ -134,6 +151,6 @@ object Main {
     }
 
   }
-
+  
   class MalformedSettingException(message: String) extends Exception(message)
 }

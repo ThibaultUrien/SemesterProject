@@ -65,10 +65,15 @@ class StretchyTimeScaleDrawer(
     }
     val fullTime = dayNIsFirst._2
     val day = dayNIsFirst._1
-    "" + day._1 +
-      (if (day._1 == 1 || fullTime) "/" + (day._2 + 1) +
-        (if (day._2 == 0 || fullTime) "/" + day._3 else "")
-      else "")
+
+    (if (day._1 == 1 || fullTime) {
+      (if (day._2 == 0 || fullTime) day._3 + "-" else "") +
+        (if (day._2 < 10) "0" else "") +
+        (day._2 + 1) +
+        "-"
+    } else "") +
+      (if (day._1 < 10) "0" else "") +
+      day._1
   }
   private def toUTC(d: (Int, Int, Int)) = (Date.UTC(d._3, d._2, d._1) / 1000.0)
   private def toPx(d: (Int, Int, Int), v: View) = toUTC(d) * v.scale.x
