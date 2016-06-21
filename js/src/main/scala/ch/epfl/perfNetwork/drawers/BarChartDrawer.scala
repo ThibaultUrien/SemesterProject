@@ -20,6 +20,8 @@ class BarChartDrawer(
     val textStyle: String,
     val bubbleFontSize: Int,
     val lineCountCeil: Int,
+    val lineWidth : Int,
+    val lineStyle : String,
     val bubbleFontName: String,
     val bubbleTextStyle: String,
     val darkeningCoef: Double,
@@ -76,7 +78,7 @@ class BarChartDrawer(
         d =>
           val graduationIns = d * graduationsUnit._3
           val scaledD = canvasElem.height - graduationIns * yScale
-          drawLine((0, scaledD), (canvasElem.width, scaledD), "lightgray")
+          drawLine((0, scaledD), (canvasElem.width, scaledD), lineStyle,lineWidth)
           ctx.beginPath()
           ctx.font = fontSize + "px " + fontName
           ctx.fillStyle = textStyle

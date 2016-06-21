@@ -20,6 +20,7 @@ trait JSBarchartSetting extends js.Object {
   def scaleFontName: String
   def scaleTextStyle: String
   def bubbleTextStyle: String
+  def lineStyle : String
   def canvasId: String
 
 }

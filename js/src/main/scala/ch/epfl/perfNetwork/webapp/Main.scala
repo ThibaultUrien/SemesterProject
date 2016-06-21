@@ -66,6 +66,8 @@ object Main extends JSApp {
       barchartSetting.scaleTextStyle,
       barchartSetting.bubbleFontSize,
       barchartSetting.unitPerLine - 1,
+      barchartSetting.lineWidth,
+      barchartSetting.lineStyle,
       barchartSetting.bubbleFontName,
       barchartSetting.bubbleTextStyle,
       barchartSetting.barBoundLightOffset,

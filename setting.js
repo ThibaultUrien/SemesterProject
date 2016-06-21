@@ -18,7 +18,7 @@ var SharedSetting = {
 	"vertexesFile" : "vertexes",
 	"edgesFile" : "edges",
 	"showResultWhenDone" : true,
-	"createFakeTests" : true
+	"createFakeTests" : false
 
 };
 var NetworkSetting = {
@@ -51,7 +51,7 @@ var NetworkSetting = {
 };
 
 var BarchartSetting =  {	
-	"lineWidth" : 2,
+	"lineWidth" : 1,
 	"unitPerLine" : 3,
 	"barSpacing" : 4,
 	"barWidth" : 12,
@@ -65,6 +65,7 @@ var BarchartSetting =  {
 	"scaleFontName" : "sans-serif",
 	"scaleTextStyle" : "lightgray",
 	"bubbleTextStyle" : "black",
+	"lineStyle" : "lightgray",
 	"canvasId" : "barchart"
 		
 };
